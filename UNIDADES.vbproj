@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DE41EEA5-4FCD-44C5-B161-6363215D6FC4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>UNIDADES.My.MyApplication</StartupObject>
+    <RootNamespace>UNIDADES</RootNamespace>
+    <AssemblyName>UNIDADES</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>UNIDADES.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>UNIDADES.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Unidades.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClassCrypt.vb" />
+    <Compile Include="classLoadListView.vb" />
+    <Compile Include="classValidarCPF_CNPJ.vb" />
+    <Compile Include="frmInstituirUni.Designer.vb">
+      <DependentUpon>frmInstituirUni.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmInstituirUni.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgCParticular.Designer.vb">
+      <DependentUpon>dlgCParticular.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgCParticular.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgConferencia.Designer.vb">
+      <DependentUpon>dlgConferencia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgConferencia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgColaborador.Designer.vb">
+      <DependentUpon>dlgColaborador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgColaborador.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAgregacao.Designer.vb">
+      <DependentUpon>frmAgregacao.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgregacao.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAprovAgr.Designer.vb">
+      <DependentUpon>frmAprovAgr.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAprovAgr.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBrowse.Designer.vb">
+      <DependentUpon>frmBrowse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmBrowse.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmColaboradores.Designer.vb">
+      <DependentUpon>frmColaboradores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmColaboradores.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGerenciarUni.Designer.vb">
+      <DependentUpon>frmGerenciarUni.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGerenciarUni.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelUnidades.Designer.vb">
+      <DependentUpon>frmRelUnidades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRelUnidades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportViewer.Designer.vb">
+      <DependentUpon>frmReportViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipoDeComplemento.Designer.vb">
+      <DependentUpon>frmTipoDeComplemento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTipoDeComplemento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipoDeOcupacao.Designer.vb">
+      <DependentUpon>frmTipoDeOcupacao.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTipoDeOcupacao.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUnidades.Designer.vb">
+      <DependentUpon>frmUnidades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUnidades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUnidadeUsu.Designer.vb">
+      <DependentUpon>frmUnidadeUsu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUnidadeUsu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuario.Designer.vb">
+      <DependentUpon>frmUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mdiPrincipal.Designer.vb">
+      <DependentUpon>mdiPrincipal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="mdiPrincipal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModPrincipal.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Parametros.Designer.vb">
+      <DependentUpon>Parametros.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Parametros.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmInstituirUni.resx">
+      <DependentUpon>frmInstituirUni.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgCParticular.resx">
+      <DependentUpon>dlgCParticular.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgConferencia.resx">
+      <DependentUpon>dlgConferencia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgColaborador.resx">
+      <DependentUpon>dlgColaborador.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAgregacao.resx">
+      <DependentUpon>frmAgregacao.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAprovAgr.resx">
+      <DependentUpon>frmAprovAgr.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBrowse.resx">
+      <DependentUpon>frmBrowse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmColaboradores.resx">
+      <DependentUpon>frmColaboradores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGerenciarUni.resx">
+      <DependentUpon>frmGerenciarUni.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelUnidades.resx">
+      <DependentUpon>frmRelUnidades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportViewer.resx">
+      <DependentUpon>frmReportViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipoDeComplemento.resx">
+      <DependentUpon>frmTipoDeComplemento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipoDeOcupacao.resx">
+      <DependentUpon>frmTipoDeOcupacao.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUnidades.resx">
+      <DependentUpon>frmUnidades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUnidadeUsu.resx">
+      <DependentUpon>frmUnidadeUsu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuario.resx">
+      <DependentUpon>frmUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mdiPrincipal.resx">
+      <DependentUpon>mdiPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parametros.resx">
+      <DependentUpon>Parametros.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AllDay.ru_Search.png" />
+    <Content Include="Unidades.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

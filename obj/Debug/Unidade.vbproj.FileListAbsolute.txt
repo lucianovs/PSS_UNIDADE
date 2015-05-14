@@ -1,0 +1,13 @@
+C:\fontes\SSVP_Projeto\Template\bin\Debug\Template.exe.config
+C:\fontes\SSVP_Projeto\Template\obj\Debug\Template.exe
+C:\fontes\SSVP_Projeto\Template\obj\Debug\Template.xml
+C:\fontes\SSVP_Projeto\Template\obj\Debug\Template.pdb
+C:\fontes\SSVP_Projeto\Template\bin\Debug\Template.exe
+C:\fontes\SSVP_Projeto\Template\bin\Debug\Template.pdb
+C:\fontes\SSVP_Projeto\Template\bin\Debug\Template.xml
+C:\fontes\SSVP_Projeto\Template\obj\Debug\Template.frmBrowse.resources
+C:\fontes\SSVP_Projeto\Template\obj\Debug\Template.frmUsuario.resources
+C:\fontes\SSVP_Projeto\Template\obj\Debug\Template.mdiPrincipal.resources
+C:\fontes\SSVP_Projeto\Template\obj\Debug\Template.Resources.resources
+C:\fontes\SSVP_Projeto\Template\obj\Debug\Template.Parametros.resources
+C:\fontes\SSVP_Projeto\Template\obj\Debug\Unidade.vbproj.GenerateResource.Cache
