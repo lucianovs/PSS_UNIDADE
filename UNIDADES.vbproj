@@ -80,103 +80,103 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassCrypt.vb" />
-    <Compile Include="classLoadListView.vb" />
-    <Compile Include="classValidarCPF_CNPJ.vb" />
-    <Compile Include="frmInstituirUni.Designer.vb">
+    <Compile Include="Class\ClassCrypt.vb" />
+    <Compile Include="Class\classLoadListView.vb" />
+    <Compile Include="Class\classValidarCPF_CNPJ.vb" />
+    <Compile Include="Form\frmInstituirUni.Designer.vb">
       <DependentUpon>frmInstituirUni.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmInstituirUni.vb">
+    <Compile Include="Form\frmInstituirUni.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dlgCParticular.Designer.vb">
+    <Compile Include="Dialog\dlgCParticular.Designer.vb">
       <DependentUpon>dlgCParticular.vb</DependentUpon>
     </Compile>
-    <Compile Include="dlgCParticular.vb">
+    <Compile Include="Dialog\dlgCParticular.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dlgConferencia.Designer.vb">
+    <Compile Include="Dialog\dlgConferencia.Designer.vb">
       <DependentUpon>dlgConferencia.vb</DependentUpon>
     </Compile>
-    <Compile Include="dlgConferencia.vb">
+    <Compile Include="Dialog\dlgConferencia.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dlgColaborador.Designer.vb">
+    <Compile Include="Dialog\dlgColaborador.Designer.vb">
       <DependentUpon>dlgColaborador.vb</DependentUpon>
     </Compile>
-    <Compile Include="dlgColaborador.vb">
+    <Compile Include="Dialog\dlgColaborador.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAgregacao.Designer.vb">
+    <Compile Include="Form\frmAgregacao.Designer.vb">
       <DependentUpon>frmAgregacao.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAgregacao.vb">
+    <Compile Include="Form\frmAgregacao.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAprovAgr.Designer.vb">
+    <Compile Include="Form\frmAprovAgr.Designer.vb">
       <DependentUpon>frmAprovAgr.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAprovAgr.vb">
+    <Compile Include="Form\frmAprovAgr.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBrowse.Designer.vb">
+    <Compile Include="Form\frmBrowse.Designer.vb">
       <DependentUpon>frmBrowse.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmBrowse.vb">
+    <Compile Include="Form\frmBrowse.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmColaboradores.Designer.vb">
+    <Compile Include="Form\frmColaboradores.Designer.vb">
       <DependentUpon>frmColaboradores.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmColaboradores.vb">
+    <Compile Include="Form\frmColaboradores.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGerenciarUni.Designer.vb">
+    <Compile Include="Form\frmGerenciarUni.Designer.vb">
       <DependentUpon>frmGerenciarUni.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmGerenciarUni.vb">
+    <Compile Include="Form\frmGerenciarUni.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRelUnidades.Designer.vb">
+    <Compile Include="Form\frmRelUnidades.Designer.vb">
       <DependentUpon>frmRelUnidades.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmRelUnidades.vb">
+    <Compile Include="Form\frmRelUnidades.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmReportViewer.Designer.vb">
+    <Compile Include="Form\frmReportViewer.Designer.vb">
       <DependentUpon>frmReportViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmReportViewer.vb">
+    <Compile Include="Form\frmReportViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTipoDeComplemento.Designer.vb">
+    <Compile Include="Form\frmTipoDeComplemento.Designer.vb">
       <DependentUpon>frmTipoDeComplemento.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmTipoDeComplemento.vb">
+    <Compile Include="Form\frmTipoDeComplemento.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTipoDeOcupacao.Designer.vb">
+    <Compile Include="Form\frmTipoDeOcupacao.Designer.vb">
       <DependentUpon>frmTipoDeOcupacao.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmTipoDeOcupacao.vb">
+    <Compile Include="Form\frmTipoDeOcupacao.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUnidades.Designer.vb">
+    <Compile Include="Form\frmUnidades.Designer.vb">
       <DependentUpon>frmUnidades.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmUnidades.vb">
+    <Compile Include="Form\frmUnidades.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUnidadeUsu.Designer.vb">
+    <Compile Include="Form\frmUnidadeUsu.Designer.vb">
       <DependentUpon>frmUnidadeUsu.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmUnidadeUsu.vb">
+    <Compile Include="Form\frmUnidadeUsu.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUsuario.Designer.vb">
+    <Compile Include="Form\frmUsuario.Designer.vb">
       <DependentUpon>frmUsuario.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmUsuario.vb">
+    <Compile Include="Form\frmUsuario.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="mdiPrincipal.Designer.vb">
@@ -185,7 +185,7 @@
     <Compile Include="mdiPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModPrincipal.vb" />
+    <Compile Include="Module\ModPrincipal.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -201,60 +201,60 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Parametros.Designer.vb">
+    <Compile Include="Form\Parametros.Designer.vb">
       <DependentUpon>Parametros.vb</DependentUpon>
     </Compile>
-    <Compile Include="Parametros.vb">
+    <Compile Include="Form\Parametros.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmInstituirUni.resx">
+    <EmbeddedResource Include="Form\frmInstituirUni.resx">
       <DependentUpon>frmInstituirUni.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dlgCParticular.resx">
+    <EmbeddedResource Include="Dialog\dlgCParticular.resx">
       <DependentUpon>dlgCParticular.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dlgConferencia.resx">
+    <EmbeddedResource Include="Dialog\dlgConferencia.resx">
       <DependentUpon>dlgConferencia.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dlgColaborador.resx">
+    <EmbeddedResource Include="Dialog\dlgColaborador.resx">
       <DependentUpon>dlgColaborador.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAgregacao.resx">
+    <EmbeddedResource Include="Form\frmAgregacao.resx">
       <DependentUpon>frmAgregacao.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAprovAgr.resx">
+    <EmbeddedResource Include="Form\frmAprovAgr.resx">
       <DependentUpon>frmAprovAgr.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBrowse.resx">
+    <EmbeddedResource Include="Form\frmBrowse.resx">
       <DependentUpon>frmBrowse.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmColaboradores.resx">
+    <EmbeddedResource Include="Form\frmColaboradores.resx">
       <DependentUpon>frmColaboradores.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGerenciarUni.resx">
+    <EmbeddedResource Include="Form\frmGerenciarUni.resx">
       <DependentUpon>frmGerenciarUni.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRelUnidades.resx">
+    <EmbeddedResource Include="Form\frmRelUnidades.resx">
       <DependentUpon>frmRelUnidades.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmReportViewer.resx">
+    <EmbeddedResource Include="Form\frmReportViewer.resx">
       <DependentUpon>frmReportViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTipoDeComplemento.resx">
+    <EmbeddedResource Include="Form\frmTipoDeComplemento.resx">
       <DependentUpon>frmTipoDeComplemento.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTipoDeOcupacao.resx">
+    <EmbeddedResource Include="Form\frmTipoDeOcupacao.resx">
       <DependentUpon>frmTipoDeOcupacao.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUnidades.resx">
+    <EmbeddedResource Include="Form\frmUnidades.resx">
       <DependentUpon>frmUnidades.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUnidadeUsu.resx">
+    <EmbeddedResource Include="Form\frmUnidadeUsu.resx">
       <DependentUpon>frmUnidadeUsu.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUsuario.resx">
+    <EmbeddedResource Include="Form\frmUsuario.resx">
       <DependentUpon>frmUsuario.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mdiPrincipal.resx">
@@ -266,7 +266,7 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Parametros.resx">
+    <EmbeddedResource Include="Form\Parametros.resx">
       <DependentUpon>Parametros.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
