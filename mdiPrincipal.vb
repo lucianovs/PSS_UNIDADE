@@ -21,9 +21,9 @@ Public Class mdiPrincipal
         If Not bUsarVPN Then
             '***** Indicar qual usuário deverá se logado automaticamente
             'g_Login = ClassCrypt.Encrypt("admin")
-            'g_Login =  ClassCrypt.Encrypt("jose.alves")
-            g_Login = ClassCrypt.Encrypt("teste.3")
-            bArguments = False
+            'g_Login = ClassCrypt.Encrypt("jose.alves")
+            'g_Login = ClassCrypt.Encrypt("teste.3")
+            'bArguments = False
             '*****
         End If
         Try
@@ -252,7 +252,7 @@ Public Class mdiPrincipal
 
     Private Sub menuCadColaboradores_Click(sender As Object, e As EventArgs) Handles menuCadColaboradores.Click
         Dim frmBrowse_Colaboradores As frmBrowse = New frmBrowse("EUN003", "frmColaboradores", "left join EUN013 on EUN013.UN013_CODUNI=EUN003.UN003_CODUNI", _
-                                                    "(EUN013.UN013_CODUSU=" & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString & " AND UN013_PERACE > 0) or (EUN003.UN003_CODUNI=0)")
+                                                    "((EUN013.UN013_CODUSU=" & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString & " AND UN013_PERACE > 0) or (EUN003.UN003_CODUNI=0))")
 
         frmBrowse_Colaboradores.MdiParent = Me
         frmBrowse_Colaboradores.Tag = menuCadColaboradores.Tag 'é gravado no tag do menu o nível de acesso

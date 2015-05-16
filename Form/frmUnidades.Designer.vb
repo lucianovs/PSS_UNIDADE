@@ -127,6 +127,7 @@ Partial Class frmUnidades
         Me.lblPesqMembro = New System.Windows.Forms.Label()
         Me.btnPesqMembro = New System.Windows.Forms.Button()
         Me.txtPesqMembro = New System.Windows.Forms.TextBox()
+        Me.btnEstrutura = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -281,6 +282,7 @@ Partial Class frmUnidades
         '
         'tbpCadastro
         '
+        Me.tbpCadastro.Controls.Add(Me.btnEstrutura)
         Me.tbpCadastro.Controls.Add(Me.txtCnpj)
         Me.tbpCadastro.Controls.Add(Me.lblCnpj)
         Me.tbpCadastro.Controls.Add(Me.dtpDataFundacao)
@@ -519,7 +521,7 @@ Partial Class frmUnidades
         Me.txtEstruturaUnidade.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEstruturaUnidade.MaxLength = 11
         Me.txtEstruturaUnidade.Name = "txtEstruturaUnidade"
-        Me.txtEstruturaUnidade.Size = New System.Drawing.Size(132, 22)
+        Me.txtEstruturaUnidade.Size = New System.Drawing.Size(144, 22)
         Me.txtEstruturaUnidade.TabIndex = 2
         '
         'lblEstruturaUnidade
@@ -785,9 +787,9 @@ Partial Class frmUnidades
         Me.lblDataAprovacaoCG.Location = New System.Drawing.Point(29, 193)
         Me.lblDataAprovacaoCG.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblDataAprovacaoCG.Name = "lblDataAprovacaoCG"
-        Me.lblDataAprovacaoCG.Size = New System.Drawing.Size(138, 17)
+        Me.lblDataAprovacaoCG.Size = New System.Drawing.Size(141, 17)
         Me.lblDataAprovacaoCG.TabIndex = 22
-        Me.lblDataAprovacaoCG.Text = "Data Aprovação CG:"
+        Me.lblDataAprovacaoCG.Text = "Data Aprovação CGI:"
         '
         'dtpDataAprovacaoCN
         '
@@ -1223,6 +1225,18 @@ Partial Class frmUnidades
         Me.txtPesqMembro.Size = New System.Drawing.Size(351, 22)
         Me.txtPesqMembro.TabIndex = 0
         '
+        'btnEstrutura
+        '
+        Me.btnEstrutura.BackgroundImage = CType(resources.GetObject("btnEstrutura.BackgroundImage"), System.Drawing.Image)
+        Me.btnEstrutura.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnEstrutura.Enabled = False
+        Me.btnEstrutura.Location = New System.Drawing.Point(643, 21)
+        Me.btnEstrutura.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnEstrutura.Name = "btnEstrutura"
+        Me.btnEstrutura.Size = New System.Drawing.Size(26, 24)
+        Me.btnEstrutura.TabIndex = 40
+        Me.btnEstrutura.UseVisualStyleBackColor = True
+        '
         'frmUnidades
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -1362,4 +1376,5 @@ Partial Class frmUnidades
     Friend WithEvents lblPesqMembro As System.Windows.Forms.Label
     Friend WithEvents btnPesqMembro As System.Windows.Forms.Button
     Friend WithEvents txtPesqMembro As System.Windows.Forms.TextBox
+    Friend WithEvents btnEstrutura As System.Windows.Forms.Button
 End Class

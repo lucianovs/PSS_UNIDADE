@@ -413,7 +413,6 @@ Public Class frmUnidadeUsu
             Next
             Call CarregarLst_CM()
         ElseIf btnComando.Name = "btnAtualizar_CC" Then
-
             'Ler CCs
             If lstCC.Items.Count > 0 Then
                 For IndexCC = 0 To lstCC.Items.Count - 1
@@ -506,7 +505,8 @@ Public Class frmUnidadeUsu
                 da.Fill(dtUnidade)
                 If dtUnidade.Rows.Count() > 0 Then
                     For y = 0 To dtUnidade.Rows.Count() - 1
-                        If GravarPermissao(dtUnidade.Rows(y).Item("UN000_CODRED"), IIf(nNivelPer = 3, 2, 0)) = 1 Then 'Gravar ALT
+                        'If GravarPermissao(dtUnidade.Rows(y).Item("UN000_CODRED"), IIf(nNivelPer = 3, 2, 0)) = 1 Then 'Gravar ALT
+                        If GravarPermissao(dtUnidade.Rows(y).Item("UN000_CODRED"), nNivelPer) = 1 Then 'Gravar a mesma permissão do OWNER
                             Exit For
                         End If
                     Next y

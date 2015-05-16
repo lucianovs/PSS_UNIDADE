@@ -38,7 +38,7 @@ Public Class dlgCParticular
         If Not Trim(txtPesquisa.Text) = "" Then
             cQuery = "Select EUN000.UN000_CODRED, EUN000.UN000_CLAUNI, EUN000.UN000_NOMUNI " & _
                 "FROM EUN000 where EUN000.UN000_STAUNI<>'I' " & _
-                "AND right(UN000_CLAUNI,2)='00' " ' Conselhos Particulares
+                "AND right(UN000_CLAUNI,2)='00' and right(left(UN000_CLAUNI,8),2)<>'00' " ' Conselhos Particulares
             nStart = 1
 
             lstPesquisa.Items.Clear()
@@ -90,4 +90,7 @@ Public Class dlgCParticular
 
     End Sub
 
+    Private Sub dlgCParticular_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

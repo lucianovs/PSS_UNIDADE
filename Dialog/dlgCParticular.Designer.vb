@@ -109,7 +109,7 @@ Partial Class dlgCParticular
         Me.txtPesquisa.Size = New System.Drawing.Size(383, 22)
         Me.txtPesquisa.TabIndex = 36
         '
-        'dlgUnidade
+        'dlgCParticular
         '
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -125,7 +125,7 @@ Partial Class dlgCParticular
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "dlgUnidade"
+        Me.Name = "dlgCParticular"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Localizar Unidade"

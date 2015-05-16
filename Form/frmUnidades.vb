@@ -131,7 +131,7 @@ Public Class frmUnidades
         lblDiocese.Enabled = bAlterar
         lblEndereco.Enabled = bAlterar
         lblEstado.Enabled = bAlterar
-        lblEstruturaUnidade.Enabled = bAlterar
+        lblEstruturaUnidade.Enabled = bIncluir
         lblFrequenciaReuniao.Enabled = bAlterar
         lblAgencia.Enabled = bAlterar
         lblTitular.Enabled = bAlterar
@@ -149,7 +149,8 @@ Public Class frmUnidades
         txtConta.Enabled = bAlterar
         txtDiocese.Enabled = bAlterar
         txtEndereco.Enabled = bAlterar
-        txtEstruturaUnidade.Enabled = bAlterar
+        txtEstruturaUnidade.Enabled = bIncluir
+        btnEstrutura.Enabled = bIncluir
         txtNome.Enabled = bAlterar
         txtPais.Enabled = bAlterar
         txtRegistro.Enabled = bAlterar
@@ -171,8 +172,10 @@ Public Class frmUnidades
         lblDataAprovacaoCP.Enabled = bAlterar And nPermissao > 2
         dtpDataInstituicaoUnidade.Enabled = bAlterar And nPermissao > 2
         lblDataInstituicaoUnidade.Enabled = bAlterar And nPermissao > 2
+
         dtpDataAgregacaoUnidade.Enabled = bAlterar And nPermissao > 2
         lblDataAgregacaoUnidade.Enabled = bAlterar And nPermissao > 2
+
         dtpDataEnvio.Enabled = bAlterar And nPermissao > 2
         lblDataEnvio.Enabled = bAlterar And nPermissao > 2
 
@@ -233,10 +236,10 @@ Public Class frmUnidades
             lblDataAprovacaoCC.Visible = Mid(txtEstruturaUnidade.Text, 7, 2) <> "00"
             dtpDataAprovacaoCP.Visible = Mid(txtEstruturaUnidade.Text, 10, 2) <> "00"
             lblDataAprovacaoCP.Visible = Mid(txtEstruturaUnidade.Text, 10, 2) <> "00"
-            dtpDataInstituicaoUnidade.Visible = Mid(txtEstruturaUnidade.Text, 10, 2) <> "00"
-            lblDataInstituicaoUnidade.Visible = Mid(txtEstruturaUnidade.Text, 10, 2) <> "00"
-            dtpDataAgregacaoUnidade.Visible = Mid(txtEstruturaUnidade.Text, 10, 2) = "00"
-            lblDataAgregacaoUnidade.Visible = Mid(txtEstruturaUnidade.Text, 10, 2) = "00"
+            dtpDataInstituicaoUnidade.Visible = Mid(txtEstruturaUnidade.Text, 10, 2) = "00"
+            lblDataInstituicaoUnidade.Visible = Mid(txtEstruturaUnidade.Text, 10, 2) = "00"
+            dtpDataAgregacaoUnidade.Visible = Mid(txtEstruturaUnidade.Text, 10, 2) <> "00"
+            lblDataAgregacaoUnidade.Visible = Mid(txtEstruturaUnidade.Text, 10, 2) <> "00"
 
             cValorCampos = CarregarValoresTela()
 

@@ -59,7 +59,7 @@ Public Class frmGerenciarUni
             cParteSelect += " 3 AS UN013_PERACE FROM EUN000"
         Else
             cParteSelect += " EUN013.UN013_PERACE FROM (EUN000 inner join EUN013 on EUN013.UN013_CODUNI=EUN000.UN000_CODRED)"
-            cParteWhere = " AND EUN013.UN013_CODUSU=" & nCodUsuario.ToString & _
+            cParteWhere += " AND EUN013.UN013_CODUSU=" & nCodUsuario.ToString & _
                 " AND UN013_PERACE > 0 "
         End If
 
@@ -285,9 +285,10 @@ erro_comandos:
     End Sub
 
     Private Sub frmGerenciarUni_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
-        Treeview_GerUnidades.Size = New Size(443, Me.Size.Height - 46) '112
+        Treeview_GerUnidades.Size = New Size(589, Me.Size.Height - 60) '112
 
-        pnlDadosUni.Size = New Size(Me.Size.Width - 499, Me.Size.Height - 119) '112
+        'pnlDadosUni.Size = New Size(Me.Size.Width - 60, Me.Size.Height - 60) '112
+
         'btnAnterior.Location = New System.Drawing.Point(ListView_Browse.Size.Width - 218, ListView_Browse.Size.Height + 58)
         'lblRegistros.Location = New System.Drawing.Point(btnAnterior.Location.X + 64, btnAnterior.Location.Y + 3)
         'btnProximo.Location = New System.Drawing.Point(btnAnterior.Location.X + 161, btnAnterior.Location.Y)

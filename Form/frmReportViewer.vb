@@ -2,20 +2,24 @@
 Imports CrystalDecisions.CrystalReports.Engine
 
 Public Class frmReportViewer
-    Public Sub ShowReport(ByVal DataTbl As DataSet, _
-                    ByVal RptName As String, _
-                     ByVal RptPath As String)
+    Public Sub ShowReport(ByVal RptName As String, _
+                     ByVal RptPath As String,
+                     ByVal rptFormula As String)
 
         Dim ObjRpt As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+        Dim crtableLogoninfos As New TableLogOnInfos
+        Dim crtableLogoninfo As New TableLogOnInfo
+        Dim crConnectionInfo As New ConnectionInfo
+        Dim CrTables As Tables
+        Dim CrTable As Table
 
         ObjRpt.Load(RptPath & RptName)
 
-        'MsgBox(RptPath & RptName)
         Application.DoEvents()
 
-        ObjRpt.SetDataSource(DataTbl.Tables(0))
-
+        'ObjRpt.SetDataSource(DataTbl.Tables(0))
         Me.CrystalReportViewer1.ReportSource = ObjRpt
+        Me.CrystalReportViewer1.SelectionFormula = rptFormula
 
         'Dim myDBConnectionInfo As New CrystalDecisions.Shared.ConnectionInfo()
 
@@ -27,6 +31,20 @@ Public Class frmReportViewer
         '.UserID = ChaveConexao("User ID")
         '.Password = ChaveConexao("Password")
         'End With
+
+        With crConnectionInfo
+            .ServerName = ChaveConexao("Data Source")
+            .DatabaseName = ChaveConexao("Initial Catalog")
+            .UserID = ChaveConexao("User ID")
+            .Password = ChaveConexao("Password")
+        End With
+
+        CrTables = ObjRpt.Database.Tables
+        For Each CrTable In CrTables
+            crtableLogoninfo = CrTable.LogOnInfo
+            crtableLogoninfo.ConnectionInfo = crConnectionInfo
+            CrTable.ApplyLogOnInfo(crtableLogoninfo)
+        Next
 
         Me.CrystalReportViewer1.Refresh()
         Me.Show()

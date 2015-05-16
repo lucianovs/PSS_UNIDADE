@@ -65,7 +65,7 @@ Partial Class frmGerenciarUni
         Me.Treeview_GerUnidades.ImageIndex = 0
         Me.Treeview_GerUnidades.ImageList = Me.ImageList
         Me.Treeview_GerUnidades.Location = New System.Drawing.Point(19, 7)
-        Me.Treeview_GerUnidades.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Treeview_GerUnidades.Margin = New System.Windows.Forms.Padding(4)
         Me.Treeview_GerUnidades.Name = "Treeview_GerUnidades"
         Me.Treeview_GerUnidades.SelectedImageIndex = 0
         Me.Treeview_GerUnidades.Size = New System.Drawing.Size(589, 504)
@@ -84,7 +84,7 @@ Partial Class frmGerenciarUni
         '
         Me.txtEstruturaUnidade.Enabled = False
         Me.txtEstruturaUnidade.Location = New System.Drawing.Point(900, 63)
-        Me.txtEstruturaUnidade.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtEstruturaUnidade.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEstruturaUnidade.MaxLength = 11
         Me.txtEstruturaUnidade.Name = "txtEstruturaUnidade"
         Me.txtEstruturaUnidade.Size = New System.Drawing.Size(152, 22)
@@ -106,7 +106,7 @@ Partial Class frmGerenciarUni
         Me.txtCodigo.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtCodigo.Enabled = False
         Me.txtCodigo.Location = New System.Drawing.Point(681, 63)
-        Me.txtCodigo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtCodigo.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCodigo.MaxLength = 8
         Me.txtCodigo.Name = "txtCodigo"
         Me.txtCodigo.Size = New System.Drawing.Size(76, 22)
@@ -125,6 +125,9 @@ Partial Class frmGerenciarUni
         '
         'pnlDadosUni
         '
+        Me.pnlDadosUni.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlDadosUni.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.pnlDadosUni.Controls.Add(Me.txtDatInst)
         Me.pnlDadosUni.Controls.Add(Me.lblDatInst)
@@ -140,9 +143,9 @@ Partial Class frmGerenciarUni
         Me.pnlDadosUni.Controls.Add(Me.lblDatFund)
         Me.pnlDadosUni.Controls.Add(Me.grpBox_MudarEstru)
         Me.pnlDadosUni.Location = New System.Drawing.Point(628, 95)
-        Me.pnlDadosUni.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlDadosUni.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlDadosUni.Name = "pnlDadosUni"
-        Me.pnlDadosUni.Size = New System.Drawing.Size(449, 415)
+        Me.pnlDadosUni.Size = New System.Drawing.Size(491, 433)
         Me.pnlDadosUni.TabIndex = 7
         '
         'txtDatInst
@@ -150,7 +153,7 @@ Partial Class frmGerenciarUni
         Me.txtDatInst.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtDatInst.Enabled = False
         Me.txtDatInst.Location = New System.Drawing.Point(200, 28)
-        Me.txtDatInst.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtDatInst.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDatInst.MaxLength = 8
         Me.txtDatInst.Name = "txtDatInst"
         Me.txtDatInst.Size = New System.Drawing.Size(95, 22)
@@ -173,7 +176,7 @@ Partial Class frmGerenciarUni
         Me.txtEstUni.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtEstUni.Enabled = False
         Me.txtEstUni.Location = New System.Drawing.Point(405, 121)
-        Me.txtEstUni.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtEstUni.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEstUni.MaxLength = 8
         Me.txtEstUni.Name = "txtEstUni"
         Me.txtEstUni.Size = New System.Drawing.Size(40, 22)
@@ -195,7 +198,7 @@ Partial Class frmGerenciarUni
         Me.txtCidUni.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtCidUni.Enabled = False
         Me.txtCidUni.Location = New System.Drawing.Point(93, 121)
-        Me.txtCidUni.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtCidUni.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCidUni.MaxLength = 8
         Me.txtCidUni.Name = "txtCidUni"
         Me.txtCidUni.Size = New System.Drawing.Size(263, 22)
@@ -217,7 +220,7 @@ Partial Class frmGerenciarUni
         Me.txtBaiUni.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtBaiUni.Enabled = False
         Me.txtBaiUni.Location = New System.Drawing.Point(93, 90)
-        Me.txtBaiUni.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtBaiUni.Margin = New System.Windows.Forms.Padding(4)
         Me.txtBaiUni.MaxLength = 8
         Me.txtBaiUni.Name = "txtBaiUni"
         Me.txtBaiUni.Size = New System.Drawing.Size(352, 22)
@@ -239,7 +242,7 @@ Partial Class frmGerenciarUni
         Me.txtEndUni.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtEndUni.Enabled = False
         Me.txtEndUni.Location = New System.Drawing.Point(93, 60)
-        Me.txtEndUni.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtEndUni.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEndUni.MaxLength = 8
         Me.txtEndUni.Name = "txtEndUni"
         Me.txtEndUni.Size = New System.Drawing.Size(352, 22)
@@ -261,7 +264,7 @@ Partial Class frmGerenciarUni
         Me.txtDatFun.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtDatFun.Enabled = False
         Me.txtDatFun.Location = New System.Drawing.Point(17, 28)
-        Me.txtDatFun.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtDatFun.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDatFun.MaxLength = 8
         Me.txtDatFun.Name = "txtDatFun"
         Me.txtDatFun.Size = New System.Drawing.Size(95, 22)
@@ -304,7 +307,7 @@ Partial Class frmGerenciarUni
         Me.txtCodUnidadeMudar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtCodUnidadeMudar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCodUnidadeMudar.Location = New System.Drawing.Point(115, 20)
-        Me.txtCodUnidadeMudar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtCodUnidadeMudar.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCodUnidadeMudar.MaxLength = 11
         Me.txtCodUnidadeMudar.Name = "txtCodUnidadeMudar"
         Me.txtCodUnidadeMudar.Size = New System.Drawing.Size(99, 30)
@@ -315,7 +318,7 @@ Partial Class frmGerenciarUni
         Me.txtEstruDestino.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtEstruDestino.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEstruDestino.Location = New System.Drawing.Point(223, 63)
-        Me.txtEstruDestino.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtEstruDestino.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEstruDestino.MaxLength = 11
         Me.txtEstruDestino.Name = "txtEstruDestino"
         Me.txtEstruDestino.Size = New System.Drawing.Size(205, 30)
@@ -348,7 +351,7 @@ Partial Class frmGerenciarUni
         Me.txtUnidadeMudar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtUnidadeMudar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtUnidadeMudar.Location = New System.Drawing.Point(223, 20)
-        Me.txtUnidadeMudar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtUnidadeMudar.Margin = New System.Windows.Forms.Padding(4)
         Me.txtUnidadeMudar.MaxLength = 11
         Me.txtUnidadeMudar.Name = "txtUnidadeMudar"
         Me.txtUnidadeMudar.Size = New System.Drawing.Size(205, 30)
@@ -382,7 +385,7 @@ Partial Class frmGerenciarUni
         Me.btnAlterar.Enabled = False
         Me.btnAlterar.Image = CType(resources.GetObject("btnAlterar.Image"), System.Drawing.Image)
         Me.btnAlterar.Location = New System.Drawing.Point(619, 6)
-        Me.btnAlterar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnAlterar.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAlterar.Name = "btnAlterar"
         Me.btnAlterar.Size = New System.Drawing.Size(53, 48)
         Me.btnAlterar.TabIndex = 8
@@ -393,7 +396,7 @@ Partial Class frmGerenciarUni
         Me.btnExcluir.Enabled = False
         Me.btnExcluir.Image = CType(resources.GetObject("btnExcluir.Image"), System.Drawing.Image)
         Me.btnExcluir.Location = New System.Drawing.Point(777, 6)
-        Me.btnExcluir.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnExcluir.Margin = New System.Windows.Forms.Padding(4)
         Me.btnExcluir.Name = "btnExcluir"
         Me.btnExcluir.Size = New System.Drawing.Size(53, 48)
         Me.btnExcluir.TabIndex = 9
@@ -404,7 +407,7 @@ Partial Class frmGerenciarUni
         Me.btnMudarEstru.Enabled = False
         Me.btnMudarEstru.Image = CType(resources.GetObject("btnMudarEstru.Image"), System.Drawing.Image)
         Me.btnMudarEstru.Location = New System.Drawing.Point(680, 6)
-        Me.btnMudarEstru.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnMudarEstru.Margin = New System.Windows.Forms.Padding(4)
         Me.btnMudarEstru.Name = "btnMudarEstru"
         Me.btnMudarEstru.Size = New System.Drawing.Size(53, 48)
         Me.btnMudarEstru.TabIndex = 10
@@ -432,7 +435,7 @@ Partial Class frmGerenciarUni
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1093, 514)
+        Me.ClientSize = New System.Drawing.Size(1135, 532)
         Me.Controls.Add(Me.lblMensagem)
         Me.Controls.Add(Me.btnMudarEstru)
         Me.Controls.Add(Me.btnExcluir)
@@ -444,7 +447,7 @@ Partial Class frmGerenciarUni
         Me.Controls.Add(Me.lblCodigo)
         Me.Controls.Add(Me.Treeview_GerUnidades)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmGerenciarUni"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Gerenciar o Cadastro de Unidades"

@@ -83,6 +83,12 @@
     <Compile Include="Class\ClassCrypt.vb" />
     <Compile Include="Class\classLoadListView.vb" />
     <Compile Include="Class\classValidarCPF_CNPJ.vb" />
+    <Compile Include="Dialog\dlgConselho.Designer.vb">
+      <DependentUpon>dlgConselho.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\dlgConselho.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\frmInstituirUni.Designer.vb">
       <DependentUpon>frmInstituirUni.vb</DependentUpon>
     </Compile>
@@ -209,6 +215,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialog\dlgConselho.resx">
+      <DependentUpon>dlgConselho.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmInstituirUni.resx">
       <DependentUpon>frmInstituirUni.vb</DependentUpon>
     </EmbeddedResource>

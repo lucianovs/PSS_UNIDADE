@@ -978,11 +978,19 @@ Module ModPrincipal
 
         Dim nContIni As Integer
         Dim nContFin As Integer
+        Dim sConnString As String
 
-        nContIni = InStr(0, ClassCrypt.Decrypt(g_ConnectString), fChave) + Len(fChave) + 1
-        nContFin = InStr(nContIni, ClassCrypt.Decrypt(g_ConnectString), ";")
+        sConnString = ClassCrypt.Decrypt(g_ConnectString)
 
-        ChaveConexao = Microsoft.VisualBasic.Mid(ClassCrypt.Decrypt(g_ConnectString), nContIni, nContFin - nContIni)
+        nContIni = InStr(1, sConnString, fChave)
+        If nContIni > 0 Then
+            nContIni += Len(fChave) + 1
+            nContFin = InStr(nContIni, sConnString, ";")
+            ChaveConexao = Microsoft.VisualBasic.Mid(sConnString, nContIni, nContFin - nContIni)
+        Else
+            ChaveConexao = ""
+        End If
+
     End Function
 
     Public Function LerNomeCampo(sNome_Entidade As String, sDesc_Campo As String) As String

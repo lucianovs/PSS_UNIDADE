@@ -1,7 +1,7 @@
 ﻿Imports System.Windows.Forms
 Imports System.Data.OleDb
 
-Public Class dlgColaborador
+Public Class dlgConselho
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click, lstPesquisa.DoubleClick
 
@@ -13,7 +13,7 @@ Public Class dlgColaborador
                 Me.DialogResult = System.Windows.Forms.DialogResult.OK
                 Me.Close()
             Else
-                MsgBox("Nenhum colaborador foi selecionado!!")
+                MsgBox("Nenhum Conselho foi selecionado!")
             End If
         Else
             Call btnPesquisa_Click(Nothing, New System.EventArgs())
@@ -31,13 +31,14 @@ Public Class dlgColaborador
         Dim nStart As Integer = 1
         Dim sNome(10) As String
         Dim sItemLista As String
-        Dim dtPesquisar As DataTable = New DataTable("EUN003")
-        Dim cQuery As String
+        Dim dtPesquisar As DataTable = New DataTable("EUN000")
+        Dim cQuery As String = ""
+        Dim cQuery2 As String = "" 'Criada para utilizar o where em dois campos para o mesmo texto"
 
         If Not Trim(txtPesquisa.Text) = "" Then
-            cQuery = "Select EUN003.UN003_CODCOL, EUN003.UN003_NOMCOL, EUN003.UN003_BAIRRO, " & _
-                "EUN003.UN003_CIDADE, EUN003.UN003_SIGEST, EUN003.UN003_DTNASC from EUN003 " & _
-                "where EUN003.UN003_SITCOL<>'I' AND EUN003.UN003_CODUNI=0"
+            cQuery = "Select EUN000.UN000_CODRED, EUN000.UN000_CLAUNI, EUN000.UN000_NOMUNI " & _
+                "FROM EUN000 where EUN000.UN000_STAUNI<>'I' " & _
+                "AND right(UN000_CLAUNI,2)='00' " ' Conselhos
             nStart = 1
 
             lstPesquisa.Items.Clear()
@@ -54,9 +55,18 @@ Public Class dlgColaborador
             Loop
             'Montar a Condição
             For nPos = 0 To nSeq
-                cQuery += " and EUN003.UN003_NOMCOL LIKE '%" & sNome(nPos) & "%'"
+                If nPos = 0 Then
+                    cQuery += " and (("
+                    cQuery2 += " or ("
+                Else
+                    cQuery += " and "
+                    cQuery2 += " and "
+                End If
+                cQuery += " EUN000.UN000_NOMUNI LIKE '%" & sNome(nPos) & "%'"
+                cQuery2 += " EUN000.UN000_CLAUNI LIKE '%" & sNome(nPos) & "%'"
             Next nPos
-            cQuery += " order by EUN003.UN003_NOMCOL"
+            cQuery += ")" & cQuery2 & "))"
+            cQuery += " order by EUN000.UN000_CLAUNI"
 
             Using da As New OleDbDataAdapter()
                 da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
@@ -66,30 +76,21 @@ Public Class dlgColaborador
             End Using
 
             For nSeq = 0 To dtPesquisar.Rows.Count - 1
-                sItemLista = Format(dtPesquisar.Rows(nSeq).Item("UN003_CODCOL"), "000000") & " | "
-                sItemLista += IIf(IsDBNull(dtPesquisar.Rows(nSeq).Item("UN003_NOMCOL")), "", dtPesquisar.Rows(nSeq).Item("UN003_NOMCOL"))
-
-                If Not IsDBNull(dtPesquisar.Rows(nSeq).Item("UN003_DTNASC")) Then
-                    sItemLista += " | " & Format(dtPesquisar.Rows(nSeq).Item("UN003_DTNASC"), "dd/MM/yy")
-                End If
-                If Not IsDBNull(dtPesquisar.Rows(nSeq).Item("UN003_SIGEST")) Then
-                    sItemLista += " | " & dtPesquisar.Rows(nSeq).Item("UN003_SIGEST")
-                End If
-                If Not IsDBNull(dtPesquisar.Rows(nSeq).Item("UN003_CIDADE")) Then
-                    sItemLista += " | " & dtPesquisar.Rows(nSeq).Item("UN003_CIDADE")
-                End If
-                If Not IsDBNull(dtPesquisar.Rows(nSeq).Item("UN003_BAIRRO")) Then
-                    sItemLista += " | " & dtPesquisar.Rows(nSeq).Item("UN003_BAIRRO")
-                End If
+                sItemLista = Format(dtPesquisar.Rows(nSeq).Item("UN000_CODRED"), "000000")
+                sItemLista += " | " & IIf(IsDBNull(dtPesquisar.Rows(nSeq).Item("UN000_CLAUNI")), "", dtPesquisar.Rows(nSeq).Item("UN000_CLAUNI"))
+                sItemLista += " | " & IIf(IsDBNull(dtPesquisar.Rows(nSeq).Item("UN000_NOMUNI")), "", dtPesquisar.Rows(nSeq).Item("UN000_NOMUNI"))
 
                 lstPesquisa.Items.Add(sItemLista)
             Next nSeq
 
             dtPesquisar.Clear()
         Else
-            MsgBox("Digite um nome para pesquisar. Para melhor performance, digitar nome e sobrenome.'")
+            MsgBox("Digite um valor para pesquisar. Para melhor performance, digitar mais de um valor.")
         End If
 
     End Sub
 
+    Private Sub dlgConselho_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
