@@ -1,6 +1,6 @@
 ﻿Imports System.Data.OleDb
 
-Public Class frmRelUnidades
+Public Class frmRelColabUnidades
     Dim cParteSelect As String
     Dim cParteWhere As String
     Dim cParteOrder As String
@@ -12,31 +12,26 @@ Public Class frmRelUnidades
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         Me.Cursor = Cursors.WaitCursor
 
-        'Dim Rpt_Ds As New DataSet
         Dim RptPath As String
         Dim rptSelection As String = ""
 
         If Not txtConselho.Text = "" Then 'Todas as Unidades 
             rptSelection = "{EUN000.UN000_CLAUNI} startswith '"
-            If Microsoft.VisualBasic.Mid(txtConselho.Text, 4, 2) = "00" Then 'Todas as Unidades do CM
-                rptSelection += Microsoft.VisualBasic.Left(txtConselho.Text, 2) & "'"
-            ElseIf Microsoft.VisualBasic.Mid(txtConselho.Text, 7, 2) = "00" Then 'Todas as Unidades do CC
-                rptSelection += Microsoft.VisualBasic.Left(txtConselho.Text, 5) & "'"
-            ElseIf Microsoft.VisualBasic.Mid(txtConselho.Text, 10, 2) = "00" Then 'Todas as Unidades do CP
-                rptSelection += Microsoft.VisualBasic.Left(txtConselho.Text, 8) & "'"
-            End If
+            rptSelection += Microsoft.VisualBasic.Left(txtConselho.Text, 8) & "'"
+        Else
+            MsgBox("Favor selecionar uma Conferência.")
+            Exit Sub
         End If
 
         RptPath = LerDadosINI(nomeArquivoINI(), "PATH", "Reports", "C:\Fontes\SSVP_Projeto\Report\")
         'RptPath = "C:\Fontes\SSVP_Projeto\Report\"
-        frmReportViewer.ShowReport("Unidades_Relacao.rpt", RptPath, rptSelection)
+        frmReportViewer.ShowReport("Unidades_RelColaborador.rpt", RptPath, rptSelection)
         Me.Cursor = Cursors.Default
 
     End Sub
 
     Private Sub btnLocUnidade_Click(sender As Object, e As EventArgs) Handles btnLocUnidade.Click
-        'txtColaborador.Text = dlgColaborador.ShowDialog()
-        Dim options = New dlgConselho
+        Dim options = New dlgCParticular
         Dim sClasseUnidade, sNomeUnidade As String
 
         If options.ShowDialog() = Windows.Forms.DialogResult.OK Then

@@ -20,10 +20,10 @@ Public Class mdiPrincipal
 
         If Not bUsarVPN Then
             '***** Indicar qual usuário deverá se logado automaticamente
-            'g_Login = ClassCrypt.Encrypt("admin")
+            g_Login = ClassCrypt.Encrypt("admin")
             'g_Login = ClassCrypt.Encrypt("jose.alves")
             'g_Login = ClassCrypt.Encrypt("teste.3")
-            'bArguments = False
+            bArguments = False
             '*****
         End If
         Try
@@ -270,4 +270,12 @@ Public Class mdiPrincipal
         frmInstituirUni.Show()
     End Sub
 
+    Private Sub menuRelColabConf_Click(sender As Object, e As EventArgs) Handles menuRelColabConf.Click
+        Dim frmRelColaborador As frmRelColabUnidades = New frmRelColabUnidades
+
+        frmRelColaborador.MdiParent = Me
+        frmRelColaborador.Tag = menuRelColabConf.Tag 'é gravado no tag do menu o nível de acesso
+        frmRelColaborador.Text = menuRelColabConf.Text
+        frmRelColaborador.Show()
+    End Sub
 End Class
