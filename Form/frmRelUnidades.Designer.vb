@@ -47,6 +47,7 @@ Partial Class frmRelUnidades
         Me.txtConselho.Name = "txtConselho"
         Me.txtConselho.Size = New System.Drawing.Size(491, 22)
         Me.txtConselho.TabIndex = 4
+        Me.txtConselho.Text = "Clique ao lado para selecionar uma unidade -->"
         '
         'btnCancelar
         '

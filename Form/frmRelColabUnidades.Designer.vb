@@ -35,9 +35,9 @@ Partial Class frmRelColabUnidades
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(12, 25)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(371, 17)
+        Me.Label1.Size = New System.Drawing.Size(510, 17)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Escolha a Conferência para Imprimir seus Colaboradores:"
+        Me.Label1.Text = "Escolha um C.Particular para Imprimir suas conferências e seus Colaboradores:"
         '
         'txtConselho
         '
@@ -47,6 +47,7 @@ Partial Class frmRelColabUnidades
         Me.txtConselho.Name = "txtConselho"
         Me.txtConselho.Size = New System.Drawing.Size(491, 22)
         Me.txtConselho.TabIndex = 4
+        Me.txtConselho.Text = "Clique ao lado para selecionar um Conselho -->"
         '
         'btnCancelar
         '

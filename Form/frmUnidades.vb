@@ -3,7 +3,7 @@ Imports System.Drawing.Printing
 
 Public Class frmUnidades
     '?? Alterar para a Entidade Principal ??
-    Dim dt As DataTable = New DataTable("EUN000")
+    Dim dtCadastro As DataTable = New DataTable("EUN000")
     Dim dtMandato As DataTable = New DataTable("EUN016")
     Dim dtFichaInst As DataTable = New DataTable("EUN015")
 
@@ -39,10 +39,10 @@ Public Class frmUnidades
             da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
 
             ' Preencher o DataTable 
-            da.Fill(dt)
+            da.Fill(dtCadastro)
         End Using
-        If dt.Rows.Count() > 0 Then
-            nPermissao = dt.Rows(0).Item("UN013_PERACE")
+        If dtCadastro.Rows.Count() > 0 Then
+            nPermissao = dtCadastro.Rows(0).Item("UN013_PERACE")
         Else
             If UCase(ClassCrypt.Decrypt(g_Login)) = "ADMIN" Then
                 nPermissao = 3
@@ -51,7 +51,7 @@ Public Class frmUnidades
             End If
 
         End If
-        dt.Clear()
+        dtCadastro.Clear()
 
         'Criar um adaptador que vai fazer o download de dados da base de dados
         '?? Alterar o Código para a Entidade Principal ??
@@ -66,15 +66,15 @@ Public Class frmUnidades
             da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
 
             ' Preencher o DataTable 
-            da.Fill(dt)
+            da.Fill(dtCadastro)
         End Using
 
         If g_Param(1) <> "INSERT" Then
             'Posicionar no registro selecionado
             '?? Alterar para localizar a chave da tabela ??
-            For i_point = 0 To dt.Rows.Count() - 1
+            For i_point = 0 To dtCadastro.Rows.Count() - 1
 
-                If dt.Rows(i_point).Item("UN000_CODRED").ToString = g_Param(1) Then
+                If dtCadastro.Rows(i_point).Item("UN000_CODRED").ToString = g_Param(1) Then
                     Exit For
                 End If
             Next
@@ -107,7 +107,7 @@ Public Class frmUnidades
     Private Sub TratarObjetos()
         Dim nCodigoMandato As Integer
 
-        tssContReg.Text = "Registro " & (i + 1).ToString & "/" & dt.Rows.Count().ToString
+        tssContReg.Text = "Registro " & (i + 1).ToString & "/" & dtCadastro.Rows.Count().ToString
 
         'Botoes da Barra de comandos
         btnIncluir.Enabled = False 'Not bAlterar And Me.Tag = 4 'And Me.Tag > 1
@@ -209,25 +209,25 @@ Public Class frmUnidades
 
         'Preencher Campos e Armazenar os dados do formulário para gravar o log
         If i > -1 And Not bIncluir Then
-            txtCodigo.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_CODRED")), "", dt.Rows(i).Item("UN000_CODRED").ToString())
-            txtRegistro.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_NUMREG")), "", dt.Rows(i).Item("UN000_NUMREG").ToString())
-            txtEstruturaUnidade.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_CLAUNI")), "", dt.Rows(i).Item("UN000_CLAUNI"))
-            txtNome.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_NOMUNI")), "", dt.Rows(i).Item("UN000_NOMUNI"))
-            dtpDataFundacao.Value = IIf(IsDBNull(dt.Rows(i).Item("UN000_DATFUN")), "01/01/1900", dt.Rows(i).Item("UN000_DATFUN"))
+            txtCodigo.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_CODRED")), "", dtCadastro.Rows(i).Item("UN000_CODRED").ToString())
+            txtRegistro.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_NUMREG")), "", dtCadastro.Rows(i).Item("UN000_NUMREG").ToString())
+            txtEstruturaUnidade.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_CLAUNI")), "", dtCadastro.Rows(i).Item("UN000_CLAUNI"))
+            txtNome.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_NOMUNI")), "", dtCadastro.Rows(i).Item("UN000_NOMUNI"))
+            dtpDataFundacao.Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_DATFUN")), "01/01/1900", dtCadastro.Rows(i).Item("UN000_DATFUN"))
 
-            txtCnpj.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_CNPUNI")), "", dt.Rows(i).Item("UN000_CNPUNI"))
-            txtEndereco.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_ENDUNI")), "", dt.Rows(i).Item("UN000_ENDUNI"))
-            txtBairro.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_BAIUNI")), "", dt.Rows(i).Item("UN000_BAIUNI"))
-            txtCEP.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_CEPUNI")), "", dt.Rows(i).Item("UN000_CEPUNI"))
-            txtCidade.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_CIDUNI")), "", dt.Rows(i).Item("UN000_CIDUNI"))
-            cbEstado.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_ESTUNI")), "", dt.Rows(i).Item("UN000_ESTUNI"))
-            txtPais.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_NACUNI")), "", dt.Rows(i).Item("UN000_NACUNI"))
-            txtDiocese.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_DIOUNI")), "", dt.Rows(i).Item("UN000_DIOUNI"))
-            txtBanco.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_BCOUNI")), "", dt.Rows(i).Item("UN000_BCOUNI"))
-            txtAgencia.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_AGEUNI")), "", dt.Rows(i).Item("UN000_AGEUNI"))
-            txtConta.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_CCOUNI")), "", dt.Rows(i).Item("UN000_CCOUNI"))
-            txtTitular.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_TITUNI")), "", dt.Rows(i).Item("UN000_TITUNI"))
-            txtObs.Text = IIf(IsDBNull(dt.Rows(i).Item("UN000_OBSCCO")), "", dt.Rows(i).Item("UN000_OBSCCO"))
+            txtCnpj.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_CNPUNI")), "", dtCadastro.Rows(i).Item("UN000_CNPUNI"))
+            txtEndereco.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_ENDUNI")), "", dtCadastro.Rows(i).Item("UN000_ENDUNI"))
+            txtBairro.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_BAIUNI")), "", dtCadastro.Rows(i).Item("UN000_BAIUNI"))
+            txtCEP.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_CEPUNI")), "", dtCadastro.Rows(i).Item("UN000_CEPUNI"))
+            txtCidade.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_CIDUNI")), "", dtCadastro.Rows(i).Item("UN000_CIDUNI"))
+            cbEstado.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_ESTUNI")), "", dtCadastro.Rows(i).Item("UN000_ESTUNI"))
+            txtPais.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_NACUNI")), "", dtCadastro.Rows(i).Item("UN000_NACUNI"))
+            txtDiocese.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_DIOUNI")), "", dtCadastro.Rows(i).Item("UN000_DIOUNI"))
+            txtBanco.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_BCOUNI")), "", dtCadastro.Rows(i).Item("UN000_BCOUNI"))
+            txtAgencia.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_AGEUNI")), "", dtCadastro.Rows(i).Item("UN000_AGEUNI"))
+            txtConta.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_CCOUNI")), "", dtCadastro.Rows(i).Item("UN000_CCOUNI"))
+            txtTitular.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_TITUNI")), "", dtCadastro.Rows(i).Item("UN000_TITUNI"))
+            txtObs.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_OBSCCO")), "", dtCadastro.Rows(i).Item("UN000_OBSCCO"))
 
             'Mostrar as datas conforme a Estrutura
             dtpDataAprovacaoCM.Visible = Mid(txtEstruturaUnidade.Text, 4, 2) <> "00"
@@ -355,10 +355,10 @@ Public Class frmUnidades
     Private Sub btnProximo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProximo.Click
 
         i += 1
-        If Not i = dt.Rows.Count() Then
+        If Not i = dtCadastro.Rows.Count() Then
             Call TratarObjetos()
         Else
-            i = dt.Rows.Count() - 1
+            i = dtCadastro.Rows.Count() - 1
         End If
 
     End Sub
@@ -383,7 +383,7 @@ Public Class frmUnidades
 
     Private Sub btnCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelar.Click
         If g_Comando = "inserir" Or g_Comando = "alterar" Then
-            dt.Clear()
+            dtCadastro.Clear()
             Me.Close()
         Else
             bAlterar = False
@@ -481,20 +481,20 @@ Public Class frmUnidades
                     bAlterar = False
 
                     If g_Param(1) = "INSERT" Then
-                        dt.Clear()
+                        dtCadastro.Clear()
                         'fechar o form de cadastro
                         Me.Close()
                     Else
-                        dt.Reset()
+                        dtCadastro.Reset()
                         Using da As New OleDbDataAdapter()
                             da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
 
                             ' Preencher o DataTable 
-                            da.Fill(dt)
+                            da.Fill(dtCadastro)
                         End Using
                         'Verificar se o comando veio do browse
                         If g_Comando = "inserir" Or g_Comando = "alterar" Then
-                            dt.Clear()
+                            dtCadastro.Clear()
                             Me.Close()
                         Else
                             TratarObjetos()
@@ -565,20 +565,20 @@ Public Class frmUnidades
                 End If
                 '************************
 
-                dt.Reset()
+                dtCadastro.Reset()
                 Using da As New OleDbDataAdapter()
                     da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
 
                     'Preencher o DataTable 
-                    da.Fill(dt)
+                    da.Fill(dtCadastro)
                 End Using
 
-                If i > dt.Rows.Count() - 1 Then
-                    i = dt.Rows.Count() - 1
+                If i > dtCadastro.Rows.Count() - 1 Then
+                    i = dtCadastro.Rows.Count() - 1
                 End If
                 'Verificar se o comando veio do browse
                 If g_Comando = "excluir" Then
-                    dt.Clear() 'Limpar o DataTable
+                    dtCadastro.Clear() 'Limpar o DataTable
                     Me.Close()
                 Else
                     TratarObjetos()
@@ -687,7 +687,7 @@ Public Class frmUnidades
     End Sub
 
     Private Sub btnLocalizar_Click(sender As Object, e As EventArgs) Handles btnLocalizar.Click
-        dt.Clear() 'Limpar o DataTable
+        dtCadastro.Clear() 'Limpar o DataTable
 
         Me.Close()
     End Sub
