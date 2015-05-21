@@ -39,6 +39,10 @@ Public Class frmReportViewer
             .Password = ChaveConexao("Password")
         End With
 
+        MsgBox("DS:" & ChaveConexao("Data Source") & _
+               " IC:" & ChaveConexao("Initial Catalog") & _
+               " UN:" & ChaveConexao("User ID"))
+
         CrTables = ObjRpt.Database.Tables
         For Each CrTable In CrTables
             crtableLogoninfo = CrTable.LogOnInfo

@@ -20,10 +20,10 @@ Public Class mdiPrincipal
 
         If Not bUsarVPN Then
             '***** Indicar qual usuário deverá se logado automaticamente
-            'g_Login = ClassCrypt.Encrypt("admin")
+            g_Login = ClassCrypt.Encrypt("admin")
             'g_Login = ClassCrypt.Encrypt("jose.alves")
             'g_Login = ClassCrypt.Encrypt("teste.3")
-            'bArguments = False
+            bArguments = False
             '*****
         End If
         Try
