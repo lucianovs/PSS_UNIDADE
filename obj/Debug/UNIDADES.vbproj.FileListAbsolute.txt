@@ -2,7 +2,6 @@ C:\Fontes\SSVP_Projeto\Unidade\bin\Debug\UNIDADES.exe.config
 C:\Fontes\SSVP_Projeto\Unidade\bin\Debug\UNIDADES.exe
 C:\Fontes\SSVP_Projeto\Unidade\bin\Debug\UNIDADES.pdb
 C:\Fontes\SSVP_Projeto\Unidade\bin\Debug\UNIDADES.xml
-C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.vbprojResolveAssemblyReference.cache
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.dlgConselho.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmInstituirUni.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.dlgCParticular.resources
@@ -28,3 +27,4 @@ C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.vbproj.GenerateResource.Cache
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.exe
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.xml
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.pdb
+C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmReorgUnidade.resources

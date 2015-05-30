@@ -38,13 +38,16 @@ Public Class frmBrowse
         Dim sTempValorCondicao As String
         Dim cmdInsert As OleDbCommand
 
+        g_AtuBrowse = False
+
         Dim dtSI902 As DataTable = New DataTable("ESI902")
         Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
 
         nCod_Login = getCodUsuario(ClassCrypt.Decrypt(g_Login)) 'CARREGAR O USUÁRIO LOGADO
         If nCod_Login = 1 Then
-            sJoin = ""
-            sWhere = ""
+            'HABILITADOR PARA FAZER COM QUE O ADMIN ACESSO TODOS OS REGISTROS
+            'sJoin = ""
+            'sWhere = ""
         End If
         'MsgBox(sJoin & " - " & sWhere)
         sFiltroInicial = classLoadListView.loadlistview(classEntidade, ListView_Browse, sJoin, sWhere, nBlocoReg)
@@ -202,6 +205,7 @@ Public Class frmBrowse
         CType(frm, Form).Text = "FORMULÁRIO - " & Me.Text
         frmType.InvokeMember("Show", Reflection.BindingFlags.InvokeMethod, Nothing, frm, Nothing)
 
+        g_AtuBrowse = False
         timerRefresh.Enabled = True
 
         'CType(frm, Form).MdiParent = mdiDesktop
@@ -687,17 +691,17 @@ erro_comandos:
     Public Sub RefreshBrowse()
         If g_Comando = "REFRESH" Then
             g_Comando = ""
-            timerRefresh.Enabled = False
             sFiltroInicial = classLoadListView.loadlistview(classEntidade, ListView_Browse, sJoin, sWhere, nBlocoReg)
             Application.DoEvents()
             PosicionarListView(ListView_Browse)
             Call TratarPaginacao()
         End If
+        timerRefresh.Enabled = False
 
     End Sub
 
     Private Sub timerRefresh_Tick(sender As Object, e As EventArgs) Handles timerRefresh.Tick
-        Call RefreshBrowse()
+        If g_AtuBrowse Then Call RefreshBrowse()
     End Sub
 
     Private Sub txtValorCondicao_KeyDown(sender As Object, e As KeyEventArgs) Handles txtValorCondicao.KeyDown
@@ -709,4 +713,7 @@ erro_comandos:
 
     End Sub
 
+    Private Sub ListView_Browse_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView_Browse.SelectedIndexChanged
+
+    End Sub
 End Class

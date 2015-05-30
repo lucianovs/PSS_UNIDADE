@@ -87,6 +87,10 @@ Partial Class frmColaboradores
         Me.dtgMandato = New System.Windows.Forms.DataGridView()
         Me.btnLocUnidade = New System.Windows.Forms.Button()
         Me.txtUnidade = New System.Windows.Forms.TextBox()
+        Me.lblSitCol = New System.Windows.Forms.Label()
+        Me.cbSitCol = New System.Windows.Forms.ComboBox()
+        Me.lblDesSit = New System.Windows.Forms.Label()
+        Me.txtDesSit = New System.Windows.Forms.TextBox()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -290,7 +294,7 @@ Partial Class frmColaboradores
         Me.txtCPF.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCPF.MaxLength = 14
         Me.txtCPF.Name = "txtCPF"
-        Me.txtCPF.Size = New System.Drawing.Size(130, 22)
+        Me.txtCPF.Size = New System.Drawing.Size(143, 22)
         Me.txtCPF.TabIndex = 18
         '
         'TabControl1
@@ -723,11 +727,54 @@ Partial Class frmColaboradores
         Me.txtUnidade.Size = New System.Drawing.Size(457, 22)
         Me.txtUnidade.TabIndex = 21
         '
+        'lblSitCol
+        '
+        Me.lblSitCol.AutoSize = True
+        Me.lblSitCol.Location = New System.Drawing.Point(801, 39)
+        Me.lblSitCol.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSitCol.Name = "lblSitCol"
+        Me.lblSitCol.Size = New System.Drawing.Size(148, 17)
+        Me.lblSitCol.TabIndex = 22
+        Me.lblSitCol.Text = "Situação do Cadastro:"
+        '
+        'cbSitCol
+        '
+        Me.cbSitCol.FormattingEnabled = True
+        Me.cbSitCol.Items.AddRange(New Object() {"ATIVO", "INATIVO", "EXCLUIDO"})
+        Me.cbSitCol.Location = New System.Drawing.Point(804, 57)
+        Me.cbSitCol.Name = "cbSitCol"
+        Me.cbSitCol.Size = New System.Drawing.Size(145, 24)
+        Me.cbSitCol.TabIndex = 23
+        '
+        'lblDesSit
+        '
+        Me.lblDesSit.AutoSize = True
+        Me.lblDesSit.ForeColor = System.Drawing.Color.Black
+        Me.lblDesSit.Location = New System.Drawing.Point(787, 94)
+        Me.lblDesSit.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblDesSit.Name = "lblDesSit"
+        Me.lblDesSit.Size = New System.Drawing.Size(49, 17)
+        Me.lblDesSit.TabIndex = 34
+        Me.lblDesSit.Text = "Motivo"
+        '
+        'txtDesSit
+        '
+        Me.txtDesSit.Location = New System.Drawing.Point(732, 112)
+        Me.txtDesSit.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtDesSit.MaxLength = 30
+        Me.txtDesSit.Name = "txtDesSit"
+        Me.txtDesSit.Size = New System.Drawing.Size(217, 22)
+        Me.txtDesSit.TabIndex = 35
+        '
         'frmColaboradores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(974, 511)
+        Me.Controls.Add(Me.lblDesSit)
+        Me.Controls.Add(Me.txtDesSit)
+        Me.Controls.Add(Me.cbSitCol)
+        Me.Controls.Add(Me.lblSitCol)
         Me.Controls.Add(Me.txtUnidade)
         Me.Controls.Add(Me.btnLocUnidade)
         Me.Controls.Add(Me.TabControl1)
@@ -820,4 +867,8 @@ Partial Class frmColaboradores
     Friend WithEvents dtgMandato As System.Windows.Forms.DataGridView
     Friend WithEvents btnLocUnidade As System.Windows.Forms.Button
     Friend WithEvents txtUnidade As System.Windows.Forms.TextBox
+    Friend WithEvents lblSitCol As System.Windows.Forms.Label
+    Friend WithEvents cbSitCol As System.Windows.Forms.ComboBox
+    Friend WithEvents lblDesSit As System.Windows.Forms.Label
+    Friend WithEvents txtDesSit As System.Windows.Forms.TextBox
 End Class

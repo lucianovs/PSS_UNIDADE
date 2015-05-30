@@ -19,11 +19,11 @@ Public Class mdiPrincipal
         g_Login = ""
 
         If Not bUsarVPN Then
+            'bArguments = False
             '***** Indicar qual usuário deverá se logado automaticamente
-            g_Login = ClassCrypt.Encrypt("admin")
+            'g_Login = ClassCrypt.Encrypt("admin")
             'g_Login = ClassCrypt.Encrypt("jose.alves")
             'g_Login = ClassCrypt.Encrypt("teste.3")
-            bArguments = False
             '*****
         End If
         Try
@@ -122,16 +122,12 @@ Public Class mdiPrincipal
 
     Private Sub menuUsuarios_Click(sender As Object, e As EventArgs) Handles menuSisUsuarios.Click
         '?? Alterar os parâmetros para passar ao Browse (Entudade e Form. do Cadastro) ??
-        Dim frmBrowse_Usuario As frmBrowse = New frmBrowse("ESI000", "frmUsuario")
+        Dim frmBrowse_Usuario As frmBrowse = New frmBrowse("ESI000", "frmUsuario", , "SI000_STAUSU<>'E'")
 
         frmBrowse_Usuario.MdiParent = Me
         frmBrowse_Usuario.Tag = menuSisUsuarios.Tag 'é gravado no tag do menu o nível de acesso
         frmBrowse_Usuario.Text = menuSisUsuarios.Text
         frmBrowse_Usuario.Show()
-
-    End Sub
-
-    Private Sub menuRelatorios_Click(sender As Object, e As EventArgs) Handles menuRelatorios.Click
 
     End Sub
 
@@ -154,13 +150,13 @@ Public Class mdiPrincipal
         frmBrowse_Unidades.Show()
     End Sub
 
-    Private Sub menuCadTipoDeComplemento_Click(sender As Object, e As EventArgs) Handles menuCadTipoDeComplemento.Click
-        Dim frmBrowse_TipoDeComplemento As frmBrowse = New frmBrowse("EUN002", "frmTipoDeComplemento")
+    Private Sub menuCadTipoDeComplemento_Click(sender As Object, e As EventArgs)
+        'Dim frmBrowse_TipoDeComplemento As frmBrowse = New frmBrowse("EUN002", "frmTipoDeComplemento")
 
-        frmBrowse_TipoDeComplemento.MdiParent = Me
-        frmBrowse_TipoDeComplemento.Tag = menuCadTipoDeComplemento.Tag 'é gravado no tag do menu o nível de acesso
-        frmBrowse_TipoDeComplemento.Text = menuCadTipoDeComplemento.Text
-        frmBrowse_TipoDeComplemento.Show()
+        'frmBrowse_TipoDeComplemento.MdiParent = Me
+        'frmBrowse_TipoDeComplemento.Tag = menuCadTipoDeComplemento.Tag 'é gravado no tag do menu o nível de acesso
+        'frmBrowse_TipoDeComplemento.Text = menuCadTipoDeComplemento.Text
+        'frmBrowse_TipoDeComplemento.Show()
     End Sub
 
     Private Sub menuVincularUsuárioXUnidades_Click(sender As Object, e As EventArgs) Handles menuVincularUsuarioXUnidades.Click
@@ -251,8 +247,9 @@ Public Class mdiPrincipal
     End Sub
 
     Private Sub menuCadColaboradores_Click(sender As Object, e As EventArgs) Handles menuCadColaboradores.Click
-        Dim frmBrowse_Colaboradores As frmBrowse = New frmBrowse("EUN003", "frmColaboradores", "left join EUN013 on EUN013.UN013_CODUNI=EUN003.UN003_CODUNI", _
-                                                    "((EUN013.UN013_CODUSU=" & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString & " AND UN013_PERACE > 0) or (EUN003.UN003_CODUNI=0))")
+        'Dim frmBrowse_Colaboradores As frmBrowse = New frmBrowse("EUN003", "frmColaboradores", "left join EUN013 on EUN013.UN013_CODUNI=EUN003.UN003_CODUNI", _
+        '                                            "((EUN013.UN013_CODUSU=" & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString & " AND UN013_PERACE > 0) or (EUN003.UN003_CODUNI=0))")
+        Dim frmBrowse_Colaboradores As frmBrowse = New frmBrowse("EUN003", "frmColaboradores", , "EUN003.UN003_SITCOL<>'E'")
 
         frmBrowse_Colaboradores.MdiParent = Me
         frmBrowse_Colaboradores.Tag = menuCadColaboradores.Tag 'é gravado no tag do menu o nível de acesso
@@ -279,4 +276,12 @@ Public Class mdiPrincipal
         frmRelColaborador.Show()
     End Sub
 
+    Private Sub menuReorgUnidade_Click(sender As Object, e As EventArgs) Handles menuReorgUnidade.Click
+        Dim frmRelReorg As frmReorgUnidade = New frmReorgUnidade
+
+        frmRelReorg.MdiParent = Me
+        frmRelReorg.Tag = menuReorgUnidade.Tag 'é gravado no tag do menu o nível de acesso
+        frmRelReorg.Text = menuReorgUnidade.Text
+        frmRelReorg.Show()
+    End Sub
 End Class

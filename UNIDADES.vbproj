@@ -191,6 +191,12 @@
     <Compile Include="Form\frmRelColabUnidades.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\frmReorgUnidade.Designer.vb">
+      <DependentUpon>frmReorgUnidade.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmReorgUnidade.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="mdiPrincipal.Designer.vb">
       <DependentUpon>mdiPrincipal.vb</DependentUpon>
     </Compile>
@@ -274,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmRelColabUnidades.resx">
       <DependentUpon>frmRelColabUnidades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmReorgUnidade.resx">
+      <DependentUpon>frmReorgUnidade.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mdiPrincipal.resx">
       <DependentUpon>mdiPrincipal.vb</DependentUpon>

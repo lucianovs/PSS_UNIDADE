@@ -444,7 +444,7 @@ Partial Class frmInstituirUni
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1093, 514)
+        Me.ClientSize = New System.Drawing.Size(1196, 514)
         Me.Controls.Add(Me.btnIncluir)
         Me.Controls.Add(Me.lblMensagem)
         Me.Controls.Add(Me.btnMudarEstru)

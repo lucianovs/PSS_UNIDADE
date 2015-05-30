@@ -4,19 +4,20 @@ Imports System.Drawing.Printing
 Public Class frmColaboradores
 
     '?? Alterar para a Entidade Principal ??
-    Dim dt As DataTable = New DataTable("EUN003")
+    Dim dtCadastro As DataTable = New DataTable("EUN003")
     Dim dtUnidade As DataTable = New DataTable("EUN000")
 
     Dim i As Integer
     Dim bAlterar As Boolean = False
     Dim bIncluir As Boolean = False
-    Dim cQuery As String
+    Dim cQueryCadastro As String
     Dim sClasseUnidade As String = ""
     Dim sNomeUnidade As String = ""
 
     Private Sub frmColaboradores_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         g_Param(1) = txtCodigo.Text 'Voltar com a Chave do registro do formulário
-        g_Comando = "REFRESH"
+        g_AtuBrowse = True
+        g_Comando = "REFRESH" 'Forçar a atualização do browser pelo timer
     End Sub
 
     Private Sub frmColaboradores_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -27,23 +28,23 @@ Public Class frmColaboradores
         'Criar um adaptador que vai fazer o download de dados da base de dados
         '?? Alterar o Código para a Entidade Principal ??
         If Me.Tag = 4 Or g_Param(1) = "INSERT" Then
-            cQuery = "SELECT * FROM EUN003"
+            cQueryCadastro = "SELECT * FROM EUN003"
         Else
-            cQuery = "SELECT * FROM EUN003 where UN003_CODCOL = " & g_Param(1)
+            cQueryCadastro = "SELECT * FROM EUN003 where UN003_CODCOL = " & g_Param(1)
         End If
 
         Using da As New OleDbDataAdapter()
-            da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+            da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
 
             ' Preencher o DataTable 
-            da.Fill(dt)
+            da.Fill(dtCadastro)
         End Using
 
         If g_Param(1) <> "INSERT" Then
             'Posicionar no registro selecionado
             '?? Alterar para localizar a chave da tabela ??
-            For i_point = 0 To dt.Rows.Count() - 1
-                If dt.Rows(i_point).Item("UN003_CODCOL").ToString = g_Param(1) Then
+            For i_point = 0 To dtCadastro.Rows.Count() - 1
+                If dtCadastro.Rows(i_point).Item("UN003_CODCOL").ToString = g_Param(1) Then
                     Exit For
                 End If
             Next
@@ -65,12 +66,15 @@ Public Class frmColaboradores
             bAlterar = True
         End If
 
+        'Atualizar o tamanho do TAB 
+        TabControl1.Size = New Size(Me.Size.Width - 50, Me.Size.Height - 230) '112
+
         TratarObjetos()
 
     End Sub
 
     Private Sub TratarObjetos()
-        tssContReg.Text = "Registro " & (i + 1).ToString & "/" & dt.Rows.Count().ToString
+        tssContReg.Text = "Registro " & (i + 1).ToString & "/" & dtCadastro.Rows.Count().ToString
 
         'Botoes da Barra de comandos
         btnIncluir.Enabled = Not bAlterar And Me.Tag = 4 'And Me.Tag > 1
@@ -91,6 +95,10 @@ Public Class frmColaboradores
         txtNmColaborador.Enabled = bAlterar And Me.Tag > 1
         lblCPF.Enabled = bAlterar And Me.Tag > 1
         txtCPF.Enabled = bAlterar And Me.Tag > 1
+        lblSitCol.Enabled = bAlterar And Me.Tag > 1
+        cbSitCol.Enabled = bAlterar And Me.Tag > 1
+        txtDesSit.Enabled = bAlterar And Me.Tag > 1
+        lblDesSit.Enabled = bAlterar And Me.Tag > 1
         lblUnidades.Enabled = bAlterar And Me.Tag > 1
         txtUnidade.Enabled = bAlterar And Me.Tag > 1
         lblENDCOL.Enabled = bAlterar And Me.Tag > 1
@@ -133,41 +141,54 @@ Public Class frmColaboradores
 
         'Preencher Campos
         If i > -1 And Not bIncluir Then
-            txtCodigo.Text = dt.Rows(i).Item("UN003_CODCOL")
-            txtNmColaborador.Text = dt.Rows(i).Item("UN003_NOMCOL")
-            txtEndCol.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_ENDCOL")), "", dt.Rows(i).Item("UN003_ENDCOL"))
-            txtComple.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_COMPLE")), "", dt.Rows(i).Item("UN003_COMPLE"))
-            txtBairro.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_BAIRRO")), "", dt.Rows(i).Item("UN003_BAIRRO"))
-            txtCidade.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_CIDADE")), "", dt.Rows(i).Item("UN003_CIDADE"))
-            txtCodCEP.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_CODCEP")), "", dt.Rows(i).Item("UN003_CODCEP"))
-            cbSigEst.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_SIGEST")), "", dt.Rows(i).Item("UN003_SIGEST"))
-            txtNmPais.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_NMPAIS")), "BRASIL", dt.Rows(i).Item("UN003_NMPAIS"))
-            txtEMail1.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_EMAIL1")), "", dt.Rows(i).Item("UN003_EMAIL1"))
-            txtNumTel.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_NUMTEL")), "", dt.Rows(i).Item("UN003_NUMTEL"))
-            dtpDtNasc.Value = IIf(IsDBNull(dt.Rows(i).Item("UN003_DTNASC")), "01/01/1900", dt.Rows(i).Item("UN003_DTNASC"))
-            cbSexoCo.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_SEXOCO")), "", dt.Rows(i).Item("UN003_SEXOCO"))
-            txtObser1.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_OBSER1")), "", dt.Rows(i).Item("UN003_OBSER1"))
-            txtObser2.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_OBSER2")), "", dt.Rows(i).Item("UN003_OBSER2"))
-            txtObser3.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_OBSER3")), "", dt.Rows(i).Item("UN003_OBSER3"))
-            txtObser4.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_OBSER4")), "", dt.Rows(i).Item("UN003_OBSER4"))
-            dtpDatAlt.Value = IIf(IsDBNull(dt.Rows(i).Item("UN003_DATALT")), "01/01/1900", dt.Rows(i).Item("UN003_DATALT"))
-            dtpDatCad.Value = IIf(IsDBNull(dt.Rows(i).Item("UN003_DATCAD")), "01/01/1900", dt.Rows(i).Item("UN003_DATCAD"))
-            If IsDBNull(dt.Rows(i).Item("UN003_USUALT")) Then
+            txtCodigo.Text = dtCadastro.Rows(i).Item("UN003_CODCOL")
+            txtNmColaborador.Text = dtCadastro.Rows(i).Item("UN003_NOMCOL")
+            txtEndCol.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_ENDCOL")), "", dtCadastro.Rows(i).Item("UN003_ENDCOL"))
+            txtComple.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_COMPLE")), "", dtCadastro.Rows(i).Item("UN003_COMPLE"))
+            txtBairro.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_BAIRRO")), "", dtCadastro.Rows(i).Item("UN003_BAIRRO"))
+            txtCidade.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_CIDADE")), "", dtCadastro.Rows(i).Item("UN003_CIDADE"))
+            txtCodCEP.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_CODCEP")), "", dtCadastro.Rows(i).Item("UN003_CODCEP"))
+            txtCPF.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_CPFCOL")), "0", dtCadastro.Rows(i).Item("UN003_CPFCOL"))
+            If IsDBNull(dtCadastro.Rows(i).Item("UN003_SITCOL")) Then
+                cbSitCol.Text = "ATIVO"
+            ElseIf dtCadastro.Rows(i).Item("UN003_SITCOL") = "I" Then
+                cbSitCol.Text = "INATIVO"
+            ElseIf dtCadastro.Rows(i).Item("UN003_SITCOL") = "E" Then
+                cbSitCol.Text = "EXCLUIDO"
+            Else
+                cbSitCol.Text = "ATIVO"
+            End If
+            txtDesSit.Enabled = cbSitCol.Text <> "ATIVO" And bAlterar
+            lblDesSit.Enabled = cbSitCol.Text <> "ATIVO" And bAlterar
+            txtDesSit.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_DESSIT")), "", dtCadastro.Rows(i).Item("UN003_DESSIT"))
+            cbSigEst.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_SIGEST")), "", dtCadastro.Rows(i).Item("UN003_SIGEST"))
+            txtNmPais.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_NMPAIS")), "BRASIL", dtCadastro.Rows(i).Item("UN003_NMPAIS"))
+            txtEMail1.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_EMAIL1")), "", dtCadastro.Rows(i).Item("UN003_EMAIL1"))
+            txtNumTel.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_NUMTEL")), "", dtCadastro.Rows(i).Item("UN003_NUMTEL"))
+            dtpDtNasc.Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_DTNASC")), "01/01/1900", dtCadastro.Rows(i).Item("UN003_DTNASC"))
+            cbSexoCo.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_SEXOCO")), "", dtCadastro.Rows(i).Item("UN003_SEXOCO"))
+            txtObser1.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_OBSER1")), "", dtCadastro.Rows(i).Item("UN003_OBSER1"))
+            txtObser2.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_OBSER2")), "", dtCadastro.Rows(i).Item("UN003_OBSER2"))
+            txtObser3.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_OBSER3")), "", dtCadastro.Rows(i).Item("UN003_OBSER3"))
+            txtObser4.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_OBSER4")), "", dtCadastro.Rows(i).Item("UN003_OBSER4"))
+            dtpDatAlt.Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_DATALT")), "01/01/1900", dtCadastro.Rows(i).Item("UN003_DATALT"))
+            dtpDatCad.Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_DATCAD")), "01/01/1900", dtCadastro.Rows(i).Item("UN003_DATCAD"))
+            If IsDBNull(dtCadastro.Rows(i).Item("UN003_USUALT")) Then
                 txtUsuarioAlt.Text = ""
             Else
-                getLoginUsuario(dt.Rows(i).Item("UN003_USUALT"))
+                txtUsuarioAlt.Text = getLoginUsuario(dtCadastro.Rows(i).Item("UN003_USUALT"))
             End If
-            'txtUsuarioAlt.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_USUALT")), "", getLoginUsuario(dt.Rows(i).Item("UN003_USUALT")))
-            If IsDBNull(dt.Rows(i).Item("UN003_USUCAD")) Then
+            'txtUsuarioAlt.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_USUALT")), "", getLoginUsuario(dtCadastro.Rows(i).Item("UN003_USUALT")))
+            If IsDBNull(dtCadastro.Rows(i).Item("UN003_USUCAD")) Then
                 txtUsuarioCad.Text = ""
             Else
-                getLoginUsuario(dt.Rows(i).Item("UN003_USUCAD"))
+                getLoginUsuario(dtCadastro.Rows(i).Item("UN003_USUCAD"))
             End If
-            'txtUsuarioCad.Text = IIf(IsDBNull(dt.Rows(i).Item("UN003_USUCAD")), "", getLoginUsuario(dt.Rows(i).Item("UN003_USUCAD")))
+            'txtUsuarioCad.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN003_USUCAD")), "", getLoginUsuario(dtCadastro.Rows(i).Item("UN003_USUCAD")))
 
             'Outros Controles
-            If Not IsDBNull(dt.Rows(i).Item("UN003_CODUNI")) Then
-                sClasseUnidade = LerClasse_Unidade(dt.Rows(i).Item("UN003_CODUNI"), sNomeUnidade)
+            If Not IsDBNull(dtCadastro.Rows(i).Item("UN003_CODUNI")) Then
+                sClasseUnidade = LerClasse_Unidade(dtCadastro.Rows(i).Item("UN003_CODUNI"), sNomeUnidade)
             Else
                 sClasseUnidade = ""
                 sNomeUnidade = ""
@@ -184,10 +205,10 @@ Public Class frmColaboradores
     Private Sub btnProximo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProximo.Click
 
         i += 1
-        If Not i = dt.Rows.Count() Then
+        If Not i = dtCadastro.Rows.Count() Then
             Call TratarObjetos()
         Else
-            i = dt.Rows.Count() - 1
+            i = dtCadastro.Rows.Count() - 1
         End If
 
     End Sub
@@ -213,7 +234,7 @@ Public Class frmColaboradores
     Private Sub btnCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelar.Click
 
         If g_Comando = "incluir" Or g_Comando = "alterar" Then
-            dt.Clear()
+            dtCadastro.Clear()
             Me.Close()
         Else
             bAlterar = False
@@ -236,6 +257,8 @@ Public Class frmColaboradores
         txtBairro.Text = ""
         cbSigEst.Text = ""
         txtCodCEP.Text = "_____-___"
+        txtCPF.Text = "0"
+        cbSitCol.Text = "ATIVO"
         txtNmPais.Text = "BRASIL"
         txtEMail1.Text = ""
         txtNumTel.Text = ""
@@ -247,6 +270,7 @@ Public Class frmColaboradores
         txtObser2.Text = ""
         txtObser3.Text = ""
         txtObser4.Text = ""
+        txtDesSit.Text = ""
 
         Call TratarObjetos()
 
@@ -272,17 +296,21 @@ Public Class frmColaboradores
                     cSql += ",UN003_OBSER3, UN003_OBSER4"
                     cSql += ",UN003_DATCAD, UN003_USUCAD"
                     cSql += ",UN003_DATALT, UN003_USUALT"
+                    cSql += ",UN003_SITCOL, UN003_CPFCOL"
+                    cSql += ",UN003_DESSIT"
                     cSql += ")"
                     cSql += " values (" & nProxCod.ToString & ",'" & txtNmColaborador.Text & "', " & LerCod_Unidade(Microsoft.VisualBasic.Left(txtUnidade.Text, 11)).ToString
                     cSql += ",'" & Trim(txtEndCol.Text) & "','" & Trim(txtComple.Text) & "'"
                     cSql += ",'" & Trim(txtBairro.Text) & "','" & Trim(txtCidade.Text) & "'"
                     cSql += ",'" & Trim(txtCodCEP.Text) & "','" & Trim(cbSigEst.Text) & "','" & Trim(txtNmPais.Text) & "'"
                     cSql += ",'" & Trim(txtEMail1.Text) & "','" & Trim(txtNumTel.Text) & "'"
-                    cSql += ",'" & FormatarData(dtpDtNasc.Text) & "','" & cbSexoCo.Text & "'"
+                    cSql += "," & FormatarData(dtpDtNasc.Text) & ",'" & cbSexoCo.Text & "'"
                     cSql += ",'" & txtObser1.Text & "','" & txtObser2.Text & "'"
                     cSql += ",'" & txtObser3.Text & "','" & txtObser4.Text & "'"
-                    cSql += ",'" & FormatarData(Today()) & "'," & getCodUsuario(g_Login).ToString
-                    cSql += ",'" & FormatarData(Today()) & "'," & getCodUsuario(g_Login).ToString
+                    cSql += "," & FormatarData(Today()) & "," & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString
+                    cSql += "," & FormatarData(Today()) & "," & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString
+                    cSql += ",'" & Microsoft.VisualBasic.Left(cbSitCol.Text, 1) & "'"
+                    cSql += ",'" & txtCPF.Text & "',''"
                     cSql += ")"
 
                 ElseIf bAlterar Then
@@ -297,25 +325,29 @@ Public Class frmColaboradores
                     cSql += ",UN003_NMPAIS='" & txtNmPais.Text & "'"
                     cSql += ",UN003_EMAIL1='" & txtEMail1.Text & "'"
                     cSql += ",UN003_NUMTEL='" & txtNumTel.Text & "'"
-                    cSql += ",UN003_DTNASC='" & FormatarData(dtpDtNasc.Text) & "'"
+                    cSql += ",UN003_DTNASC=" & FormatarData(dtpDtNasc.Text) & ""
                     cSql += ",UN003_SEXOCO='" & cbSexoCo.Text & "'"
                     cSql += ",UN003_OBSER1='" & txtObser1.Text & "'"
                     cSql += ",UN003_OBSER2='" & txtObser2.Text & "'"
                     cSql += ",UN003_OBSER3='" & txtObser3.Text & "'"
                     cSql += ",UN003_OBSER4='" & txtObser4.Text & "'"
-                    cSql += ",UN003_DATALT='" & FormatarData(Today) & "'"
-                    cSql += ",UN003_USUALT=" & getCodUsuario(g_Login).ToString
+                    cSql += ",UN003_DATALT=" & FormatarData(Today) & ""
+                    cSql += ",UN003_USUALT=" & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString
+                    cSql += ",UN003_SITCOL='" & Microsoft.VisualBasic.Left(cbSitCol.Text, 1) & "'"
+                    cSql += ",UN003_CPFCOL='" & txtCPF.Text & "'"
                     If txtUsuarioCad.Text = "" Then
-                        cSql += ",UN003_USUCAD=" & getCodUsuario(g_Login).ToString
+                        cSql += ",UN003_USUCAD=" & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString
                     End If
                     If IsDate(dtpDatCad.Text) Then
                         If Year(dtpDatCad.Text) = 1900 Then
-                            cSql += ",UN003_DATCAD='" & FormatarData(Today) & "'"
+                            cSql += ",UN003_DATCAD=" & FormatarData(Today) & ""
                         End If
                     Else
-                        cSql += ",UN003_DATCAD='" & FormatarData(Today) & "'"
+                        cSql += ",UN003_DATCAD=" & FormatarData(Today) & ""
                     End If
+                    cSql += ",UN003_DESSIT='" & txtDesSit.Text & "'"
                     cSql += " where UN003_CODCOL = " & txtCodigo.Text
+
                     'acessoWEB=" & If(chkSIM.Checked = 0, False, True)
                     End If
                     cmd = New OleDbCommand(cSql, g_ConnectBanco)
@@ -329,21 +361,21 @@ Public Class frmColaboradores
                         bAlterar = False
 
                         If g_Param(1) = "INSERT" Then
-                            dt.Clear()
+                        dtCadastro.Clear()
                             'fechar o form de cadastro
                             Me.Close()
                         Else
-                            dt.Reset()
+                        dtCadastro.Reset()
                             Using da As New OleDbDataAdapter()
-                                da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                            da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
 
                                 ' Preencher o DataTable 
-                                da.Fill(dt)
+                            da.Fill(dtCadastro)
                             End Using
 
                             'Verificar se o comando veio do browse
                             If g_Comando = "incluir" Or g_Comando = "alterar" Then
-                                dt.Clear()
+                            dtCadastro.Clear()
                                 Me.Close()
                             Else
                                 TratarObjetos()
@@ -390,7 +422,15 @@ Public Class frmColaboradores
         Application.DoEvents()
 
         If MsgBox("Deseja excluir este registro?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "cadastro de Colaboradores") = MsgBoxResult.Yes Then
-            cSql = "DELETE FROM EUN003 where UN003_CODCOL = " & txtCodigo.Text
+
+            'cSql = "DELETE FROM EUN003 where UN003_CODCOL = " & txtCodigo.Text
+            cSql = "UPDATE EUN003 SET UN003_SITCOL='E', UN003_DESSIT='EXCLUIDO PELO SISTEMA' "
+            If txtUsuarioCad.Text = "" Then
+                cSql += ",UN003_USUALT=" & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString
+            End If
+            cSql += ",UN003_DATALT=" & FormatarData(Today)
+            cSql += "where UN003_CODCOL = " & txtCodigo.Text
+
             cmd = New OleDbCommand(cSql, g_ConnectBanco)
 
             Try
@@ -399,21 +439,21 @@ Public Class frmColaboradores
                 MsgBox(ex.ToString())
             Finally
 
-                dt.Reset()
+                dtCadastro.Reset()
                 Using da As New OleDbDataAdapter()
-                    da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                    da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
 
                     'Preencher o DataTable 
-                    da.Fill(dt)
+                    da.Fill(dtCadastro)
                 End Using
 
-                If i > dt.Rows.Count() - 1 Then
-                    i = dt.Rows.Count() - 1
+                If i > dtCadastro.Rows.Count() - 1 Then
+                    i = dtCadastro.Rows.Count() - 1
                 End If
 
                 'Verificar se o comando veio do browse
                 If g_Comando = "excluir" Then
-                    dt.Clear() 'Limpar o DataTable
+                    dtCadastro.Clear() 'Limpar o DataTable
                     Me.Close()
                 Else
                     TratarObjetos()
@@ -522,7 +562,7 @@ Public Class frmColaboradores
     End Sub
 
     Private Sub btnLocalizar_Click(sender As Object, e As EventArgs) Handles btnLocalizar.Click
-        dt.Clear() 'Limpar o DataTable
+        dtCadastro.Clear() 'Limpar o DataTable
 
         Me.Close()
     End Sub
@@ -550,7 +590,7 @@ Public Class frmColaboradores
     Private Sub txtCPF_LostFocus(sender As Object, e As EventArgs) Handles txtCPF.LostFocus
         Dim nCPF As New classValidarCPF_CNPJ
 
-        If Trim(txtCPF.Text) <> "" Then
+        If Trim(txtCPF.Text) <> "" And txtCPF.Text <> "999.999.999-99" Then
             nCPF.cpf = txtCPF.Text
 
             If nCPF.cpf = "000.000.000-00" Then 'Not nCPF.isCpfValido() Then
@@ -635,10 +675,11 @@ Public Class frmColaboradores
 
     Private Sub CarregarGrid()
         Dim dtGrid As DataTable = New DataTable("EUN012")
+        Dim sQueryMandato As String
 
         dtgMandato.DataSource = Nothing
 
-        cQuery = "Select EUN000.UN000_CLAUNI as Classe, EUN000.UN000_NOMUNI as Unidade, " & _
+        sQueryMandato = "Select EUN000.UN000_CLAUNI as Classe, EUN000.UN000_NOMUNI as Unidade, " & _
             "EUN016.UN016_DESMDT as Mandato, EUN011.UN011_DESOCP as Descricao, " & _
             "EUN016.UN016_DATINI as Data_Inicio, EUN016.UN016_DATFIN as Data_Final " & _
             "from ((EUN012 INNER JOIN EUN011 ON EUN011.UN011_CODOCP=EUN012.UN012_CODOCP) " & _
@@ -648,7 +689,7 @@ Public Class frmColaboradores
             " ORDER BY EUN016.UN016_DATINI DESC"
 
         Using da As New OleDbDataAdapter()
-            da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+            da.SelectCommand = New OleDbCommand(sQueryMandato, g_ConnectBanco)
 
             ' Preencher o DataTable  
             da.Fill(dtGrid)
@@ -732,5 +773,10 @@ Public Class frmColaboradores
             sClasseUnidade = LerClasse_Unidade(Microsoft.VisualBasic.Left(options.txtPesquisa.Text, 6), sNomeUnidade)
             txtUnidade.Text = sClasseUnidade & " - " & sNomeUnidade
         End If
+    End Sub
+
+    Private Sub cbSitCol_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbSitCol.SelectedIndexChanged
+        txtDesSit.Enabled = cbSitCol.Text <> "ATIVO"
+        lblDesSit.Enabled = cbSitCol.Text <> "ATIVO"
     End Sub
 End Class

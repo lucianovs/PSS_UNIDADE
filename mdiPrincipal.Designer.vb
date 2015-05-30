@@ -28,7 +28,6 @@ Partial Class mdiPrincipal
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.menuCadastro = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.menuCadTipoDeComplemento = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuCadTipoDeOcupacao = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.menuCadColaboradores = New System.Windows.Forms.ToolStripMenuItem()
@@ -42,6 +41,8 @@ Partial Class mdiPrincipal
         Me.menuAprovAgreg = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuInstituicao = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuAprovInst = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.menuReorgUnidade = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuConsultas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuConsAgre = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuRelatorios = New System.Windows.Forms.ToolStripMenuItem()
@@ -69,7 +70,7 @@ Partial Class mdiPrincipal
         '
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuCadastro, Me.menuProcessos, Me.menuConsultas, Me.menuRelatorios, Me.menuSistema, Me.Ajuda})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip.MdiWindowListItem = Me.menuRelatorios
+        Me.MenuStrip.MdiWindowListItem = Me.menuSistema
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Padding = New System.Windows.Forms.Padding(8, 2, 0, 2)
         Me.MenuStrip.Size = New System.Drawing.Size(933, 28)
@@ -78,7 +79,7 @@ Partial Class mdiPrincipal
         '
         'menuCadastro
         '
-        Me.menuCadastro.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator5, Me.menuCadTipoDeComplemento, Me.menuCadTipoDeOcupacao, Me.ToolStripMenuItem2, Me.menuCadColaboradores, Me.menuCadUnidades, Me.mnuSair})
+        Me.menuCadastro.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator5, Me.menuCadTipoDeOcupacao, Me.ToolStripMenuItem2, Me.menuCadColaboradores, Me.menuCadUnidades, Me.mnuSair})
         Me.menuCadastro.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder
         Me.menuCadastro.Name = "menuCadastro"
         Me.menuCadastro.Size = New System.Drawing.Size(86, 24)
@@ -87,46 +88,40 @@ Partial Class mdiPrincipal
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(225, 6)
-        '
-        'menuCadTipoDeComplemento
-        '
-        Me.menuCadTipoDeComplemento.Name = "menuCadTipoDeComplemento"
-        Me.menuCadTipoDeComplemento.Size = New System.Drawing.Size(228, 24)
-        Me.menuCadTipoDeComplemento.Text = "Tipo de Complemento"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(159, 6)
         '
         'menuCadTipoDeOcupacao
         '
         Me.menuCadTipoDeOcupacao.Name = "menuCadTipoDeOcupacao"
-        Me.menuCadTipoDeOcupacao.Size = New System.Drawing.Size(228, 24)
+        Me.menuCadTipoDeOcupacao.Size = New System.Drawing.Size(162, 24)
         Me.menuCadTipoDeOcupacao.Text = "Encargos"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(225, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(159, 6)
         '
         'menuCadColaboradores
         '
         Me.menuCadColaboradores.Name = "menuCadColaboradores"
-        Me.menuCadColaboradores.Size = New System.Drawing.Size(228, 24)
+        Me.menuCadColaboradores.Size = New System.Drawing.Size(162, 24)
         Me.menuCadColaboradores.Text = "Colaborador"
         '
         'menuCadUnidades
         '
         Me.menuCadUnidades.Name = "menuCadUnidades"
-        Me.menuCadUnidades.Size = New System.Drawing.Size(228, 24)
+        Me.menuCadUnidades.Size = New System.Drawing.Size(162, 24)
         Me.menuCadUnidades.Text = "Unidades"
         '
         'mnuSair
         '
         Me.mnuSair.Name = "mnuSair"
-        Me.mnuSair.Size = New System.Drawing.Size(228, 24)
+        Me.mnuSair.Size = New System.Drawing.Size(162, 24)
         Me.mnuSair.Text = "Sair"
         '
         'menuProcessos
         '
-        Me.menuProcessos.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuGerenciarUnidades, Me.menuVincularUsuarioXUnidades, Me.ToolStripMenuItem3, Me.menuAgregacao, Me.menuAprovAgreg, Me.menuInstituicao, Me.menuAprovInst})
+        Me.menuProcessos.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuGerenciarUnidades, Me.menuVincularUsuarioXUnidades, Me.ToolStripMenuItem3, Me.menuAgregacao, Me.menuAprovAgreg, Me.menuInstituicao, Me.menuAprovInst, Me.ToolStripSeparator1, Me.menuReorgUnidade})
         Me.menuProcessos.Name = "menuProcessos"
         Me.menuProcessos.Size = New System.Drawing.Size(85, 24)
         Me.menuProcessos.Text = "Processos"
@@ -134,43 +129,54 @@ Partial Class mdiPrincipal
         'menuGerenciarUnidades
         '
         Me.menuGerenciarUnidades.Name = "menuGerenciarUnidades"
-        Me.menuGerenciarUnidades.Size = New System.Drawing.Size(296, 24)
+        Me.menuGerenciarUnidades.Size = New System.Drawing.Size(313, 24)
         Me.menuGerenciarUnidades.Text = "Gerenciar Unidades"
         '
         'menuVincularUsuarioXUnidades
         '
         Me.menuVincularUsuarioXUnidades.Name = "menuVincularUsuarioXUnidades"
-        Me.menuVincularUsuarioXUnidades.Size = New System.Drawing.Size(296, 24)
+        Me.menuVincularUsuarioXUnidades.Size = New System.Drawing.Size(313, 24)
         Me.menuVincularUsuarioXUnidades.Text = "Vincular  Usuário x Unidades"
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(293, 6)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(310, 6)
         '
         'menuAgregacao
         '
         Me.menuAgregacao.Name = "menuAgregacao"
-        Me.menuAgregacao.Size = New System.Drawing.Size(296, 24)
+        Me.menuAgregacao.Size = New System.Drawing.Size(313, 24)
         Me.menuAgregacao.Text = "Solicitar Agregação de Unidades"
         '
         'menuAprovAgreg
         '
         Me.menuAprovAgreg.Name = "menuAprovAgreg"
-        Me.menuAprovAgreg.Size = New System.Drawing.Size(296, 24)
+        Me.menuAprovAgreg.Size = New System.Drawing.Size(313, 24)
         Me.menuAprovAgreg.Text = "Aprovação de Agregação"
         '
         'menuInstituicao
         '
         Me.menuInstituicao.Name = "menuInstituicao"
-        Me.menuInstituicao.Size = New System.Drawing.Size(296, 24)
+        Me.menuInstituicao.Size = New System.Drawing.Size(313, 24)
         Me.menuInstituicao.Text = "Solicitar Instituição de Unidades"
         '
         'menuAprovInst
         '
         Me.menuAprovInst.Name = "menuAprovInst"
-        Me.menuAprovInst.Size = New System.Drawing.Size(296, 24)
+        Me.menuAprovInst.Size = New System.Drawing.Size(313, 24)
         Me.menuAprovInst.Text = "Aprovação de Instituição"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(310, 6)
+        '
+        'menuReorgUnidade
+        '
+        Me.menuReorgUnidade.Name = "menuReorgUnidade"
+        Me.menuReorgUnidade.Size = New System.Drawing.Size(313, 24)
+        Me.menuReorgUnidade.Text = "Atualizar Estrutura (Data Fundação)"
         '
         'menuConsultas
         '
@@ -333,7 +339,6 @@ Partial Class mdiPrincipal
     Friend WithEvents menuFichaAgregacao As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuCadTipoDeOcupacao As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuCadUnidades As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuCadTipoDeComplemento As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents menuVincularUsuarioXUnidades As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuGerenciarUnidades As System.Windows.Forms.ToolStripMenuItem
@@ -348,5 +353,7 @@ Partial Class mdiPrincipal
     Friend WithEvents menuAprovInst As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuCadColaboradores As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuRelColabConf As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents menuReorgUnidade As System.Windows.Forms.ToolStripMenuItem
 
 End Class

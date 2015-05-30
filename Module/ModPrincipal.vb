@@ -10,6 +10,7 @@ Module ModPrincipal
     'Variaveis Controle Login
     Public g_Login As String
     Public g_Nivel As Integer
+    Public g_AtuBrowse As Boolean 'Variavel para identificar se deve atualiza o browse no timer
 
     'Guarda os parâmetros para passar do Browse para aos cadastros
     Public g_Param(6) As String
@@ -632,7 +633,7 @@ Module ModPrincipal
         'Gravar o Log da Exclusão
         sSqlLog = "INSERT INTO EUN014 (UN014_CODUSU, UN014_CODUNI, UN014_SEQALT, UN014_DATALT, UN014_CPOALT, UN014_VALOLD, UN014_VALNEW)"
         sSqlLog += " values (" & fCodUsuario.ToString & "," & fCodUnidade.ToString & "," & _
-            ProxCodChave("EUN014", "UN014_CODUSU,UN014_CODUNI,UN014_SEQALT", fCodUsuario.ToString & "," & fCodUnidade.ToString).ToString & ",'" & FormatarData(Today()) & "'," & _
+            ProxCodChave("EUN014", "UN014_CODUSU,UN014_CODUNI,UN014_SEQALT", fCodUsuario.ToString & "," & fCodUnidade.ToString).ToString & "," & FormatarData(Today()) & "," & _
             "'" & fCampoAlt & "','" & fValorOld_Alt & "','" & fValorNew_Alt & "')"
         cmd = New OleDbCommand(sSqlLog, g_ConnectBanco)
 
@@ -664,7 +665,7 @@ Module ModPrincipal
             sSqlMural = "INSERT INTO ESI007 (SI007_CODMUR, SI007_DATPUB, SI007_MENMUR, SI007_STAMUR) "
             sSqlMural += "VALUES ("
             sSqlMural += nCodMural.ToString()
-            sSqlMural += ",'" & FormatarData(Today()) & "'"
+            sSqlMural += "," & FormatarData(Today()) & ""
             sSqlMural += ",'" & Microsoft.VisualBasic.Left(fMensagem, 100) & "'"
             sSqlMural += ",'PUBLICADA')"
             cmd = New OleDbCommand(sSqlMural, g_ConnectBanco)
@@ -959,10 +960,10 @@ Module ModPrincipal
 
         sConexao = ClassCrypt.Decrypt(g_ConnectString)
 
-        If InStr(sConexao, "aacd", CompareMethod.Text) > 0 Then
-            FormatarData = Format(fData, "dd/MM/yyyy")
+        If InStr(sConexao, "accdb", CompareMethod.Text) > 0 Then
+            FormatarData = "#" & Format(fData, "dd/MM/yyyy") & "#"
         Else
-            FormatarData = Format(fData, "yyyy/MM/dd")
+            FormatarData = "'" & Format(fData, "yyyy/MM/dd") & "'"
         End If
 
     End Function
@@ -1102,8 +1103,8 @@ Module ModPrincipal
 
         sSQL = "INSERT INTO EUN016 (UN016_CODMDT, UN016_CODRED, UN016_DESMDT, UN016_DATINI, UN016_DATFIN) VALUES " & _
         "(" & nProxCodigo.ToString & _
-        "," & fCodUnidade & ",'MANDATO " & Year(Today).ToString & "','" & _
-        FormatarData(Today) & "','" & FormatarData(Today) & "')"
+        "," & fCodUnidade & ",'MANDATO " & Year(Today).ToString & "'," & _
+        FormatarData(Today) & "," & FormatarData(Today) & ")"
         cmdMandato = New OleDbCommand(sSQL, g_ConnectBanco)
 
         Try
@@ -1175,18 +1176,502 @@ Module ModPrincipal
         'Trazer o nível da Unidade na estrutura do Conselho
 
         If Microsoft.VisualBasic.Mid(fClaUnidade, 1, 2) = "00" Then
-            getNivelUnidade = 9
+            getNivelUnidade = 9 'CNB
         ElseIf Microsoft.VisualBasic.Mid(fClaUnidade, 4, 2) = "00" Then
-            getNivelUnidade = 0
+            getNivelUnidade = 0 'CM
         ElseIf Microsoft.VisualBasic.Mid(fClaUnidade, 7, 2) = "00" Then
-            getNivelUnidade = 1
+            getNivelUnidade = 1 'CC
         ElseIf Microsoft.VisualBasic.Mid(fClaUnidade, 10, 2) = "00" Then
-            getNivelUnidade = 2
+            getNivelUnidade = 2 'CP
         Else
-            getNivelUnidade = 3
+            getNivelUnidade = 3 'CF
         End If
 
     End Function
+
+    Public Function GetPermissaoExcluirUnidade(fCodUnidade As Double, Optional ByRef fMensagem As String = "") As Boolean
+        Dim cQuery As String = ""
+        Dim sClasseUnidade As String = ""
+        Dim sNomeUnidade As String = ""
+        Dim nNivelUni As Integer
+        Dim bPermissao As Boolean = True
+        Dim nQtdReg As Integer
+    
+        sClasseUnidade = LerClasse_Unidade(fCodUnidade, sNomeUnidade)
+
+        'Verificar se é Conselho ou Conferencia
+        nNivelUni = getNivelUnidade(sClasseUnidade)
+
+        If nNivelUni = 3 Then
+            'Verificar se Existe Colaboradores nesta Conferência
+            nQtdReg = LerNumeroColab_Unidade(fCodUnidade)
+            If nQtdReg > 0 Then
+                bPermissao = False
+                fMensagem = "Há " & nQtdReg.ToString
+                If nQtdReg = 1 Then
+                    fMensagem += " colaborador associado"
+                Else
+                    fMensagem += " colaboradores associados"
+                End If
+                fMensagem += " a esta conferência. Exclusão não permitida!!"
+            End If
+        Else
+            nQtdReg = LerNumeroAgreg_Unidade(sClasseUnidade)
+            If nQtdReg > 0 Then
+                bPermissao = False
+                fMensagem = "Há " & nQtdReg.ToString
+                If nQtdReg = 1 Then
+                    fMensagem += " unidade vinculada"
+                Else
+                    fMensagem += " unidades vinculadas"
+                End If
+                fMensagem += " a este conselho. Exclusão não permitida!!"
+            End If
+        End If
+
+        'Forçar a Saída da Funcao 
+        If bPermissao Then GoTo FimFuncao
+
+        'Mais Criticas ...
+
+
+FimFuncao:
+        GetPermissaoExcluirUnidade = bPermissao
+
+    End Function
+
+    Public Function LerNumeroColab_Unidade(fCodUnidade As Double) As Integer
+        Dim cQuery As String
+        Dim dtLerCol As DataTable = New DataTable("EUN003")
+
+        cQuery = "SELECT count(*) as Total FROM EUN003 where UN003_CODUNI = " & fCodUnidade.ToString
+
+        Using daTabela As New OleDbDataAdapter()
+            daTabela.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+
+            ' Preencher o DataTable 
+            daTabela.Fill(dtLerCol)
+            If dtLerCol.Rows.Count > 0 Then
+                Return dtLerCol.Rows(0).Item("Total")
+            Else
+                Return 0
+            End If
+        End Using
+        dtLerCol.Clear()
+
+    End Function
+
+    Public Function LerNumeroAgreg_Unidade(fClasseUnidade As String) As Integer
+        Dim cQuery As String
+        Dim nLeft As Integer
+        Dim dtLerUni As DataTable = New DataTable("EUN000")
+
+        'Retirar os .00 da Classe
+        fClasseUnidade = Replace(fClasseUnidade, ".00", "")
+        nLeft = Microsoft.VisualBasic.Len(fClasseUnidade)
+
+        cQuery = "SELECT count(*) as Total FROM EUN000 where left(UN000_CLAUNI," & nLeft.ToString & ") = '" & fClasseUnidade & "'"
+
+        Using daTabela As New OleDbDataAdapter()
+            daTabela.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+
+            ' Preencher o DataTable 
+            daTabela.Fill(dtLerUni)
+            If dtLerUni.Rows.Count > 0 Then
+                Return dtLerUni.Rows(0).Item("Total") - 1
+            Else
+                Return 0
+            End If
+        End Using
+        dtLerUni.Clear()
+
+    End Function
+
+    Public Sub ReorganizarEstrutura(fUnidade As String)
+        Dim dtReorgUni As DataTable = New DataTable("EUN000")
+        Dim dtGravarLog As DataTable = New DataTable("EUN000")
+        Dim nSeqTemp As Integer = 51
+        Dim nNivel As Integer
+        Dim sSQL As String
+        Dim sSQL_Where As String
+        Dim bReorganizar As Boolean = True
+        Dim cmd As OleDbCommand
+        Dim sMensagem As String
+        Dim nCodUsuario As Integer = getCodUsuario(ClassCrypt.Decrypt(g_Login))
+        Dim bGravarCM, bGravarCC, bGravarCP, bGravarCF As Boolean
+
+        bGravarCM = False : bGravarCC = False : bGravarCP = False : bGravarCF = False
+
+        'Saber o Nivel da Unidade
+        nNivel = getNivelUnidade(fUnidade)
+
+        If nNivel = 3 Then
+            'Conferência
+            sSQL_Where = "LEFT(UN000_CLAUNI,8) = '" & Microsoft.VisualBasic.Left(fUnidade, 8) & "'"
+            sSQL_Where += " AND RIGHT(UN000_CLAUNI,2) <> '00'"
+        ElseIf nNivel = 2 Then
+            'CP
+            sSQL_Where = "LEFT(UN000_CLAUNI,5) = '" & Microsoft.VisualBasic.Left(fUnidade, 5) & "'"
+            sSQL_Where += " AND RIGHT(UN000_CLAUNI,2) = '00'"
+        ElseIf nNivel = 1 Then
+            'CC
+            sSQL_Where = "LEFT(UN000_CLAUNI,2) = '" & Microsoft.VisualBasic.Left(fUnidade, 2) & "'"
+            sSQL_Where += " AND RIGHT(UN000_CLAUNI,5) = '00.00'"
+        Else
+            'CM
+            sSQL_Where = "RIGHT(UN000_CLAUNI,8) = '00.00.00'"
+        End If
+
+        sSQL = "SELECT count(*) as Total FROM EUN000 where " & sSQL_Where
+        sSQL += " and un000_stauni<>'I' and un000_nivuni=" & nNivel.ToString
+        sSQL += " and un000_datfun=" & FormatarData(CDate("01/01/1900")) & ""
+
+        Using daTabela As New OleDbDataAdapter()
+            daTabela.SelectCommand = New OleDbCommand(sSQL, g_ConnectBanco)
+
+            ' Preencher o DataTable 
+            daTabela.Fill(dtReorgUni)
+            If dtReorgUni.Rows(0).Item("Total") > 0 Then
+                bReorganizar = False
+            End If
+        End Using
+        dtReorgUni.Clear()
+
+        If bReorganizar Then
+
+            'Executar a Reorganização
+            sSQL = "SELECT un000_codred, un000_clauni, un000_nomuni FROM EUN000 where " & sSQL_Where
+            sSQL += " and un000_stauni<>'I' and un000_nivuni=" & nNivel.ToString
+            sSQL += " order by un000_datfun"
+
+            Using daTabela As New OleDbDataAdapter()
+                daTabela.SelectCommand = New OleDbCommand(sSQL, g_ConnectBanco)
+
+                ' Preencher o DataTable 
+                daTabela.Fill(dtReorgUni)
+                If dtReorgUni.Rows.Count > 0 Then
+                    For x = 0 To dtReorgUni.Rows.Count - 1
+                        If nNivel = 3 Then 'CF
+                            If Not Int(Microsoft.VisualBasic.Right(dtReorgUni.Rows(x).Item("un000_clauni"), 2)) = nSeqTemp Then
+                                'Trocar a Sequência
+                                sSQL = "UPDATE EUN000 SET UN000_CLAUNI = Left(un000_clauni,9) & '" & Microsoft.VisualBasic.Format(nSeqTemp, "00") & _
+                                    "' where UN000_CLAUNI = '" & dtReorgUni.Rows(x).Item("un000_clauni") & "'" & _
+                                    " and un000_stauni<>'I'"
+                                cmd = New OleDbCommand(sSQL, g_ConnectBanco)
+                                Try
+                                    cmd.ExecuteNonQuery()
+                                Catch ex As Exception
+                                    MsgBox(ex.ToString())
+                                Finally
+                                    bGravarCF = True
+                                    'Gravar o Log da Mudança
+                                    sMensagem = ""
+                                    If Not Gravar_LogUnidade(nCodUsuario.ToString, dtReorgUni.Rows(x).Item("UN000_CODRED"), "UN000_CLAUNI", dtReorgUni.Rows(x).Item("UN000_clauni"), Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("un000_clauni"), 9) & Microsoft.VisualBasic.Format(nSeqTemp, "00"), sMensagem) Then
+                                        MsgBox(sMensagem)
+                                    End If
+                                    '************************
+                                End Try
+                            End If
+                        ElseIf nNivel = 2 Then 'CP
+                            If Not Int(Microsoft.VisualBasic.Mid(dtReorgUni.Rows(x).Item("un000_clauni"), 7, 2)) = nSeqTemp Then
+                                bGravarCP = True
+                                'Trocar a Sequência
+                                sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(un000_clauni,6) & '" & Microsoft.VisualBasic.Format(nSeqTemp, "00") & "' & Right(un000_clauni, 3) " & _
+                                    " where left(UN000_CLAUNI,8) = '" & Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("un000_clauni"), 8) & "'" & _
+                                    " and un000_stauni<>'I'"
+                                cmd = New OleDbCommand(sSQL, g_ConnectBanco)
+                                Try
+                                    cmd.ExecuteNonQuery()
+                                Catch ex As Exception
+                                    MsgBox(ex.ToString())
+                                    bGravarCP = False
+                                Finally
+                                    bGravarCP = True
+                                    'Gravar o Log do Principal
+                                    sMensagem = ""
+                                    If Not Gravar_LogUnidade(nCodUsuario.ToString, _
+                                        dtReorgUni.Rows(x).Item("UN000_CODRED"), _
+                                        "UN000_CLAUNI", _
+                                        dtReorgUni.Rows(x).Item("un000_clauni"), _
+                                        Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("un000_clauni"), 6) & _
+                                            Microsoft.VisualBasic.Format(nSeqTemp, "00") & _
+                                            Microsoft.VisualBasic.Right(dtReorgUni.Rows(x).Item("un000_clauni"), 3), sMensagem) Then
+                                        MsgBox(sMensagem)
+                                        '************************
+                                    End If
+                                    'Gravar o Log da Mudança dos Subsidiários
+                                    'sSQL = "select * from where left(UN000_CLAUNI,8) = '" & Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("clauni"), 8) & "'"
+                                    'Using da As New OleDbDataAdapter()
+                                    'da.SelectCommand = New OleDbCommand(sSQL, g_ConnectBanco)
+                                    'da.Fill(dtGravarLog)
+                                    'For y = 0 To dtGravarLog.Rows.Count() - 1
+
+                                    'sMensagem = ""
+                                    'If Not Gravar_LogUnidade(nCodUsuario.ToString, _
+                                    '    dtGravarLog.Rows(y).Item("UN000_CODRED"), _
+                                    '    "UN000_CLAUNI", _
+                                    '    dtGravarLog.Rows(y).Item("clauni"), _
+                                    '    Microsoft.VisualBasic.Left(dtGravarLog.Rows(y).Item("clauni"), 6) & _
+                                    '        Microsoft.VisualBasic.Format(nSeqTemp, "00") & _
+                                    '        Microsoft.VisualBasic.Right(dtGravarLog.Rows(y).Item("clauni"), 3), sMensagem) Then
+                                    'MsgBox(sMensagem)
+                                    '************************
+                                    'End If
+                                    'Next
+                                    'dtGravarLog.Clear()
+                                    'End Using
+                                    '************************
+                                End Try
+                            End If
+                        ElseIf nNivel = 1 Then 'CC
+                            If Not Int(Microsoft.VisualBasic.Mid(dtReorgUni.Rows(x).Item("un000_clauni"), 4, 2)) = nSeqTemp Then
+                                bGravarCC = True
+                                'Trocar a Sequência
+                                sSQL = "UPDATE EUN000 SET UN000_CLAUNI = Left(un000_clauni, 3) & '" & _
+                                    Microsoft.VisualBasic.Format(nSeqTemp, "00") & _
+                                    "' & Right(un000_clauni, 6) " & _
+                                    " where left(UN000_CLAUNI,5) = '" & Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("un000_clauni"), 5) & "'" & _
+                                    " and un000_stauni<>'I'"
+                                cmd = New OleDbCommand(sSQL, g_ConnectBanco)
+                                Try
+                                    cmd.ExecuteNonQuery()
+                                Catch ex As Exception
+                                    MsgBox(ex.ToString())
+                                    bGravarCC = False
+                                Finally
+                                    'Gravar o Log da Mudança
+                                    sMensagem = ""
+                                    If Not Gravar_LogUnidade(nCodUsuario.ToString, _
+                                            dtReorgUni.Rows(x).Item("UN000_CODRED"), _
+                                            "UN000_CLAUNI", _
+                                            dtReorgUni.Rows(x).Item("un000_clauni"), _
+                                            Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("un000_clauni"), 3) & Microsoft.VisualBasic.Format(nSeqTemp, "00") & ".00.00", sMensagem) Then
+                                        MsgBox(sMensagem)
+                                    End If
+                                    '************************
+                                End Try
+                            End If
+                        ElseIf nNivel = 0 Then 'CM
+                            'MsgBox(Microsoft.VisualBasic.Mid(dtReorgUni.Rows(x).Item("un000_clauni"), 1, 2))
+                            If Not Int(Microsoft.VisualBasic.Mid(dtReorgUni.Rows(x).Item("un000_clauni"), 1, 2)) = nSeqTemp - 50 Then
+                                'Trocar a Sequência
+                                sSQL = "UPDATE EUN000 SET UN000_CLAUNI = '" & _
+                                        Microsoft.VisualBasic.Format(nSeqTemp, "00") & _
+                                        "' & Right(un000_clauni, 9)" & _
+                                    " where left(UN000_CLAUNI,2) = '" & Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("un000_clauni"), 2) & "'" & _
+                                    " and un000_stauni<>'I'"
+                                cmd = New OleDbCommand(sSQL, g_ConnectBanco)
+                                Try
+                                    cmd.ExecuteNonQuery()
+                                Catch ex As Exception
+                                    MsgBox(ex.ToString())
+                                Finally
+                                    bGravarCM = True
+                                    'Gravar o Log da Mudança
+                                    sMensagem = ""
+                                    If Not Gravar_LogUnidade(nCodUsuario.ToString, _
+                                            dtReorgUni.Rows(x).Item("UN000_CODRED"), _
+                                            "UN000_CLAUNI", _
+                                            dtReorgUni.Rows(x).Item("un000_clauni"), _
+                                            Microsoft.VisualBasic.Format(nSeqTemp, "00") & ".00.00.00", sMensagem) Then
+                                        MsgBox(sMensagem)
+                                    End If
+                                    '************************
+                                End Try
+                            End If
+                        End If
+                        nSeqTemp += 1
+                    Next
+                End If
+            End Using
+            dtReorgUni.Clear()
+        End If
+
+        'Atualizar as Estruturas na Base (51-> 01)
+        'CM
+        If bGravarCM Then
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI ='0' & Left(UN000_CLAUNI,2)-50 &" & _
+                        " right(UN000_CLAUNI,9)" & _
+                        " where left(UN000_CLAUNI,2) > 50 and left(UN000_CLAUNI,2) < 60 and un000_stauni<>'I'"
+            cmd = New OleDbCommand(sSQL, g_ConnectBanco)
+            Try
+                cmd.ExecuteNonQuery()
+            Catch ex As Exception
+                MsgBox(ex.ToString())
+            Finally
+                'Gravar o Log da Mudança
+                'sMensagem = ""
+                'If Not Gravar_LogUnidade(nCodUsuario.ToString, _
+                '       dtReorgUni.Rows(x).Item("UN000_CODRED"), _
+                '       "UN000_CLAUNI", _
+                '       dtReorgUni.Rows(x).Item("clauni"), _
+                '       Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("clauni"), 3) & Microsoft.VisualBasic.Format(nSeqTemp, "00") & ".00.00", sMensagem) Then
+                'MsgBox(sMensagem)
+                'End If
+                '************************
+            End Try
+
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,2)-50 &" & _
+                        " right(UN000_CLAUNI,9)" & _
+                        " where left(UN000_CLAUNI,2) > 59 and un000_stauni<>'I'"
+            cmd = New OleDbCommand(sSQL, g_ConnectBanco)
+            Try
+                cmd.ExecuteNonQuery()
+            Catch ex As Exception
+                MsgBox(ex.ToString())
+            Finally
+                'Gravar o Log da Mudança
+                'sMensagem = ""
+                'If Not Gravar_LogUnidade(nCodUsuario.ToString, _
+                '       dtReorgUni.Rows(x).Item("UN000_CODRED"), _
+                '       "UN000_CLAUNI", _
+                '       dtReorgUni.Rows(x).Item("clauni"), _
+                '       Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("clauni"), 3) & Microsoft.VisualBasic.Format(nSeqTemp, "00") & ".00.00", sMensagem) Then
+                'MsgBox(sMensagem)
+                'End If
+                '************************
+            End Try
+
+        End If
+
+        'Atualizar as Estruturas na Base (51-> 01)
+        'CC
+        If bGravarCC Then
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,3) & '0' & right(Left(UN000_CLAUNI,5),2)-50 &" & _
+                        " right(UN000_CLAUNI,6)" & _
+                        " where right(left(UN000_CLAUNI,5),2) > 50 and right(left(UN000_CLAUNI,5),2) < 60 and un000_stauni<>'I'"
+            cmd = New OleDbCommand(sSQL, g_ConnectBanco)
+            Try
+                cmd.ExecuteNonQuery()
+            Catch ex As Exception
+                MsgBox(ex.ToString())
+            Finally
+                'Gravar o Log da Mudança
+                'sMensagem = ""
+                'If Not Gravar_LogUnidade(nCodUsuario.ToString, _
+                '       dtReorgUni.Rows(x).Item("UN000_CODRED"), _
+                '       "UN000_CLAUNI", _
+                '       dtReorgUni.Rows(x).Item("clauni"), _
+                '       Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("clauni"), 3) & Microsoft.VisualBasic.Format(nSeqTemp, "00") & ".00.00", sMensagem) Then
+                'MsgBox(sMensagem)
+                'End If
+                '************************
+            End Try
+
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,3) & right(Left(UN000_CLAUNI,5),2)-50 &" & _
+                        " right(UN000_CLAUNI,6)" & _
+                        " where right(left(UN000_CLAUNI,5),2) > 50 and right(left(UN000_CLAUNI,5),2) < 60 and un000_stauni<>'I'"
+            cmd = New OleDbCommand(sSQL, g_ConnectBanco)
+            Try
+                cmd.ExecuteNonQuery()
+            Catch ex As Exception
+                MsgBox(ex.ToString())
+            Finally
+                'Gravar o Log da Mudança
+                'sMensagem = ""
+                'If Not Gravar_LogUnidade(nCodUsuario.ToString, _
+                '       dtReorgUni.Rows(x).Item("UN000_CODRED"), _
+                '       "UN000_CLAUNI", _
+                '       dtReorgUni.Rows(x).Item("clauni"), _
+                '       Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("clauni"), 3) & Microsoft.VisualBasic.Format(nSeqTemp, "00") & ".00.00", sMensagem) Then
+                'MsgBox(sMensagem)
+                'End If
+                '************************
+            End Try
+        End If
+
+        'Atualizar as Estruturas na Base (51-> 01)
+        'CP
+        If bGravarCP Then
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,6) & '0' & right(Left(UN000_CLAUNI,8),2)-50 &" & _
+                        " right(UN000_CLAUNI,3)" & _
+                        " where right(left(UN000_CLAUNI,8),2) > 50 and right(left(UN000_CLAUNI,8),2) < 60 and un000_stauni<>'I'"
+            cmd = New OleDbCommand(sSQL, g_ConnectBanco)
+            Try
+                cmd.ExecuteNonQuery()
+            Catch ex As Exception
+                MsgBox(ex.ToString())
+            Finally
+                'Gravar o Log da Mudança
+                'sMensagem = ""
+                'If Not Gravar_LogUnidade(nCodUsuario.ToString, _
+                '       dtReorgUni.Rows(x).Item("UN000_CODRED"), _
+                '       "UN000_CLAUNI", _
+                '       dtReorgUni.Rows(x).Item("clauni"), _
+                '       Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("clauni"), 3) & Microsoft.VisualBasic.Format(nSeqTemp, "00") & ".00.00", sMensagem) Then
+                'MsgBox(sMensagem)
+                'End If
+                '************************
+            End Try
+
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,6) & right(Left(UN000_CLAUNI,8),2)-50 &" & _
+                        " right(UN000_CLAUNI,3)" & _
+                        " where right(left(UN000_CLAUNI,8),2) > 50 and right(left(UN000_CLAUNI,8),2) < 60 and un000_stauni<>'I'"
+            cmd = New OleDbCommand(sSQL, g_ConnectBanco)
+            Try
+                cmd.ExecuteNonQuery()
+            Catch ex As Exception
+                MsgBox(ex.ToString())
+            Finally
+                'Gravar o Log da Mudança
+                'sMensagem = ""
+                'If Not Gravar_LogUnidade(nCodUsuario.ToString, _
+                '       dtReorgUni.Rows(x).Item("UN000_CODRED"), _
+                '       "UN000_CLAUNI", _
+                '       dtReorgUni.Rows(x).Item("clauni"), _
+                '       Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("clauni"), 3) & Microsoft.VisualBasic.Format(nSeqTemp, "00") & ".00.00", sMensagem) Then
+                'MsgBox(sMensagem)
+                'End If
+                '************************
+            End Try
+
+        End If
+
+        'Atualizar as Estruturas na Base (51-> 01)
+        'CF
+        If bGravarCF Then
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,9) & '0' & right(UN000_CLAUNI,2)-50 " & _
+                        " where right(UN000_CLAUNI,2) > 50 and right(UN000_CLAUNI,2) < 60 and un000_stauni<>'I'"
+            cmd = New OleDbCommand(sSQL, g_ConnectBanco)
+            Try
+                cmd.ExecuteNonQuery()
+            Catch ex As Exception
+                MsgBox(ex.ToString())
+            Finally
+                'Gravar o Log da Mudança
+                'sMensagem = ""
+                'If Not Gravar_LogUnidade(nCodUsuario.ToString, _
+                '       dtReorgUni.Rows(x).Item("UN000_CODRED"), _
+                '       "UN000_CLAUNI", _
+                '       dtReorgUni.Rows(x).Item("clauni"), _
+                '       Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("clauni"), 3) & Microsoft.VisualBasic.Format(nSeqTemp, "00") & ".00.00", sMensagem) Then
+                'MsgBox(sMensagem)
+                'End If
+                '************************
+            End Try
+
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,9) & right(UN000_CLAUNI,2)-50 " & _
+                        " where right(UN000_CLAUNI,2) > 50 and right(UN000_CLAUNI,2) < 60 and un000_stauni<>'I'"
+            cmd = New OleDbCommand(sSQL, g_ConnectBanco)
+            Try
+                cmd.ExecuteNonQuery()
+            Catch ex As Exception
+                MsgBox(ex.ToString())
+            Finally
+                'Gravar o Log da Mudança
+                'sMensagem = ""
+                'If Not Gravar_LogUnidade(nCodUsuario.ToString, _
+                '       dtReorgUni.Rows(x).Item("UN000_CODRED"), _
+                '       "UN000_CLAUNI", _
+                '       dtReorgUni.Rows(x).Item("clauni"), _
+                '       Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("clauni"), 3) & Microsoft.VisualBasic.Format(nSeqTemp, "00") & ".00.00", sMensagem) Then
+                'MsgBox(sMensagem)
+                'End If
+                '************************
+            End Try
+        End If
+
+    End Sub
 
 
 End Module

@@ -779,7 +779,7 @@ Partial Class frmAprovAgr
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tssContReg})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 532)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 560)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
         Me.StatusStrip1.Size = New System.Drawing.Size(979, 25)
@@ -904,7 +904,7 @@ Partial Class frmAprovAgr
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(979, 557)
+        Me.ClientSize = New System.Drawing.Size(979, 585)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.Panel6)

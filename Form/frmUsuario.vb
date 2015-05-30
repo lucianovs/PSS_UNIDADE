@@ -9,10 +9,12 @@ Public Class frmUsuario
     Dim i As Integer
     Dim bAlterar As Boolean = False
     Dim bIncluir As Boolean = False
-    Dim cQuery As String
+    Dim cQueryCadastro As String
 
     Private Sub frmUsuario_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         g_Param(1) = getCodUsuario(txtLogin.Text) 'Voltar com a Chave do registro do formulário
+        g_AtuBrowse = True
+        g_Comando = "REFRESH" 'Forçar a atualização do browser pelo timer
     End Sub
 
     'Public Sub New(ByVal ValorForm As String)
@@ -29,13 +31,13 @@ Public Class frmUsuario
         'Criar um adaptador que vai fazer o download de dados da base de dados
         '?? Alterar o Código para a Entidade Principal ??
         If Me.Tag = 4 Or g_Param(1) = "INSERT" Then
-            cQuery = "SELECT * FROM ESI000"
+            cQueryCadastro = "SELECT * FROM ESI000 WHERE SI000_STAUSU<>'E'"
         Else
-            cQuery = "SELECT * FROM ESI000 where SI000_CODUSU = " & g_Param(1)
+            cQueryCadastro = "SELECT * FROM ESI000 where SI000_CODUSU = " & g_Param(1)
         End If
 
         Using da As New OleDbDataAdapter()
-            da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+            da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
 
             ' Preencher o DataTable 
             da.Fill(dt)
@@ -102,8 +104,9 @@ Public Class frmUsuario
         If Not bIncluir Then
             'Carregar o Combo de Grupos Associados ao usuário
             cquery_grupo = "SELECT ESI001.SI001_DESGRU, ESI006.SI006_CODGRU FROM (ESI001 " & _
-                    "INNER JOIN ESI006 ON ESI006.SI006_CODGRU=ESI001.SI001_CODGRU) where ESI006.SI006_CODUSU= " & _
-                    getCodUsuario(dt.Rows(i).Item("SI000_LGIUSU"))
+                    "INNER JOIN ESI006 ON ESI006.SI006_CODGRU=ESI001.SI001_CODGRU) " & _
+                    "where ESI006.SI006_CODUSU= " & _
+                    getCodUsuario(dt.Rows(i).Item("SI000_LGIUSU")) 
             Using da As New OleDbDataAdapter()
                 da.SelectCommand = New OleDbCommand(cquery_grupo, g_ConnectBanco)
 
@@ -189,6 +192,8 @@ Public Class frmUsuario
         chkAlterarSenha.Enabled = bAlterar And Me.Tag = 4
         chkGerAgr.Enabled = bAlterar And Me.Tag = 4
         chkValidade.Enabled = bAlterar And Me.Tag = 4
+        lblStaUsu.Enabled = bAlterar And Me.Tag = 4
+        cbStaUsu.Enabled = bAlterar And Me.Tag = 4
         '*****************
 
         'Preencher Campos
@@ -211,6 +216,13 @@ Public Class frmUsuario
             Else
                 txtColaborador.Text = ""
             End If
+            If dt.Rows(i).Item("SI000_STAUSU") = "I" Then
+                cbStaUsu.Text = "INATIVO"
+            ElseIf dt.Rows(i).Item("SI000_STAUSU") = "E" Then
+                cbStaUsu.Text = "EXCLUIDO"
+            Else
+                cbStaUsu.Text = "ATIVO"
+            End If
 
             'Outros Controles
             cbGrupoPrincipal.Text = getDescrGrupo(dt.Rows(i).Item("SI000_CODGRU"))
@@ -218,8 +230,6 @@ Public Class frmUsuario
 
         'Outras Chamadas
         CarregarListBox_Grupos()
-
-
 
     End Sub
 
@@ -273,6 +283,7 @@ Public Class frmUsuario
         txtNmUsuario.Text = ""
         txtSenha.Text = ""
         txtSenha2.Text = ""
+        cbStaUsu.Text = "ATIVO"
 
         Call TratarObjetos()
 
@@ -290,20 +301,23 @@ Public Class frmUsuario
                 If bIncluir Then
                     nProxCod_Usuario = ProxCodChave("ESI000", "SI000_CODUSU")
                     cSql = "INSERT INTO ESI000(SI000_CODUSU, SI000_LGIUSU, SI000_PASLGI, " & _
-                        "SI000_NOMUSU, SI000_CODGRU, SI000_DATEXP, SI000_ALTPAS, SI000_GERAGR, SI000_CODASS)"
+                        "SI000_NOMUSU, SI000_CODGRU, SI000_DATEXP, SI000_ALTPAS, SI000_GERAGR, SI000_CODASS, SI000_STAUSU)"
                     cSql += " values (" & nProxCod_Usuario.ToString & ",'" & txtLogin.Text & "', '" & ClassCrypt.Encrypt(txtSenha.Text) & "', '" & _
-                        txtNmUsuario.Text & "', " & getCodGrupo(cbGrupoPrincipal.Text) & ",'" & FormatarData(dtpExpira.Value) & _
-                        "'," & IIf(chkAlterarSenha.Checked, "1", "0") & _
-                        "," & IIf(chkGerAgr.Checked, "1", "0") & "," & IIf(txtColaborador.Text = "", "0", Microsoft.VisualBasic.Left(txtColaborador.Text, 6)) & ")"
+                        txtNmUsuario.Text & "', " & getCodGrupo(cbGrupoPrincipal.Text) & "," & FormatarData(dtpExpira.Value) & _
+                        "," & IIf(chkAlterarSenha.Checked, "1", "0") & _
+                        "," & IIf(chkGerAgr.Checked, "1", "0") & "," & _
+                        IIf(txtColaborador.Text = "", "0", Microsoft.VisualBasic.Left(txtColaborador.Text, 6)) & _
+                        ",'A')"
                 ElseIf bAlterar Then
                     cSql = "UPDATE ESI000 set SI000_NOMUSU='" & Trim(txtNmUsuario.Text) & _
                             "', SI000_CODGRU=" & getCodGrupo(cbGrupoPrincipal.Text) & _
-                            ", SI000_DATEXP='" & FormatarData(dtpExpira.Value) & _
-                            "', SI000_ALTPAS=" & IIf(chkAlterarSenha.Checked, "1", "0") & _
+                            ", SI000_DATEXP=" & FormatarData(dtpExpira.Value) & _
+                            ", SI000_ALTPAS=" & IIf(chkAlterarSenha.Checked, "1", "0") & _
                             ", SI000_GERAGR=" & IIf(chkGerAgr.Checked, "1", "0") & _
                             IIf(txtSenha.Text = txtSenha2.Text, ",SI000_PASLGI='" & _
                                     ClassCrypt.Encrypt(Trim(txtSenha.Text)) & "'", "") & _
                             ", SI000_CODASS=" & IIf(txtColaborador.Text = "", "0", Microsoft.VisualBasic.Left(txtColaborador.Text, 6)) & _
+                            ", SI000_STAUSU='" & Microsoft.VisualBasic.Left(cbStaUsu.Text, 1) & "'" & _
                             " where SI000_LGIUSU = '" & Trim(txtLogin.Text) & "'"
                     'acessoWEB=" & If(chkSIM.Checked = 0, False, True)
                 End If
@@ -324,7 +338,7 @@ Public Class frmUsuario
                     Else
                         dt.Reset()
                         Using da As New OleDbDataAdapter()
-                            da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                            da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
 
                             ' Preencher o DataTable 
                             da.Fill(dt)
@@ -385,7 +399,7 @@ Public Class frmUsuario
 
         If MsgBox("Deseja excluir este registro?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "cadastro de Usuarios") = MsgBoxResult.Yes Then
             '?? Alterar para a Tabela a ser Excluída ??
-            cSql = "DELETE FROM ESI000 where SI000_LGIUSU = '" & txtLogin.Text & "'"
+            cSql = "UPDATE ESI000 SET SI000_STAUSU='E' where SI000_LGIUSU = '" & txtLogin.Text & "'"
             cmd = New OleDbCommand(cSql, g_ConnectBanco)
 
             Try
@@ -393,14 +407,13 @@ Public Class frmUsuario
             Catch ex As Exception
                 MsgBox(ex.ToString())
             Finally
-
                 cSql = "DELETE FROM ESI006 where SI006_CODUSU = " & getCodUsuario(txtLogin.Text)
                 cmd = New OleDbCommand(cSql, g_ConnectBanco)
                 cmd.ExecuteNonQuery()
 
                 dt.Reset()
                 Using da As New OleDbDataAdapter()
-                    da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                    da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
 
                     'Preencher o DataTable 
                     da.Fill(dt)

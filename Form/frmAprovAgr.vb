@@ -9,7 +9,7 @@ Public Class frmAprovAgr
     Dim i As Integer
     Dim bAlterar As Boolean = False
     Dim bIncluir As Boolean = False
-    Dim cQuery As String = ""
+    Dim cQueryCadastro As String = ""
     Dim cQueryTemp As String = ""
     Dim cCampos As String
     Dim cValorCampos As String
@@ -462,6 +462,7 @@ Public Class frmAprovAgr
 
     Private Sub frmAgregacao_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim i_point As Integer
+        Dim sQuery As String
 
         nCodUsuario = getCodUsuario(ClassCrypt.Decrypt(g_Login))
         nPermissao = 3
@@ -469,13 +470,13 @@ Public Class frmAprovAgr
         'Criar um adaptador que vai fazer o download de dados da base de dados
         '?? Alterar o Código para a Entidade Principal ??
         If Me.Tag = 4 Then
-            cQuery = "SELECT * FROM EUN015 where UN015_STAAGR <> 'I'"
+            cQueryCadastro = "SELECT * FROM EUN015 where UN015_STAAGR <> 'I'"
         Else
-            cQuery = "SELECT * FROM EUN015 where UN015_STAAGR <> 'I' and UN015_NUMAGR = " & g_Param(1)
+            cQueryCadastro = "SELECT * FROM EUN015 where UN015_STAAGR <> 'I' and UN015_NUMAGR = " & g_Param(1)
         End If
 
         Using da As New OleDbDataAdapter()
-            da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+            da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
 
             ' Preencher o DataTable 
             da.Fill(dt)
@@ -518,10 +519,9 @@ Public Class frmAprovAgr
         'Verificar se o usuário exerce algum cargo
         If nGerAgregacao = 0 Then
             'Não gerencia Agregação
-            Dim cQuery As String
             Dim dtLerCargo As DataTable = New DataTable("EUN011")
 
-            cQuery = "SELECT EUN003.UN003_CODCOL, EUN003.UN003_NOMCOL, EUN011.UN011_DESOCP, EUN011.UN011_APRAGR, " & _
+            sQuery = "SELECT EUN003.UN003_CODCOL, EUN003.UN003_NOMCOL, EUN011.UN011_DESOCP, EUN011.UN011_APRAGR, " & _
                 "EUN016.UN016_CODRED FROM ((EUN003 INNER JOIN EUN012 ON EUN003.UN003_CODCOL = EUN012.UN012_CODCOL) " & _
                 "INNER JOIN EUN011 ON EUN012.UN012_CODOCP = EUN011.UN011_CODOCP) INNER JOIN EUN016 ON " & _
                 "(EUN012.UN012_CODRED = EUN016.UN016_CODRED) AND (EUN012.UN012_CODMDT = EUN016.UN016_CODMDT) " & _
@@ -529,7 +529,7 @@ Public Class frmAprovAgr
                 "UN003_CODCOL = " & LerCodColaborador(ClassCrypt.Decrypt(g_Login)).ToString
 
             Using daTabela As New OleDbDataAdapter()
-                daTabela.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                daTabela.SelectCommand = New OleDbCommand(sQuery, g_ConnectBanco)
 
                 ' Preencher o DataTable 
                 daTabela.Fill(dtLerCargo)
@@ -560,6 +560,10 @@ Public Class frmAprovAgr
         End If
 
         TratarObjetos()
+
+    End Sub
+
+    Private Sub btnGravar_Click(sender As Object, e As EventArgs) Handles btnGravar.Click
 
     End Sub
 

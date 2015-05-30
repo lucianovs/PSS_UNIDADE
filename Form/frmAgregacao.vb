@@ -11,7 +11,7 @@ Public Class frmAgregacao
     Dim i_Mandato As Integer
     Dim bAlterar As Boolean = False
     Dim bIncluir As Boolean = False
-    Dim cQuery As String = ""
+    Dim cQueryCadastro As String = ""
     Dim cQueryTemp As String = ""
     Dim cCampos As String
     Dim cValorCampos As String
@@ -27,6 +27,7 @@ Public Class frmAgregacao
     Private Sub TratarObjetos()
         Dim bEmDigitacao As Boolean
         Dim nCodigoMandato As Integer
+        Dim sQuery As String
 
         tssContReg.Text = "Registro " & (i + 1).ToString & "/" & dt.Rows.Count().ToString
 
@@ -421,10 +422,10 @@ Public Class frmAgregacao
 
             'Carregar os Dados do Mandato
             dtMandato.Clear()
-            cQuery = "Select * from EUN016 where UN016_CODRED=" & txtID_CF.Text & _
+            sQuery = "Select * from EUN016 where UN016_CODRED=" & txtID_CF.Text & _
                 " order by UN016_DATFIN DESC"
             Using da As New OleDbDataAdapter()
-                da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                da.SelectCommand = New OleDbCommand(sQuery, g_ConnectBanco)
 
                 ' Preencher o DataTable 
                 da.Fill(dtMandato)
@@ -433,10 +434,10 @@ Public Class frmAgregacao
                 nCodigoMandato = InserirMandato(CDbl(txtID_CF.Text))
                 If nCodigoMandato > 0 Then
                     dtMandato.Clear()
-                    cQuery = "Select * from EUN016 where UN016_CODRED=" & txtID_CF.Text & _
+                    sQuery = "Select * from EUN016 where UN016_CODRED=" & txtID_CF.Text & _
                         " and UN016_CODMDT=" & nCodigoMandato.ToString
                     Using da As New OleDbDataAdapter()
-                        da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                        da.SelectCommand = New OleDbCommand(sQuery, g_ConnectBanco)
 
                         ' Preencher o DataTable 
                         da.Fill(dtMandato)
@@ -614,8 +615,8 @@ Public Class frmAgregacao
                 cSql += "," & LerCod_Unidade(Microsoft.VisualBasic.Left(txtClaUni.Text, 6) & "00.00").ToString
                 cSql += "," & LerCod_Unidade(Microsoft.VisualBasic.Left(txtClaUni.Text, 9) & "00").ToString & _
                     "," & ProxSeq_Unidade("CF", Microsoft.VisualBasic.Left(txtCP.Text, 11)).ToString  'Prox. Codigo da Unidade
-                cSql += ",'" & FormatarData(dtpDatFun.Value) & "'"
-                cSql += ",'" & FormatarData(dtpDatEle.Value) & "','" & txtCFAtv1.Text & "','" & txtCFAtv2.Text & "'"
+                cSql += "," & FormatarData(dtpDatFun.Value) & ""
+                cSql += "," & FormatarData(dtpDatEle.Value) & ",'" & txtCFAtv1.Text & "','" & txtCFAtv2.Text & "'"
                 cSql += ",'" & txtCFAtv3.Text & "','" & txtCFAtv4.Text & "','" & txtCFAtv5.Text & "','" & txtCFAtv6.Text & "'"
                 cSql += ",'" & txtReuDia.Text & "','" & Format(dtpReuHor.Value, "hh:mm") & "','" & txtReuEnd.Text & "'"
                 cSql += "," & txtNumSub.Text & "," & txtNumBen.Text & ",'" & txtParJur.Text & "'," & txtVisSem.Text
@@ -626,8 +627,8 @@ Public Class frmAgregacao
                 cSql += "," & FormatarValor_SQL(txtAjuEnt.Text) & "," & FormatarValor_SQL(txtAjuRec.Text) & "," & FormatarValor_SQL(txtAjuOut.Text)
                 cSql += "," & FormatarValor_SQL(txtGstPes.Text) & "," & FormatarValor_SQL(txtGstCon.Text) & "," & FormatarValor_SQL(txtGstDoa.Text)
                 cSql += "," & FormatarValor_SQL(txtGstEme.Text) & "," & FormatarValor_SQL(txtGstAdm.Text)
-                cSql += "," & nCodUsuario.ToString & ",'" & FormatarData(Today()) & "'" 'Usu. Incluiu
-                cSql += "," & nCodUsuario.ToString & ",'" & FormatarData(Today()) & "'" 'Usu Alterou (o mesmo)
+                cSql += "," & nCodUsuario.ToString & "," & FormatarData(Today()) & "" 'Usu. Incluiu
+                cSql += "," & nCodUsuario.ToString & "," & FormatarData(Today()) & "" 'Usu Alterou (o mesmo)
                 'cSql += ", '" & Convert.ToDateTime(dtpDataAprovacaoCP.Text) & "', '" & Convert.ToDateTime(dtpDataAprovacaoCC.Text) & "'"
                 cSql += ")"
             ElseIf bAlterar Then
@@ -638,8 +639,8 @@ Public Class frmAgregacao
                 cSql += ",UN015_CODCC=" & LerCod_Unidade(Microsoft.VisualBasic.Left(txtClaUni.Text, 6) & "00.00").ToString
                 cSql += ",UN015_CODCP=" & LerCod_Unidade(Microsoft.VisualBasic.Left(txtClaUni.Text, 9) & "00").ToString
                 cSql += ",UN015_CODCF=" & txtID_CF.Text
-                cSql += ",UN015_DATFUN='" & FormatarData(dtpDatFun.Value) & "'"
-                cSql += ",UN015_DATELE='" & FormatarData(dtpDatEle.Value) & "',UN015_CFATV1='" & txtCFAtv1.Text & "'"
+                cSql += ",UN015_DATFUN=" & FormatarData(dtpDatFun.Value) & ""
+                cSql += ",UN015_DATELE=" & FormatarData(dtpDatEle.Value) & ",UN015_CFATV1='" & txtCFAtv1.Text & "'"
                 cSql += ",UN015_CFATV2='" & txtCFAtv2.Text & "',UN015_CFATV3='" & txtCFAtv3.Text & "',UN015_CFATV4='" & txtCFAtv4.Text & "'"
                 cSql += ",UN015_CFATV5='" & txtCFAtv5.Text & "',UN015_CFATV6='" & txtCFAtv6.Text & "'"
                 cSql += ",UN015_REUDIA='" & txtReuDia.Text & "',UN015_REUHOR='" & Format(dtpReuHor.Value, "hh:mm") & "',UN015_REUEND='" & txtReuEnd.Text & "'"
@@ -652,7 +653,7 @@ Public Class frmAgregacao
                 cSql += ",UN015_AJUENT=" & FormatarValor_SQL(txtAjuEnt.Text) & ",UN015_AJUREC=" & FormatarValor_SQL(txtAjuRec.Text) & ",UN015_AJUOUT=" & FormatarValor_SQL(txtAjuOut.Text)
                 cSql += ",UN015_GSTPES=" & FormatarValor_SQL(txtGstPes.Text) & ",UN015_GSTCON=" & FormatarValor_SQL(txtGstCon.Text) & ",UN015_GSTDOA=" & FormatarValor_SQL(txtGstDoa.Text)
                 cSql += ",UN015_GSTEME=" & FormatarValor_SQL(txtGstEme.Text) & ",UN015_GSTADM=" & FormatarValor_SQL(txtGstAdm.Text)
-                cSql += ",UN015_USUALT=" & nCodUsuario.ToString & ", UN015_DATALT='" & FormatarData(Today()) & "'"
+                cSql += ",UN015_USUALT=" & nCodUsuario.ToString & ", UN015_DATALT=" & FormatarData(Today()) & ""
                 'cSql += "UN000_APROCP = '" & Format(dtpDataAprovacaoCP.Value, "dd/MM/yyyy") & "', UN000_APROCC = '" & Format(dtpDataAprovacaoCC.Value, "dd/MM/yyyy") & "', "
                 cSql += " where UN015_NUMAGR = " & Integer.Parse(txtNumAgr.Text)
 
@@ -724,7 +725,7 @@ Public Class frmAgregacao
                 Else
                     dt.Reset()
                     Using da As New OleDbDataAdapter()
-                        da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                        da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
 
                         ' Preencher o DataTable 
                         da.Fill(dt)
@@ -758,7 +759,7 @@ Public Class frmAgregacao
         If MsgBox("Deseja excluir este registro?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "cadastro de Usuarios") = MsgBoxResult.Yes Then
             '?? Alterar para a Tabela a ser Excluída ??
             'cSql = "DELETE FROM EUN000 where UN000_CODRED = " & Integer.Parse(txtCodigo.Text)
-            cSql = "UPDATE EUN015 set UN015_STAAGR='I', UN015_CODUSU=" & nCodUsuario.ToString & ", UN015_DATINA='" & FormatarData(Today()) & "' " & _
+            cSql = "UPDATE EUN015 set UN015_STAAGR='I', UN015_CODUSU=" & nCodUsuario.ToString & ", UN015_DATINA=" & FormatarData(Today()) & " " & _
                 "where UN015_NUMAGR = " & Integer.Parse(txtNumAgr.Text)
 
             cmd = New OleDbCommand(cSql, g_ConnectBanco)
@@ -771,7 +772,7 @@ Public Class frmAgregacao
 
                 dt.Reset()
                 Using da As New OleDbDataAdapter()
-                    da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                    da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
 
                     'Preencher o DataTable 
                     da.Fill(dt)
@@ -903,13 +904,13 @@ Public Class frmAgregacao
         'Criar um adaptador que vai fazer o download de dados da base de dados
         '?? Alterar o Código para a Entidade Principal ??
         If Me.Tag = 4 Then
-            cQuery = "SELECT * FROM EUN015 where UN015_STAAGR <> 'I'"
+            cQueryCadastro = "SELECT * FROM EUN015 where UN015_STAAGR <> 'E'"
         Else
-            cQuery = "SELECT * FROM EUN015 where UN015_STAAGR <> 'I' and UN015_NUMAGR = " & g_Param(1)
+            cQueryCadastro = "SELECT * FROM EUN015 where UN015_STAAGR <> 'E' and UN015_NUMAGR = " & g_Param(1)
         End If
 
         Using da As New OleDbDataAdapter()
-            da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+            da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
 
             ' Preencher o DataTable 
             da.Fill(dt)
@@ -982,6 +983,7 @@ Public Class frmAgregacao
         Dim cmdEncargos As OleDbCommand
         Dim sNivelUn As String
         Dim nCodigomandato As Integer
+        Dim sQuery As String
 
         dtgMandato.DataSource = Nothing
 
@@ -998,7 +1000,7 @@ Public Class frmAgregacao
         End If
 
         'Ler os Encargos do mandado ativo da unidade para carregar a grid de encargos
-        cQuery = "Select EUN012.UN012_CODOCP as enc, EUN011.UN011_DESOCP as Encargo, " & _
+        sQuery = "Select EUN012.UN012_CODOCP as enc, EUN011.UN011_DESOCP as Encargo, " & _
             "EUN012.UN012_CODCOL as cfd, EUN003.UN003_NOMCOL as Confrade " & _
             "from ((EUN012 INNER JOIN EUN011 ON EUN011.UN011_CODOCP=EUN012.UN012_CODOCP) " & _
             "LEFT JOIN EUN003 ON EUN003.UN003_CODCOL=EUN012.UN012_CODCOL) " & _
@@ -1007,7 +1009,7 @@ Public Class frmAgregacao
             " ORDER BY EUN011.UN011_DESOCP"
 
         Using da As New OleDbDataAdapter()
-            da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+            da.SelectCommand = New OleDbCommand(sQuery, g_ConnectBanco)
 
             ' Preencher o DataTable  
             da.Fill(dtGrid)
@@ -1022,9 +1024,9 @@ Public Class frmAgregacao
 
 
             'Ler os Encargos e atribuir a este mandato na Unidade
-            cQuery = " select * from EUN011 where EUN011.UN011_NIVOCP='" & sNivelUn & "'"
+            sQuery = " select * from EUN011 where EUN011.UN011_NIVOCP='" & sNivelUn & "'"
             Using da As New OleDbDataAdapter()
-                da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                da.SelectCommand = New OleDbCommand(sQuery, g_ConnectBanco)
 
                 ' Preencher o DataTable  
                 da.Fill(dtGrid)
@@ -1032,9 +1034,9 @@ Public Class frmAgregacao
             If dtGrid.Rows.Count > 0 Then
                 For x = 0 To dtGrid.Rows.Count - 1
                     'INSERIR O MANDATO
-                    cQuery = "INSERT INTO EUN012 (UN012_CODMDT, UN012_CODOCP, UN012_CODCOL, UN012_CODRED) VALUES " & _
+                    sQuery = "INSERT INTO EUN012 (UN012_CODMDT, UN012_CODOCP, UN012_CODCOL, UN012_CODRED) VALUES " & _
                         "(" & nCodigomandato & "," & dtGrid.Rows(x).Item("UN011_CODOCP") & ",0," & txtID_CF.Text & ")"
-                    cmdEncargos = New OleDbCommand(cQuery, g_ConnectBanco)
+                    cmdEncargos = New OleDbCommand(sQuery, g_ConnectBanco)
 
                     Try
                         cmdEncargos.ExecuteNonQuery()
@@ -1046,7 +1048,7 @@ Public Class frmAgregacao
 
                 'REFAZER A LEITURA DOS ENCARGOS DO MANDATO
                 dtGrid.Clear()
-                cQuery = "Select EUN012.UN012_CODOCP as Cod, EUN011.UN011_DESOCP as Encargo, " & _
+                sQuery = "Select EUN012.UN012_CODOCP as Cod, EUN011.UN011_DESOCP as Encargo, " & _
                     "EUN012.UN012_CODCOL as Cod, EUN003.UN003_NOMCOL as Confrade " & _
                     "from ((EUN012 INNER JOIN EUN011 ON EUN011.UN011_CODOCP=EUN012.UN012_CODOCP) " & _
                     "LEFT JOIN EUN003 ON EUN003.UN003_CODCOL=EUN012.UN012_CODCOL) " & _
@@ -1054,7 +1056,7 @@ Public Class frmAgregacao
                     "WHERE EUN016.UN016_CODRED=" & txtID_CF.Text & " AND EUN011.UN011_NIVOCP='" & sNivelUn & "'" & _
                     " ORDER BY EUN011.UN011_DESOCP"
                 Using da As New OleDbDataAdapter()
-                    da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                    da.SelectCommand = New OleDbCommand(sQuery, g_ConnectBanco)
 
                     ' Preencher o DataTable  
                     da.Fill(dtGrid)
@@ -1079,15 +1081,16 @@ Public Class frmAgregacao
 
     Private Sub btnProx_Mandato_Click(sender As Object, e As EventArgs) Handles btnProx_Mandato.Click
         Dim nCodigomandato As Integer
+        Dim sQuery As String
 
         If i_Mandato = dtMandato.Rows.Count - 1 And Not dtpUN016_DatFin.Value = dtpUN016_DatIni.Value Then
             nCodigomandato = InserirMandato(txtID_CF.Text)
             If nCodigomandato > 0 Then
                 dtMandato.Clear()
-                cQuery = "Select * from EUN016 where UN016_CODRED=" & txtID_CF.Text & _
+                sQuery = "Select * from EUN016 where UN016_CODRED=" & txtID_CF.Text & _
                     " and UN016_CODMDT=" & nCodigomandato.ToString
                 Using da As New OleDbDataAdapter()
-                    da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                    da.SelectCommand = New OleDbCommand(sQuery, g_ConnectBanco)
 
                     ' Preencher o DataTable 
                     da.Fill(dtMandato)
@@ -1114,12 +1117,13 @@ Public Class frmAgregacao
 
     Private Sub btnGravar_Mandato_Click(sender As Object, e As EventArgs) Handles btnGravar_Mandato.Click
         Dim cmdMandato As OleDbCommand
+        Dim sQuery As String
 
-        cQuery = "UPDATE EUN016 SET UN016_DESMDT='" & txtUN016_DesMdt.Text & "' " & _
-            ", UN016_DATINI='" & FormatarData(dtpUN016_DatIni.Value) & "' " & _
-            ", UN016_DATFIN='" & FormatarData(dtpUN016_DatFin.Value) & "' "
-        cQuery += "WHERE UN016_CODMDT=" & txtUN016_CodMdt.Text & " AND UN016_CODRED=" & txtID_CF.Text
-        cmdMandato = New OleDbCommand(cQuery, g_ConnectBanco)
+        sQuery = "UPDATE EUN016 SET UN016_DESMDT='" & txtUN016_DesMdt.Text & "' " & _
+            ", UN016_DATINI=" & FormatarData(dtpUN016_DatIni.Value) & " " & _
+            ", UN016_DATFIN=" & FormatarData(dtpUN016_DatFin.Value) & " "
+        sQuery += "WHERE UN016_CODMDT=" & txtUN016_CodMdt.Text & " AND UN016_CODRED=" & txtID_CF.Text
+        cmdMandato = New OleDbCommand(sQuery, g_ConnectBanco)
 
         Try
             cmdMandato.ExecuteNonQuery()
@@ -1138,9 +1142,10 @@ Public Class frmAgregacao
         Dim sNome(10) As String
         Dim sItemLista As String
         Dim dtPesquisar As DataTable = New DataTable("EUN003")
+        Dim sQuery As String
 
         If Not Trim(NomePesquisar.Text) = "" Then
-            cQuery = "Select EUN003.UN003_CODCOL, EUN003.UN003_NOMCOL, EUN003.UN003_BAIRRO " & _
+            sQuery = "Select EUN003.UN003_CODCOL, EUN003.UN003_NOMCOL, EUN003.UN003_BAIRRO " & _
                 ", EUN003.UN003_CIDADE, EUN003.UN003_SIGEST, EUN003.UN003_DTNASC from EUN003 " & _
                 "where EUN003.UN003_SITCOL<>'I'"
             nStart = 1
@@ -1159,12 +1164,12 @@ Public Class frmAgregacao
             Loop
             'Montar a Condição
             For nPos = 0 To nSeq
-                cQuery += " and EUN003.UN003_NOMCOL LIKE '%" & sNome(nPos) & "%'"
+                sQuery += " and EUN003.UN003_NOMCOL LIKE '%" & sNome(nPos) & "%'"
             Next nPos
-            cQuery += " order by EUN003.UN003_NOMCOL"
+            sQuery += " order by EUN003.UN003_NOMCOL"
 
             Using da As New OleDbDataAdapter()
-                da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                da.SelectCommand = New OleDbCommand(sQuery, g_ConnectBanco)
 
                 ' Preencher o DataTable 
                 da.Fill(dtPesquisar)
@@ -1197,16 +1202,17 @@ Public Class frmAgregacao
     End Sub
 
     Private Sub ListaPesquisa_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles ListaPesquisa.MouseDoubleClick
+        Dim sQuery As String
 
         If dtgMandato.SelectedRows.Count > 0 Then
             'Gravar o Ocupante do Cargo
             Dim cmdMandato As OleDbCommand
 
-            cQuery = "UPDATE EUN012 SET UN012_CODCOL=" & Microsoft.VisualBasic.Left(ListaPesquisa.SelectedItem, 6)
-            cQuery += " WHERE UN012_CODMDT=" & txtUN016_CodMdt.Text
-            cQuery += " AND UN012_CODOCP=" & dtgMandato.SelectedRows.Item(0).Cells(0).Value
-            cQuery += " AND UN012_CODRED=" & txtID_CF.Text
-            cmdMandato = New OleDbCommand(cQuery, g_ConnectBanco)
+            sQuery = "UPDATE EUN012 SET UN012_CODCOL=" & Microsoft.VisualBasic.Left(ListaPesquisa.SelectedItem, 6)
+            sQuery += " WHERE UN012_CODMDT=" & txtUN016_CodMdt.Text
+            sQuery += " AND UN012_CODOCP=" & dtgMandato.SelectedRows.Item(0).Cells(0).Value
+            sQuery += " AND UN012_CODRED=" & txtID_CF.Text
+            cmdMandato = New OleDbCommand(sQuery, g_ConnectBanco)
 
             Try
                 cmdMandato.ExecuteNonQuery()
@@ -1248,9 +1254,10 @@ Public Class frmAgregacao
         Dim sNome(10) As String
         Dim sItemLista As String
         Dim dtPesquisar As DataTable = New DataTable("EUN003")
+        Dim sQuery As String
 
         If Not Trim(txtPesqMembro.Text) = "" Then
-            cQuery = "Select EUN003.UN003_CODCOL, EUN003.UN003_NOMCOL, EUN003.UN003_BAIRRO, " & _
+            sQuery = "Select EUN003.UN003_CODCOL, EUN003.UN003_NOMCOL, EUN003.UN003_BAIRRO, " & _
                 "EUN003.UN003_CIDADE, EUN003.UN003_SIGEST, EUN003.UN003_DTNASC from EUN003 " & _
                 "where EUN003.UN003_SITCOL<>'I' AND EUN003.UN003_CODUNI=0"
             nStart = 1
@@ -1269,12 +1276,12 @@ Public Class frmAgregacao
             Loop
             'Montar a Condição
             For nPos = 0 To nSeq
-                cQuery += " and EUN003.UN003_NOMCOL LIKE '%" & sNome(nPos) & "%'"
+                sQuery += " and EUN003.UN003_NOMCOL LIKE '%" & sNome(nPos) & "%'"
             Next nPos
-            cQuery += " order by EUN003.UN003_NOMCOL"
+            sQuery += " order by EUN003.UN003_NOMCOL"
 
             Using da As New OleDbDataAdapter()
-                da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+                da.SelectCommand = New OleDbCommand(sQuery, g_ConnectBanco)
 
                 ' Preencher o DataTable 
                 da.Fill(dtPesquisar)
@@ -1308,14 +1315,15 @@ Public Class frmAgregacao
     End Sub
 
     Private Sub lstPesqMembro_DoubleClick(sender As Object, e As EventArgs) Handles lstPesqMembro.DoubleClick
+        Dim sQuery As String
 
         If lstPesqMembro.SelectedItem.ToString <> "" Then
             'Incluir o Colaborador na Conferência
             Dim cmdMandato As OleDbCommand
 
-            cQuery = "UPDATE EUN003 SET UN003_CODUNI=" & txtID_CF.Text
-            cQuery += " WHERE UN003_CODCOL=" & Microsoft.VisualBasic.Left(lstPesqMembro.SelectedItem, 6)
-            cmdMandato = New OleDbCommand(cQuery, g_ConnectBanco)
+            sQuery = "UPDATE EUN003 SET UN003_CODUNI=" & txtID_CF.Text
+            sQuery += " WHERE UN003_CODCOL=" & Microsoft.VisualBasic.Left(lstPesqMembro.SelectedItem, 6)
+            cmdMandato = New OleDbCommand(sQuery, g_ConnectBanco)
 
             Try
                 cmdMandato.ExecuteNonQuery()
@@ -1332,15 +1340,16 @@ Public Class frmAgregacao
 
     Private Sub CarregarGridMembro()
         Dim dtGridMembro As DataTable = New DataTable("EUN003")
+        Dim sQuery As String
 
         dtgMembroAtivo.DataSource = Nothing
 
-        cQuery = "Select EUN003.UN003_CODCOL, EUN003.UN003_NOMCOL, EUN003.UN003_DTNASC " & _
+        sQuery = "Select EUN003.UN003_CODCOL, EUN003.UN003_NOMCOL, EUN003.UN003_DTNASC " & _
             "from EUN003 WHERE EUN003.UN003_CODUNI=" & txtID_CF.Text & _
             " ORDER BY EUN003.UN003_NOMCOL"
 
         Using da As New OleDbDataAdapter()
-            da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+            da.SelectCommand = New OleDbCommand(sQuery, g_ConnectBanco)
 
             ' Preencher o DataTable  
             da.Fill(dtGridMembro)
@@ -1358,6 +1367,7 @@ Public Class frmAgregacao
     End Sub
 
     Private Sub dtgMembroAtivo_DoubleClick(sender As Object, e As EventArgs) Handles dtgMembroAtivo.DoubleClick
+        Dim sQuery As String
 
         If dtgMembroAtivo.SelectedRows.Count > 0 Then
             'Preparar o comando para Exluir o Colaborador
@@ -1371,9 +1381,9 @@ Public Class frmAgregacao
             'Comando para retirar o associado
             Dim cmdRetirarMembro As OleDbCommand
 
-            cQuery = "UPDATE EUN003 SET UN003_CODUNI=0"
-            cQuery += " WHERE UN003_CODCOL=" & dtgMembroAtivo.SelectedRows.Item(0).Cells(0).Value
-            cmdRetirarMembro = New OleDbCommand(cQuery, g_ConnectBanco)
+            sQuery = "UPDATE EUN003 SET UN003_CODUNI=0"
+            sQuery += " WHERE UN003_CODCOL=" & dtgMembroAtivo.SelectedRows.Item(0).Cells(0).Value
+            cmdRetirarMembro = New OleDbCommand(sQuery, g_ConnectBanco)
 
             Try
                 cmdRetirarMembro.ExecuteNonQuery()

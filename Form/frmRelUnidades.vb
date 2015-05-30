@@ -27,7 +27,7 @@ Public Class frmRelUnidades
             End If
         End If
 
-        RptPath = LerDadosINI(nomeArquivoINI(), "PATH", "Reports", "C:\Fontes\SSVP_Projeto\Report\")
+        RptPath = Application.StartupPath & LerDadosINI(nomeArquivoINI(), "PATH", "Reports", "\Reports\")
         'RptPath = "C:\Fontes\SSVP_Projeto\Report\"
         frmReportViewer.ShowReport("Unidades_Relacao.rpt", RptPath, rptSelection)
         Me.Cursor = Cursors.Default

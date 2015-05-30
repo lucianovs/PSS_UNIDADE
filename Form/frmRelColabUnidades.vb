@@ -5,10 +5,6 @@ Public Class frmRelColabUnidades
     Dim cParteWhere As String
     Dim cParteOrder As String
 
-    Private Sub frmRelUnidades_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         Me.Cursor = Cursors.WaitCursor
 
@@ -17,13 +13,16 @@ Public Class frmRelColabUnidades
 
         If Not txtConselho.Text = "" Then 'Todas as Unidades 
             rptSelection = "{EUN000.UN000_CLAUNI} startswith '"
-            rptSelection += Microsoft.VisualBasic.Left(txtConselho.Text, 8) & "'"
+            rptSelection += Microsoft.VisualBasic.Left(txtConselho.Text, 8) & "' and "
         Else
-            MsgBox("Favor selecionar uma Conferência.")
-            Exit Sub
+            If MsgBox("Deseja listar todas as Unidades e seus colaboradores?", MsgBoxStyle.YesNo) = vbNo Then
+                Exit Sub
+            End If
+            'MsgBox("Favor selecionar uma Conferência.")
         End If
+        rptSelection += "{EUN003.UN003_SITCOL} <> 'E'"
 
-        RptPath = LerDadosINI(nomeArquivoINI(), "PATH", "Reports", "C:\Fontes\SSVP_Projeto\Report\")
+        RptPath = Application.StartupPath & LerDadosINI(nomeArquivoINI(), "PATH", "Reports", "\Reports\")
         'RptPath = "C:\Fontes\SSVP_Projeto\Report\"
         frmReportViewer.ShowReport("Unidades_RelColaborador.rpt", RptPath, rptSelection)
         Me.Cursor = Cursors.Default

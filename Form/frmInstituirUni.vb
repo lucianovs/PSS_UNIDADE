@@ -5,6 +5,7 @@ Public Class frmInstituirUni
     Dim dtUnidade As DataTable = New DataTable("EUN000")
     Dim nCodUsuario As Integer
     Dim bAtualizar As Boolean = False
+    Dim bCancAtualizar As Boolean = False
 
     Private Sub frmInstituirUni_Activated(sender As Object, e As EventArgs) Handles Me.Activated
 
@@ -23,6 +24,8 @@ Public Class frmInstituirUni
 
         Application.DoEvents()
         'Call carregarComponentes()
+
+        pnlDadosUni.Size = New Size(Me.Size.Width - 499, Me.Size.Height - 119) '112
     End Sub
 
     Private Sub carregarComponentes()
@@ -118,11 +121,17 @@ Public Class frmInstituirUni
     End Sub
 
     Private Sub Treeview_GerUnidades_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles Treeview_GerUnidades.AfterSelect
-        If bAtualizar Then
-            MsgBox("Foi detectado alterações na estrutura. As unidades precisam ser atualizadas!")
-            Call carregarComponentes()
-            bAtualizar = False
+        Dim vQuestion As VariantType
+
+        If bAtualizar And Not bCancAtualizar Then
+            vQuestion = MsgBox("Foi detectado alterações. Deseja atualizar a tela agora?", MsgBoxStyle.YesNoCancel)
+            If vQuestion = vbYes Then
+                Call carregarComponentes()
+            ElseIf vQuestion = vbCancel Then
+                bCancAtualizar = True
+            End If
         End If
+        bAtualizar = False
         Call CarregarDados()
     End Sub
 
@@ -442,14 +451,14 @@ erro_comandos:
         csql += "UN000_APROCP, UN000_APROCC, UN000_APROCM, UN000_APROCN, UN000_APROCG, UN000_DATINS, UN000_DATENV, "
         csql += "UN000_STAUNI, UN000_NIVUNI)"
         csql += " values (" & nProxCod_Unidade.ToString & ",0,'" & sProxSeq_Unidade & "'"
-        csql += ", 'NOVA', '" & FormatarData("01/01/1900") & "', ''"
+        csql += ", 'NOVA', " & FormatarData("01/01/1900") & ", ''"
         csql += ", '', '', '', '', ''"
         csql += ", '', '', '', '', ''"
         csql += ", '', '', ''"
-        csql += ", '" & FormatarData("01/01/1900") & "', '" & FormatarData("01/01/1900") & "'"
-        csql += ", '" & FormatarData("01/01/1900") & "', '" & FormatarData("01/01/1900") & "'"
-        csql += ", '" & FormatarData("01/01/1900") & "', '" & FormatarData("01/01/1900") & "'"
-        csql += ", '" & FormatarData("01/01/1900") & "','A'," & getNivelUnidade(sProxSeq_Unidade).ToString & ")"
+        csql += ", " & FormatarData("01/01/1900") & ", " & FormatarData("01/01/1900") & ""
+        csql += ", " & FormatarData("01/01/1900") & ", " & FormatarData("01/01/1900") & ""
+        csql += ", " & FormatarData("01/01/1900") & ", " & FormatarData("01/01/1900") & ""
+        csql += ", " & FormatarData("01/01/1900") & ",'A'," & getNivelUnidade(sProxSeq_Unidade).ToString & ")"
 
         cmd = New OleDbCommand(csql, g_ConnectBanco)
 

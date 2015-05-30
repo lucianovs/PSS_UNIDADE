@@ -12,8 +12,8 @@ Public Class frmTipoDeOcupacao
 
     Private Sub frmTipoDeOcupacao_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         g_Param(1) = txtCodigo.Text 'Voltar com a Chave do registro do formulário
-        g_Comando = "REFRESH"
-
+        g_AtuBrowse = True
+        g_Comando = "REFRESH" 'Forçar a atualização do browser pelo timer
     End Sub
 
     Private Sub frmTipoDeOcupacao_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -45,7 +45,7 @@ Public Class frmTipoDeOcupacao
             i = i_point
 
             'Iniciar com o comando passado
-            If g_Comando = "insert" Then
+            If g_Comando = "incluir" Then
                 bIncluir = True
                 bAlterar = True
             ElseIf g_Comando = "alterar" Then
@@ -193,7 +193,7 @@ Public Class frmTipoDeOcupacao
                 bIncluir = False
                 bAlterar = False
 
-                If g_Param(1) = "INSERT" Then
+                If g_Param(1) = "incluir" Then
                     dt.Clear()
                     'fechar o form de cadastro
                     Me.Close()
@@ -206,7 +206,7 @@ Public Class frmTipoDeOcupacao
                         da.Fill(dt)
                     End Using
                     'Verificar se o comando veio do browse
-                    If g_Comando = "inserir" Or g_Comando = "alterar" Then
+                    If g_Comando = "incluir" Or g_Comando = "alterar" Then
                         dt.Clear()
                         Me.Close()
                     Else

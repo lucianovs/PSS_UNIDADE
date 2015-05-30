@@ -5,10 +5,6 @@ Public Class frmGerenciarUni
     Dim dtUnidade As DataTable = New DataTable("EUN000")
     Dim nCodUsuario As Integer
 
-    Private Sub frmGerenciarUni_Activated(sender As Object, e As EventArgs) Handles Me.Activated
-
-    End Sub
-
     Private Sub frmGerenciarUni_GotFocus(sender As Object, e As EventArgs) Handles Me.GotFocus
         If Treeview_GerUnidades.Nodes.Count > 0 Then Call CarregarDados()
     End Sub
@@ -261,10 +257,6 @@ erro_comandos:
         btnConfirmar.Enabled = False
     End Sub
 
-    Private Sub btnConfirmar_Click(sender As Object, e As EventArgs) Handles btnConfirmar.Click
-
-    End Sub
-
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
 
         Timer1.Enabled = False
@@ -293,4 +285,5 @@ erro_comandos:
         'lblRegistros.Location = New System.Drawing.Point(btnAnterior.Location.X + 64, btnAnterior.Location.Y + 3)
         'btnProximo.Location = New System.Drawing.Point(btnAnterior.Location.X + 161, btnAnterior.Location.Y)
     End Sub
+
 End Class
