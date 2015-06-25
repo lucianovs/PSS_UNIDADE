@@ -231,9 +231,9 @@ Partial Class frmColaboradores
         Me.lblNmColaborador.Location = New System.Drawing.Point(13, 93)
         Me.lblNmColaborador.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblNmColaborador.Name = "lblNmColaborador"
-        Me.lblNmColaborador.Size = New System.Drawing.Size(151, 17)
+        Me.lblNmColaborador.Size = New System.Drawing.Size(138, 17)
         Me.lblNmColaborador.TabIndex = 13
-        Me.lblNmColaborador.Text = "Nome do Colaborador:"
+        Me.lblNmColaborador.Text = "Nome do Associado:"
         '
         'txtNmColaborador
         '
@@ -299,6 +299,9 @@ Partial Class frmColaboradores
         '
         'TabControl1
         '
+        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.tabCadastro)
         Me.TabControl1.Controls.Add(Me.tabOutrosDados)
         Me.TabControl1.Controls.Add(Me.tabEncargos)
@@ -619,11 +622,12 @@ Partial Class frmColaboradores
         '
         'txtObser4
         '
+        Me.txtObser4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtObser4.Location = New System.Drawing.Point(7, 209)
         Me.txtObser4.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObser4.MaxLength = 255
         Me.txtObser4.Name = "txtObser4"
-        Me.txtObser4.Size = New System.Drawing.Size(823, 22)
+        Me.txtObser4.Size = New System.Drawing.Size(922, 22)
         Me.txtObser4.TabIndex = 41
         '
         'dtpDatCad
@@ -638,11 +642,12 @@ Partial Class frmColaboradores
         '
         'txtObser3
         '
+        Me.txtObser3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtObser3.Location = New System.Drawing.Point(7, 179)
         Me.txtObser3.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObser3.MaxLength = 255
         Me.txtObser3.Name = "txtObser3"
-        Me.txtObser3.Size = New System.Drawing.Size(823, 22)
+        Me.txtObser3.Size = New System.Drawing.Size(922, 22)
         Me.txtObser3.TabIndex = 40
         '
         'lblDatCad
@@ -657,11 +662,12 @@ Partial Class frmColaboradores
         '
         'txtObser2
         '
+        Me.txtObser2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtObser2.Location = New System.Drawing.Point(7, 149)
         Me.txtObser2.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObser2.MaxLength = 255
         Me.txtObser2.Name = "txtObser2"
-        Me.txtObser2.Size = New System.Drawing.Size(823, 22)
+        Me.txtObser2.Size = New System.Drawing.Size(922, 22)
         Me.txtObser2.TabIndex = 39
         '
         'lblObser
@@ -677,11 +683,12 @@ Partial Class frmColaboradores
         '
         'txtObser1
         '
+        Me.txtObser1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtObser1.Location = New System.Drawing.Point(7, 119)
         Me.txtObser1.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObser1.MaxLength = 255
         Me.txtObser1.Name = "txtObser1"
-        Me.txtObser1.Size = New System.Drawing.Size(823, 22)
+        Me.txtObser1.Size = New System.Drawing.Size(922, 22)
         Me.txtObser1.TabIndex = 38
         '
         'tabEncargos
@@ -699,6 +706,9 @@ Partial Class frmColaboradores
         '
         Me.dtgMandato.AllowUserToAddRows = False
         Me.dtgMandato.AllowUserToDeleteRows = False
+        Me.dtgMandato.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtgMandato.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.dtgMandato.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgMandato.Location = New System.Drawing.Point(6, 21)
@@ -787,6 +797,7 @@ Partial Class frmColaboradores
         Me.Controls.Add(Me.txtCodigo)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmColaboradores"
         Me.Text = "frmColaboradores"
         Me.ToolStrip1.ResumeLayout(False)

@@ -141,9 +141,10 @@ Public Class mdiPrincipal
     End Sub
 
     Private Sub menuCadUnidades_Click(sender As Object, e As EventArgs) Handles menuCadUnidades.Click
-        Dim frmBrowse_Unidades As frmBrowse = New frmBrowse("EUN000", "frmUnidades", "inner join EUN013 on EUN013.UN013_CODUNI=EUN000.UN000_CODRED", _
-                                                            "EUN013.UN013_CODUSU=" & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString & " AND UN013_PERACE > 0")
+        Dim nCodUsuario As Integer = getCodUsuario(ClassCrypt.Decrypt(g_Login))
 
+        Dim frmBrowse_Unidades As frmBrowse = New frmBrowse("EUN000", "frmUnidades", IIf(nCodUsuario = 1, "", "inner join EUN013 on EUN013.UN013_CODUNI=EUN000.UN000_CODRED"), _
+                                                                IIf(nCodUsuario = 1, "", "EUN013.UN013_CODUSU=" & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString & " AND UN013_PERACE > 0"))
         frmBrowse_Unidades.MdiParent = Me
         frmBrowse_Unidades.Tag = 2 'menuCadUnidades.Tag 'é gravado no tag do menu o nível de acesso
         frmBrowse_Unidades.Text = menuCadUnidades.Text
@@ -264,6 +265,7 @@ Public Class mdiPrincipal
         frmInstituirUni.MdiParent = Me
         frmInstituirUni.Tag = menuInstituicao.Tag 'é gravado no tag do menu o nível de acesso
         frmInstituirUni.Text = menuInstituicao.Text
+        'MsgBox(menuInstituicao.Tag)
         frmInstituirUni.Show()
     End Sub
 
@@ -279,9 +281,24 @@ Public Class mdiPrincipal
     Private Sub menuReorgUnidade_Click(sender As Object, e As EventArgs) Handles menuReorgUnidade.Click
         Dim frmRelReorg As frmReorgUnidade = New frmReorgUnidade
 
+        MsgBox("Função em Análise !!")
+        Exit Sub
+
         frmRelReorg.MdiParent = Me
         frmRelReorg.Tag = menuReorgUnidade.Tag 'é gravado no tag do menu o nível de acesso
         frmRelReorg.Text = menuReorgUnidade.Text
         frmRelReorg.Show()
     End Sub
+
+    Private Sub menuRelMandato_Click(sender As Object, e As EventArgs) Handles menuRelMandato.Click
+        Dim frmRelMandato As frmRelMandato = New frmRelMandato
+
+        With frmRelMandato
+            .MdiParent = Me
+            .Tag = menuRelMandato.Tag 'é gravado no tag do menu o nível de acesso
+            .Text = menuRelMandato.Text
+            .Show()
+        End With
+    End Sub
+
 End Class

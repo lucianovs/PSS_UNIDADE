@@ -66,9 +66,6 @@ Public Class frmColaboradores
             bAlterar = True
         End If
 
-        'Atualizar o tamanho do TAB 
-        TabControl1.Size = New Size(Me.Size.Width - 50, Me.Size.Height - 230) '112
-
         TratarObjetos()
 
     End Sub
@@ -271,6 +268,7 @@ Public Class frmColaboradores
         txtObser3.Text = ""
         txtObser4.Text = ""
         txtDesSit.Text = ""
+        cbSitCol.Text = "ATIVO"
 
         Call TratarObjetos()
 
@@ -310,7 +308,7 @@ Public Class frmColaboradores
                     cSql += "," & FormatarData(Today()) & "," & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString
                     cSql += "," & FormatarData(Today()) & "," & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString
                     cSql += ",'" & Microsoft.VisualBasic.Left(cbSitCol.Text, 1) & "'"
-                    cSql += ",'" & txtCPF.Text & "',''"
+                    cSql += ",'" & txtCPF.Text & "','A'"
                     cSql += ")"
 
                 ElseIf bAlterar Then
@@ -640,6 +638,36 @@ Public Class frmColaboradores
         Dim dtNomCol As DataTable = New DataTable("EUN003")
         Dim i As Integer
 
+        'Corrigir o Nome
+        Dim cont As Integer = 1
+        Dim sNome As String = ""
+        Dim bMaiuscula As Boolean = False
+
+        txtNmColaborador.Text = LCase(txtNmColaborador.Text)
+        For cont = 1 To Len(txtNmColaborador.Text)
+            If cont = 1 Then
+                sNome += UCase(Microsoft.VisualBasic.Mid(txtNmColaborador.Text, 1, 1))
+            Else
+                If Microsoft.VisualBasic.Mid(txtNmColaborador.Text, cont, 1) = " " Then
+                    If Microsoft.VisualBasic.Mid(txtNmColaborador.Text, cont + 1, 3) <> "de " And
+                            Microsoft.VisualBasic.Mid(txtNmColaborador.Text, cont + 1, 3) <> "do " And
+                            Microsoft.VisualBasic.Mid(txtNmColaborador.Text, cont + 1, 3) <> "da " Then
+                        bMaiuscula = True
+                    End If
+                End If
+
+                If bMaiuscula And Not Microsoft.VisualBasic.Mid(txtNmColaborador.Text, cont, 1) = " " Then
+                    sNome += UCase(Microsoft.VisualBasic.Mid(txtNmColaborador.Text, cont, 1))
+                    bMaiuscula = False
+                Else
+                    sNome += Microsoft.VisualBasic.Mid(txtNmColaborador.Text, cont, 1)
+                End If
+            End If
+        Next
+        txtNmColaborador.Text = sNome
+
+
+
         If bIncluir Then
             sWhere = ""
             sSql = ""
@@ -705,64 +733,6 @@ Public Class frmColaboradores
 
     End Sub
 
-    Private Sub frmColaboradores_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
-        Dim nWidth As Integer
-        Dim nHeight As Integer
-        Dim nGap As Integer
-
-        If Me.Size.Width > (992 - 946) Then
-            nWidth = Me.Size.Width - (992 - 946)
-        Else
-            nWidth = TabControl1.Size.Width
-        End If
-        If Me.Size.Height > (558 - 330) Then
-            nHeight = Me.Size.Height - (558 - 330)
-        Else
-            nHeight = TabControl1.Size.Height
-        End If
-        TabControl1.Size = New Size(nWidth, nHeight)
-
-        If Me.Size.Width > (992 - 926) Then
-            nWidth = Me.Size.Width - (992 - 926)
-        Else
-            nWidth = dtgMandato.Size.Width
-        End If
-        If Me.Size.Height > (558 - 277) Then
-            nHeight = Me.Size.Height - (558 - 277)
-        Else
-            nHeight = dtgMandato.Size.Height
-        End If
-        dtgMandato.Size = New Size(nWidth, nHeight)
-
-        If dtgMandato.RowCount > 0 Then
-            nWidth = Me.Size.Width - 992
-            nGap = Int(nWidth / 6)
-
-            dtgMandato.Columns(0).Width = 85 + nGap
-            nWidth -= nGap
-            If nWidth <> 0 Then
-                dtgMandato.Columns(1).Width = 210 + nGap
-                nWidth -= nGap
-            End If
-            If nWidth <> 0 Then
-                dtgMandato.Columns(2).Width = 200 + nGap
-                nWidth -= nGap
-            End If
-            If nWidth <> 0 Then
-                dtgMandato.Columns(3).Width = 230 + nGap
-                nWidth -= nGap
-            End If
-            If nWidth <> 0 Then
-                dtgMandato.Columns(4).Width = 90 + nGap
-                nWidth -= nGap
-            End If
-            If nWidth <> 0 Then
-                dtgMandato.Columns(5).Width = 90 + nWidth
-            End If
-        End If
-        'btnAnterior.Location = New System.Drawing.Point(ListView_Browse.Size.Width - 218, ListView_Browse.Size.Height + 58)
-    End Sub
-
     Private Sub btnLocUnidade_Click(sender As Object, e As EventArgs) Handles btnLocUnidade.Click
         'txtColaborador.Text = dlgColaborador.ShowDialog()
         Dim options = New dlgConferencia
@@ -779,4 +749,9 @@ Public Class frmColaboradores
         txtDesSit.Enabled = cbSitCol.Text <> "ATIVO"
         lblDesSit.Enabled = cbSitCol.Text <> "ATIVO"
     End Sub
+
+    Private Sub txtNmColaborador_TextChanged(sender As Object, e As EventArgs) Handles txtNmColaborador.TextChanged
+
+    End Sub
+
 End Class

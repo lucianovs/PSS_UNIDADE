@@ -21,11 +21,22 @@ Public Class frmInstituirUni
     End Sub
 
     Private Sub frmGerenciarUni_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim toolTipText As New ToolTip()
 
         Application.DoEvents()
         'Call carregarComponentes()
 
-        pnlDadosUni.Size = New Size(Me.Size.Width - 499, Me.Size.Height - 119) '112
+        'Colocar os Helps nos Botões
+        toolTipText.AutoPopDelay = 5000
+        toolTipText.InitialDelay = 1000
+        toolTipText.AutomaticDelay = 300
+        toolTipText.ShowAlways = True
+
+        toolTipText.SetToolTip(Me.btnAlterar, "Alterar")
+        toolTipText.SetToolTip(Me.btnIncluir, "Solicitar Instituição")
+        toolTipText.SetToolTip(Me.btnMudarEstru, "Mudar a Posição")
+        toolTipText.SetToolTip(Me.btnExcluir, "Solicitar Exclusão")
+
     End Sub
 
     Private Sub carregarComponentes()
@@ -414,15 +425,6 @@ erro_comandos:
 
     Private Sub txtEstruDestino_TextChanged(sender As Object, e As EventArgs) Handles txtEstruDestino.TextChanged
         If Len(txtEstruDestino.Text) = 11 Then btnConfirmar.Enabled = True
-    End Sub
-
-    Private Sub frmGerenciarUni_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
-        Treeview_GerUnidades.Size = New Size(443, Me.Size.Height - 46) '112
-
-        pnlDadosUni.Size = New Size(Me.Size.Width - 499, Me.Size.Height - 119) '112
-        'btnAnterior.Location = New System.Drawing.Point(ListView_Browse.Size.Width - 218, ListView_Browse.Size.Height + 58)
-        'lblRegistros.Location = New System.Drawing.Point(btnAnterior.Location.X + 64, btnAnterior.Location.Y + 3)
-        'btnProximo.Location = New System.Drawing.Point(btnAnterior.Location.X + 161, btnAnterior.Location.Y)
     End Sub
 
     Private Sub btnIncluir_Click(sender As Object, e As EventArgs) Handles btnIncluir.Click

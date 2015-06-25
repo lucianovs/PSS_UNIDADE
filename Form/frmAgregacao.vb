@@ -1406,7 +1406,7 @@ Public Class frmAgregacao
     Private Sub btnLocCParticular_Click(sender As Object, e As EventArgs) Handles btnLocCParticular.Click
         Dim options = New dlgConselho
 
-        dlgConselho.txtPesquisa.Text = txtClaUni.Text
+        dlgUnidade.txtPesquisa.Text = txtClaUni.Text
         If options.ShowDialog() = Windows.Forms.DialogResult.OK Then
             txtClaUni.Text = Microsoft.VisualBasic.Left(getParametro(options.txtPesquisa.Text, "|", 2), 8) & ".??"
             Call CarregarUnidadesOwner_CF(txtClaUni.Text)

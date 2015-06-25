@@ -63,13 +63,16 @@ Partial Class frmInstituirUni
         '
         'Treeview_GerUnidades
         '
+        Me.Treeview_GerUnidades.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Treeview_GerUnidades.ImageIndex = 0
         Me.Treeview_GerUnidades.ImageList = Me.ImageList
         Me.Treeview_GerUnidades.Location = New System.Drawing.Point(19, 7)
         Me.Treeview_GerUnidades.Margin = New System.Windows.Forms.Padding(4)
         Me.Treeview_GerUnidades.Name = "Treeview_GerUnidades"
         Me.Treeview_GerUnidades.SelectedImageIndex = 0
-        Me.Treeview_GerUnidades.Size = New System.Drawing.Size(589, 504)
+        Me.Treeview_GerUnidades.Size = New System.Drawing.Size(360, 560)
         Me.Treeview_GerUnidades.TabIndex = 0
         '
         'ImageList
@@ -83,19 +86,21 @@ Partial Class frmInstituirUni
         '
         'txtEstruturaUnidade
         '
+        Me.txtEstruturaUnidade.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtEstruturaUnidade.Enabled = False
-        Me.txtEstruturaUnidade.Location = New System.Drawing.Point(900, 63)
+        Me.txtEstruturaUnidade.Location = New System.Drawing.Point(668, 63)
         Me.txtEstruturaUnidade.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEstruturaUnidade.MaxLength = 11
         Me.txtEstruturaUnidade.Name = "txtEstruturaUnidade"
-        Me.txtEstruturaUnidade.Size = New System.Drawing.Size(152, 22)
+        Me.txtEstruturaUnidade.Size = New System.Drawing.Size(283, 22)
         Me.txtEstruturaUnidade.TabIndex = 5
         '
         'lblEstruturaUnidade
         '
+        Me.lblEstruturaUnidade.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblEstruturaUnidade.AutoSize = True
         Me.lblEstruturaUnidade.Enabled = False
-        Me.lblEstruturaUnidade.Location = New System.Drawing.Point(792, 66)
+        Me.lblEstruturaUnidade.Location = New System.Drawing.Point(560, 66)
         Me.lblEstruturaUnidade.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblEstruturaUnidade.Name = "lblEstruturaUnidade"
         Me.lblEstruturaUnidade.Size = New System.Drawing.Size(106, 17)
@@ -104,9 +109,10 @@ Partial Class frmInstituirUni
         '
         'txtCodigo
         '
+        Me.txtCodigo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCodigo.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtCodigo.Enabled = False
-        Me.txtCodigo.Location = New System.Drawing.Point(681, 63)
+        Me.txtCodigo.Location = New System.Drawing.Point(449, 63)
         Me.txtCodigo.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCodigo.MaxLength = 8
         Me.txtCodigo.Name = "txtCodigo"
@@ -115,9 +121,10 @@ Partial Class frmInstituirUni
         '
         'lblCodigo
         '
+        Me.lblCodigo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCodigo.AutoSize = True
         Me.lblCodigo.Enabled = False
-        Me.lblCodigo.Location = New System.Drawing.Point(616, 66)
+        Me.lblCodigo.Location = New System.Drawing.Point(384, 66)
         Me.lblCodigo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCodigo.Name = "lblCodigo"
         Me.lblCodigo.Size = New System.Drawing.Size(56, 17)
@@ -126,6 +133,8 @@ Partial Class frmInstituirUni
         '
         'pnlDadosUni
         '
+        Me.pnlDadosUni.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlDadosUni.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.pnlDadosUni.Controls.Add(Me.txtDatInst)
         Me.pnlDadosUni.Controls.Add(Me.lblDatInst)
@@ -140,17 +149,18 @@ Partial Class frmInstituirUni
         Me.pnlDadosUni.Controls.Add(Me.txtDatFun)
         Me.pnlDadosUni.Controls.Add(Me.lblDatFund)
         Me.pnlDadosUni.Controls.Add(Me.grpBox_MudarEstru)
-        Me.pnlDadosUni.Location = New System.Drawing.Point(628, 95)
+        Me.pnlDadosUni.Location = New System.Drawing.Point(396, 95)
         Me.pnlDadosUni.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlDadosUni.Name = "pnlDadosUni"
-        Me.pnlDadosUni.Size = New System.Drawing.Size(449, 415)
+        Me.pnlDadosUni.Size = New System.Drawing.Size(543, 471)
         Me.pnlDadosUni.TabIndex = 7
         '
         'txtDatInst
         '
+        Me.txtDatInst.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtDatInst.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtDatInst.Enabled = False
-        Me.txtDatInst.Location = New System.Drawing.Point(200, 28)
+        Me.txtDatInst.Location = New System.Drawing.Point(188, 28)
         Me.txtDatInst.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDatInst.MaxLength = 8
         Me.txtDatInst.Name = "txtDatInst"
@@ -160,9 +170,10 @@ Partial Class frmInstituirUni
         '
         'lblDatInst
         '
+        Me.lblDatInst.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDatInst.AutoSize = True
         Me.lblDatInst.Enabled = False
-        Me.lblDatInst.Location = New System.Drawing.Point(196, 9)
+        Me.lblDatInst.Location = New System.Drawing.Point(184, 9)
         Me.lblDatInst.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblDatInst.Name = "lblDatInst"
         Me.lblDatInst.Size = New System.Drawing.Size(156, 17)
@@ -171,9 +182,10 @@ Partial Class frmInstituirUni
         '
         'txtEstUni
         '
+        Me.txtEstUni.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtEstUni.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtEstUni.Enabled = False
-        Me.txtEstUni.Location = New System.Drawing.Point(405, 121)
+        Me.txtEstUni.Location = New System.Drawing.Point(386, 121)
         Me.txtEstUni.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEstUni.MaxLength = 8
         Me.txtEstUni.Name = "txtEstUni"
@@ -182,9 +194,10 @@ Partial Class frmInstituirUni
         '
         'Label6
         '
+        Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
         Me.Label6.Enabled = False
-        Me.Label6.Location = New System.Drawing.Point(376, 123)
+        Me.Label6.Location = New System.Drawing.Point(348, 123)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(30, 17)
@@ -193,9 +206,10 @@ Partial Class frmInstituirUni
         '
         'txtCidUni
         '
+        Me.txtCidUni.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCidUni.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtCidUni.Enabled = False
-        Me.txtCidUni.Location = New System.Drawing.Point(93, 121)
+        Me.txtCidUni.Location = New System.Drawing.Point(77, 121)
         Me.txtCidUni.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCidUni.MaxLength = 8
         Me.txtCidUni.Name = "txtCidUni"
@@ -204,9 +218,10 @@ Partial Class frmInstituirUni
         '
         'Label5
         '
+        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
         Me.Label5.Enabled = False
-        Me.Label5.Location = New System.Drawing.Point(13, 123)
+        Me.Label5.Location = New System.Drawing.Point(1, 123)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(56, 17)
@@ -215,20 +230,22 @@ Partial Class frmInstituirUni
         '
         'txtBaiUni
         '
+        Me.txtBaiUni.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtBaiUni.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtBaiUni.Enabled = False
-        Me.txtBaiUni.Location = New System.Drawing.Point(93, 90)
+        Me.txtBaiUni.Location = New System.Drawing.Point(76, 90)
         Me.txtBaiUni.Margin = New System.Windows.Forms.Padding(4)
         Me.txtBaiUni.MaxLength = 8
         Me.txtBaiUni.Name = "txtBaiUni"
-        Me.txtBaiUni.Size = New System.Drawing.Size(352, 22)
+        Me.txtBaiUni.Size = New System.Drawing.Size(443, 22)
         Me.txtBaiUni.TabIndex = 9
         '
         'Label4
         '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
         Me.Label4.Enabled = False
-        Me.Label4.Location = New System.Drawing.Point(13, 94)
+        Me.Label4.Location = New System.Drawing.Point(1, 94)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(50, 17)
@@ -237,20 +254,22 @@ Partial Class frmInstituirUni
         '
         'txtEndUni
         '
+        Me.txtEndUni.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtEndUni.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtEndUni.Enabled = False
-        Me.txtEndUni.Location = New System.Drawing.Point(93, 60)
+        Me.txtEndUni.Location = New System.Drawing.Point(76, 60)
         Me.txtEndUni.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEndUni.MaxLength = 8
         Me.txtEndUni.Name = "txtEndUni"
-        Me.txtEndUni.Size = New System.Drawing.Size(352, 22)
+        Me.txtEndUni.Size = New System.Drawing.Size(443, 22)
         Me.txtEndUni.TabIndex = 7
         '
         'Label3
         '
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
         Me.Label3.Enabled = False
-        Me.Label3.Location = New System.Drawing.Point(12, 63)
+        Me.Label3.Location = New System.Drawing.Point(0, 63)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(73, 17)
@@ -259,9 +278,10 @@ Partial Class frmInstituirUni
         '
         'txtDatFun
         '
+        Me.txtDatFun.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtDatFun.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtDatFun.Enabled = False
-        Me.txtDatFun.Location = New System.Drawing.Point(17, 28)
+        Me.txtDatFun.Location = New System.Drawing.Point(5, 28)
         Me.txtDatFun.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDatFun.MaxLength = 8
         Me.txtDatFun.Name = "txtDatFun"
@@ -271,9 +291,10 @@ Partial Class frmInstituirUni
         '
         'lblDatFund
         '
+        Me.lblDatFund.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDatFund.AutoSize = True
         Me.lblDatFund.Enabled = False
-        Me.lblDatFund.Location = New System.Drawing.Point(13, 9)
+        Me.lblDatFund.Location = New System.Drawing.Point(1, 9)
         Me.lblDatFund.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblDatFund.Name = "lblDatFund"
         Me.lblDatFund.Size = New System.Drawing.Size(75, 17)
@@ -284,6 +305,7 @@ Partial Class frmInstituirUni
         '
         Me.grpBox_MudarEstru.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.grpBox_MudarEstru.Controls.Add(Me.txtCodUnidadeMudar)
+        Me.grpBox_MudarEstru.Controls.Add(Me.lblMensagem)
         Me.grpBox_MudarEstru.Controls.Add(Me.txtEstruDestino)
         Me.grpBox_MudarEstru.Controls.Add(Me.Label2)
         Me.grpBox_MudarEstru.Controls.Add(Me.Label1)
@@ -294,7 +316,7 @@ Partial Class frmInstituirUni
         Me.grpBox_MudarEstru.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.grpBox_MudarEstru.Name = "grpBox_MudarEstru"
         Me.grpBox_MudarEstru.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grpBox_MudarEstru.Size = New System.Drawing.Size(443, 153)
+        Me.grpBox_MudarEstru.Size = New System.Drawing.Size(531, 260)
         Me.grpBox_MudarEstru.TabIndex = 0
         Me.grpBox_MudarEstru.TabStop = False
         Me.grpBox_MudarEstru.Text = "Mudar Unidade de Estrutura"
@@ -313,13 +335,15 @@ Partial Class frmInstituirUni
         '
         'txtEstruDestino
         '
+        Me.txtEstruDestino.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtEstruDestino.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtEstruDestino.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEstruDestino.Location = New System.Drawing.Point(223, 63)
         Me.txtEstruDestino.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEstruDestino.MaxLength = 11
         Me.txtEstruDestino.Name = "txtEstruDestino"
-        Me.txtEstruDestino.Size = New System.Drawing.Size(205, 30)
+        Me.txtEstruDestino.Size = New System.Drawing.Size(291, 30)
         Me.txtEstruDestino.TabIndex = 9
         '
         'Label2
@@ -346,17 +370,20 @@ Partial Class frmInstituirUni
         '
         'txtUnidadeMudar
         '
+        Me.txtUnidadeMudar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtUnidadeMudar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtUnidadeMudar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtUnidadeMudar.Location = New System.Drawing.Point(223, 20)
         Me.txtUnidadeMudar.Margin = New System.Windows.Forms.Padding(4)
         Me.txtUnidadeMudar.MaxLength = 11
         Me.txtUnidadeMudar.Name = "txtUnidadeMudar"
-        Me.txtUnidadeMudar.Size = New System.Drawing.Size(205, 30)
+        Me.txtUnidadeMudar.Size = New System.Drawing.Size(291, 30)
         Me.txtUnidadeMudar.TabIndex = 6
         '
         'btnCancelar
         '
+        Me.btnCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancelar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnCancelar.Location = New System.Drawing.Point(227, 116)
         Me.btnCancelar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
@@ -368,6 +395,7 @@ Partial Class frmInstituirUni
         '
         'btnConfirmar
         '
+        Me.btnConfirmar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnConfirmar.Enabled = False
         Me.btnConfirmar.Location = New System.Drawing.Point(85, 116)
@@ -380,9 +408,10 @@ Partial Class frmInstituirUni
         '
         'btnAlterar
         '
+        Me.btnAlterar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAlterar.Enabled = False
         Me.btnAlterar.Image = CType(resources.GetObject("btnAlterar.Image"), System.Drawing.Image)
-        Me.btnAlterar.Location = New System.Drawing.Point(619, 6)
+        Me.btnAlterar.Location = New System.Drawing.Point(387, 6)
         Me.btnAlterar.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAlterar.Name = "btnAlterar"
         Me.btnAlterar.Size = New System.Drawing.Size(53, 48)
@@ -391,9 +420,10 @@ Partial Class frmInstituirUni
         '
         'btnExcluir
         '
+        Me.btnExcluir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnExcluir.Enabled = False
         Me.btnExcluir.Image = CType(resources.GetObject("btnExcluir.Image"), System.Drawing.Image)
-        Me.btnExcluir.Location = New System.Drawing.Point(906, 7)
+        Me.btnExcluir.Location = New System.Drawing.Point(674, 7)
         Me.btnExcluir.Margin = New System.Windows.Forms.Padding(4)
         Me.btnExcluir.Name = "btnExcluir"
         Me.btnExcluir.Size = New System.Drawing.Size(53, 48)
@@ -402,9 +432,10 @@ Partial Class frmInstituirUni
         '
         'btnMudarEstru
         '
+        Me.btnMudarEstru.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnMudarEstru.Enabled = False
         Me.btnMudarEstru.Image = CType(resources.GetObject("btnMudarEstru.Image"), System.Drawing.Image)
-        Me.btnMudarEstru.Location = New System.Drawing.Point(680, 6)
+        Me.btnMudarEstru.Location = New System.Drawing.Point(448, 6)
         Me.btnMudarEstru.Margin = New System.Windows.Forms.Padding(4)
         Me.btnMudarEstru.Name = "btnMudarEstru"
         Me.btnMudarEstru.Size = New System.Drawing.Size(53, 48)
@@ -422,7 +453,7 @@ Partial Class frmInstituirUni
         Me.lblMensagem.Enabled = False
         Me.lblMensagem.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblMensagem.ForeColor = System.Drawing.Color.Blue
-        Me.lblMensagem.Location = New System.Drawing.Point(115, 161)
+        Me.lblMensagem.Location = New System.Drawing.Point(-339, -1)
         Me.lblMensagem.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblMensagem.Name = "lblMensagem"
         Me.lblMensagem.Size = New System.Drawing.Size(715, 56)
@@ -431,9 +462,10 @@ Partial Class frmInstituirUni
         '
         'btnIncluir
         '
+        Me.btnIncluir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnIncluir.Enabled = False
         Me.btnIncluir.Image = CType(resources.GetObject("btnIncluir.Image"), System.Drawing.Image)
-        Me.btnIncluir.Location = New System.Drawing.Point(845, 7)
+        Me.btnIncluir.Location = New System.Drawing.Point(613, 7)
         Me.btnIncluir.Margin = New System.Windows.Forms.Padding(4)
         Me.btnIncluir.Name = "btnIncluir"
         Me.btnIncluir.Size = New System.Drawing.Size(53, 48)
@@ -444,9 +476,8 @@ Partial Class frmInstituirUni
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1196, 514)
+        Me.ClientSize = New System.Drawing.Size(964, 570)
         Me.Controls.Add(Me.btnIncluir)
-        Me.Controls.Add(Me.lblMensagem)
         Me.Controls.Add(Me.btnMudarEstru)
         Me.Controls.Add(Me.btnExcluir)
         Me.Controls.Add(Me.btnAlterar)

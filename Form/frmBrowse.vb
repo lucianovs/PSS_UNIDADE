@@ -142,8 +142,6 @@ Public Class frmBrowse
 
         Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
 
-        ListView_Browse.Size = New Size(Me.Size.Width - 34, Me.Size.Height - 146) '112
-
     End Sub
 
     Private Function TrataCondicao(fFiltro As String) As String
@@ -563,16 +561,6 @@ Public Class frmBrowse
 
     End Sub
 
-    Private Sub frmBrowse_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
-
-        ListView_Browse.Size = New Size(Me.Size.Width - 34, Me.Size.Height - 146) '112
-
-        btnAnterior.Location = New System.Drawing.Point(ListView_Browse.Size.Width - 245, ListView_Browse.Size.Height + 58)
-        lblRegistros.Location = New System.Drawing.Point(btnAnterior.Location.X + 62, btnAnterior.Location.Y + 3)
-        btnProximo.Location = New System.Drawing.Point(btnAnterior.Location.X + 188, btnAnterior.Location.Y)
-
-    End Sub
-
     Private Sub cbCampo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbCampo.SelectedIndexChanged
         If Trim(cbCampo.Text) = "" Then
             cbCondicao.Text = ""
@@ -713,7 +701,4 @@ erro_comandos:
 
     End Sub
 
-    Private Sub ListView_Browse_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView_Browse.SelectedIndexChanged
-
-    End Sub
 End Class

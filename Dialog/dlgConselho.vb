@@ -3,6 +3,7 @@ Imports System.Data.OleDb
 
 Public Class dlgConselho
 
+
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click, lstPesquisa.DoubleClick
 
         If lstPesquisa.Items.Count > 0 Then

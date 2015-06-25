@@ -12,7 +12,6 @@ C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmAprovAgr.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmBrowse.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmColaboradores.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmGerenciarUni.resources
-C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmRelUnidades.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmReportViewer.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmTipoDeComplemento.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmTipoDeOcupacao.resources
@@ -20,6 +19,7 @@ C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmUnidades.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmUnidadeUsu.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmUsuario.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmRelColabUnidades.resources
+C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmReorgUnidade.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.mdiPrincipal.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.Resources.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.Parametros.resources
@@ -27,4 +27,6 @@ C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.vbproj.GenerateResource.Cache
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.exe
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.xml
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.pdb
-C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmReorgUnidade.resources
+C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmRelUnidades.resources
+C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmRelMandato.resources
+C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.dlgUnidade.resources

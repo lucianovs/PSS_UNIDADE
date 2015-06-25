@@ -83,7 +83,7 @@ Public Class frmUnidades
             i = i_point
 
             'Iniciar com o comando passado
-            If g_Comando = "insert" Then
+            If g_Comando = "incluir" Then
                 bIncluir = True
                 bAlterar = True
             ElseIf g_Comando = "alterar" Then
@@ -104,6 +104,7 @@ Public Class frmUnidades
             "UN000_APROCC,UN000_APROCM,UN000_APROCN,UN000_APROCG,UN000_DATINS,UN000_DATENV"
 
         TratarObjetos()
+
     End Sub
 
     Private Sub TratarObjetos()
@@ -192,6 +193,11 @@ Public Class frmUnidades
 
         txtObs.Enabled = bAlterar
 
+        lblTipoCF.Enabled = bAlterar
+        cbTipoCF.Enabled = bAlterar
+        lblTipoCF.Visible = Microsoft.VisualBasic.Mid(txtEstruturaUnidade.Text, 10, 2) <> "00"
+        cbTipoCF.Visible = Microsoft.VisualBasic.Mid(txtEstruturaUnidade.Text, 10, 2) <> "00"
+
         'Dados dos Mandatos
         btnProx_Mandato.Enabled = bAlterar And nPermissao > 1
         btnAnt_Mandato.Enabled = False
@@ -216,7 +222,15 @@ Public Class frmUnidades
             txtRegistro.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_NUMREG")), "", dtCadastro.Rows(i).Item("UN000_NUMREG").ToString())
             txtEstruturaUnidade.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_CLAUNI")), "", dtCadastro.Rows(i).Item("UN000_CLAUNI"))
             txtNome.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_NOMUNI")), "", dtCadastro.Rows(i).Item("UN000_NOMUNI"))
-            dtpDataFundacao.Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_DATFUN")), "01/01/1900", dtCadastro.Rows(i).Item("UN000_DATFUN"))
+
+            With dtpDataFundacao
+                .Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_DATFUN")), "01/01/1900", dtCadastro.Rows(i).Item("UN000_DATFUN"))
+                If .Value = "01/01/1900" Then
+                    .CustomFormat = " "
+                    'dtpDataAprovacaoCP.Value = " "
+                    .Format = DateTimePickerFormat.Custom
+                End If
+            End With
 
             txtCnpj.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_CNPUNI")), "", dtCadastro.Rows(i).Item("UN000_CNPUNI"))
             txtEndereco.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_ENDUNI")), "", dtCadastro.Rows(i).Item("UN000_ENDUNI"))
@@ -231,6 +245,18 @@ Public Class frmUnidades
             txtConta.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_CCOUNI")), "", dtCadastro.Rows(i).Item("UN000_CCOUNI"))
             txtTitular.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_TITUNI")), "", dtCadastro.Rows(i).Item("UN000_TITUNI"))
             txtObs.Text = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_OBSCCO")), "", dtCadastro.Rows(i).Item("UN000_OBSCCO"))
+
+            If Not IsDBNull(dtCadastro.Rows(i).Item("UN000_TIPOCF")) Then
+                If dtCadastro.Rows(i).Item("UN000_TIPOCF") = "C" Then
+                    cbTipoCF.Text = "CCA"
+                ElseIf dtCadastro.Rows(i).Item("UN000_TIPOCF") = "R" Then
+                    cbTipoCF.Text = "Rural"
+                Else
+                    cbTipoCF.Text = "Padrão"
+                End If
+            Else
+                cbTipoCF.Text = "Padrão"
+            End If
 
             'Mostrar as datas conforme a Estrutura
             dtpDataAprovacaoCM.Visible = Mid(txtEstruturaUnidade.Text, 4, 2) <> "00"
@@ -256,14 +282,62 @@ Public Class frmUnidades
                     da.Fill(dtFichaInst)
                 End Using
                 If dtFichaInst.Rows.Count > 0 Then
-                    dtpDataAprovacaoCP.Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DAUTCP")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DAUTCP"))
-                    dtpDataAprovacaoCC.Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DAUTCC")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DAUTCC"))
-                    dtpDataAprovacaoCM.Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DAUTCM")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DAUTCM"))
-                    dtpDataAprovacaoCN.Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DAUTCN")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DAUTCN"))
-                    dtpDataAprovacaoCG.Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DAUTCG")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DAUTCG"))
-                    dtpDataInstituicaoUnidade.Value = dtpDataAprovacaoCG.Value 'IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DATAGR")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DATAGR"))
-                    dtpDataAgregacaoUnidade.Value = dtpDataAprovacaoCG.Value
-                    dtpDataEnvio.Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DTENVI")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DTENVI"))
+                    MsgBox("Ficha Inst")
+                    With dtpDataAprovacaoCP
+                        .Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DAUTCP")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DAUTCP"))
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            'dtpDataAprovacaoCP.Value = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
+                    With dtpDataAprovacaoCC
+                        .Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DAUTCC")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DAUTCC"))
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            'dtpDataAprovacaoCP.Value = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
+                    With dtpDataAprovacaoCM
+                        .Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DAUTCM")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DAUTCM"))
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            'dtpDataAprovacaoCP.Value = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
+                    With dtpDataAprovacaoCN
+                        .Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DAUTCN")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DAUTCN"))
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
+                    With dtpDataAprovacaoCG
+                        .Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DAUTCG")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DAUTCG"))
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            .Format = DateTimePickerFormat.Custom
+
+                            dtpDataInstituicaoUnidade.CustomFormat = " "
+                            dtpDataInstituicaoUnidade.Format = DateTimePickerFormat.Custom
+
+                            dtpDataAgregacaoUnidade.CustomFormat = " "
+                            dtpDataAgregacaoUnidade.Format = DateTimePickerFormat.Custom
+                        Else
+                            dtpDataInstituicaoUnidade.Value = dtpDataAprovacaoCG.Value 'IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DATAGR")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DATAGR"))
+                            dtpDataAgregacaoUnidade.Value = dtpDataAprovacaoCG.Value
+                        End If
+                    End With
+
+                    With dtpDataEnvio
+                        .Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DTENVI")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DTENVI"))
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
 
                     txtFrequenciaReuniao.Text = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_REUDIA")), "", dtFichaInst.Rows(0).Item("UN015_REUDIA"))
                     txtFrequenciaReuniao.Text += " AS " + IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_REUHOR")), "", dtFichaInst.Rows(0).Item("UN015_REUHOR").ToString)
@@ -276,14 +350,65 @@ Public Class frmUnidades
                     txtCFAtv5.Text = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_CFATV5")), "", dtFichaInst.Rows(0).Item("UN015_CFATV5"))
                     txtCFAtv6.Text = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_CFATV6")), "", dtFichaInst.Rows(0).Item("UN015_CFATV6"))
                 Else
-                    dtpDataAprovacaoCP.Value = "01/01/1900"
-                    dtpDataAprovacaoCC.Value = "01/01/1900"
-                    dtpDataAprovacaoCM.Value = "01/01/1900"
-                    dtpDataAprovacaoCN.Value = "01/01/1900"
-                    dtpDataAprovacaoCG.Value = "01/01/1900"
-                    dtpDataInstituicaoUnidade.Value = "01/01/1900"
-                    dtpDataAgregacaoUnidade.Value = "01/01/1900"
-                    dtpDataEnvio.Value = "01/01/1900"
+                    'MsgBox("Sem ficha ")
+                    With dtpDataAprovacaoCP
+                        .Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_APROCP")), "01/01/1900", dtCadastro.Rows(i).Item("UN000_APROCP"))
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
+                    With dtpDataAprovacaoCC
+                        .Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_APROCC")), "01/01/1900", dtCadastro.Rows(i).Item("UN000_APROCC"))
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
+                    With dtpDataAprovacaoCM
+                        .Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_APROCM")), "01/01/1900", dtCadastro.Rows(i).Item("UN000_APROCM"))
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
+                    With dtpDataAprovacaoCN
+                        .Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_APROCN")), "01/01/1900", dtCadastro.Rows(i).Item("UN000_APROCN"))
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
+                    With dtpDataAprovacaoCG
+                        .Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_APROCG")), "01/01/1900", dtCadastro.Rows(i).Item("UN000_APROCG"))
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
+                    With dtpDataInstituicaoUnidade
+                        .Value = dtpDataAprovacaoCG.Value
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
+                    'dtpDataInstituicaoUnidade.Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_DATINS")), "01/01/1900", dtCadastro.Rows(i).Item("UN000_DATINS"))
+                    With dtpDataAgregacaoUnidade
+                        .Value = dtpDataAprovacaoCG.Value
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
+                    'dtpDataAgregacaoUnidade.Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_DATINS")), "01/01/1900", dtCadastro.Rows(i).Item("UN000_DATINS"))
+                    With dtpDataEnvio
+                        .Value = IIf(IsDBNull(dtCadastro.Rows(i).Item("UN000_DATENV")), "01/01/1900", dtCadastro.Rows(i).Item("UN000_DATENV"))
+                        If .Value = "01/01/1900" Then
+                            .CustomFormat = " "
+                            .Format = DateTimePickerFormat.Custom
+                        End If
+                    End With
                     txtCFAtv1.Text = ""
                     txtCFAtv2.Text = ""
                     txtCFAtv3.Text = ""
@@ -294,6 +419,12 @@ Public Class frmUnidades
                 dtFichaInst.Clear()
             Else
                 dtpDataAgregacaoUnidade.Value = "01/01/1900" 'Criar uma funcao para resgatar a informação 
+                With dtpDataAgregacaoUnidade
+                    If .Value = "01/01/1900" Then
+                        .CustomFormat = " "
+                        .Format = DateTimePickerFormat.Custom
+                    End If
+                End With
             End If
 
             'Carregar os Dados do Mandato
@@ -336,10 +467,10 @@ Public Class frmUnidades
             End If
         End If
 
-        'Verificar se é para excluir o registro - comandado pelo browse
-        If g_Comando = "excluir" Then
-            Call Excluir_Registro()
-        End If
+            'Verificar se é para excluir o registro - comandado pelo browse
+            If g_Comando = "excluir" Then
+                Call Excluir_Registro()
+            End If
 
     End Sub
 
@@ -420,6 +551,7 @@ Public Class frmUnidades
         txtConta.Text = ""
         txtTitular.Text = ""
         txtObs.Text = ""
+        cbTipoCF.Text = "Padrão"
         txtFrequenciaReuniao.Text = ""
         dtpDataAprovacaoCP.Text = ""
         dtpDataAprovacaoCC.Text = ""
@@ -446,7 +578,7 @@ Public Class frmUnidades
                 If bIncluir Then
                     cSql = "INSERT INTO EUN000(UN000_CODRED, UN000_NUMREG, UN000_CLAUNI, UN000_NOMUNI, UN000_DATFUN, UN000_CNPUNI, UN000_ENDUNI, UN000_BAIUNI, UN000_CEPUNI, "
                     cSql += "UN000_CIDUNI, UN000_ESTUNI, UN000_NACUNI, UN000_DIOUNI, UN000_BCOUNI, UN000_AGEUNI, UN000_CCOUNI, UN000_TITUNI, UN000_OBSCCO, UN000_FREREU, "
-                    cSql += "UN000_APROCP, UN000_APROCC, UN000_APROCM, UN000_APROCN, UN000_APROCG, UN000_DATINS, UN000_DATENV)"
+                    cSql += "UN000_APROCP, UN000_APROCC, UN000_APROCM, UN000_APROCN, UN000_APROCG, UN000_DATINS, UN000_DATENV, UN000_TIPOCF)"
                     cSql += " values (" & Integer.Parse(ProxCodChave("EUN000", "UN000_CODRED")) & ", " & Integer.Parse(txtRegistro.Text) & ", '" & txtEstruturaUnidade.Text & "'"
                     cSql += ", '" & txtNome.Text & "', " & FormatarData(dtpDataFundacao.Text) & ", '" & txtCnpj.Text & "'"
                     cSql += ", '" & txtEndereco.Text & "', '" & txtBairro.Text & "', '" & txtCEP.Text & "', '" & txtCidade.Text & "', '" & cbEstado.Text & "'"
@@ -454,8 +586,8 @@ Public Class frmUnidades
                     cSql += ", '" & txtTitular.Text & "', '" & txtObs.Text & "', '" & txtFrequenciaReuniao.Text & "'"
                     cSql += ", " & FormatarData(dtpDataAprovacaoCP.Text) & ", " & FormatarData(dtpDataAprovacaoCC.Text) & ""
                     cSql += ", " & FormatarData(dtpDataAprovacaoCM.Text) & ", " & FormatarData(dtpDataAprovacaoCN.Text) & ""
-                    cSql += ", " & FormatarData(dtpDataAprovacaoCG.Text) & ", " & FormatarData(dtpDataInstituicaoUnidade.Text) & ", " & FormatarData(dtpDataEnvio.Text) & " )"
-
+                    cSql += ", " & FormatarData(dtpDataAprovacaoCG.Text) & ", " & FormatarData(dtpDataInstituicaoUnidade.Text) & _
+                        ", " & FormatarData(dtpDataEnvio.Text) & ",'" & Microsoft.VisualBasic.Left(cbTipoCF.Text, 1) & "' )"
                 ElseIf bAlterar Then
                     cSql = "UPDATE EUN000 set UN000_NUMREG = " & Integer.Parse(txtRegistro.Text) & ", UN000_CLAUNI = '" & txtEstruturaUnidade.Text & "', "
                     cSql += "UN000_NOMUNI = '" & txtNome.Text & "', UN000_DATFUN = " & FormatarData(dtpDataFundacao.Text) & ", "
@@ -467,7 +599,8 @@ Public Class frmUnidades
                     cSql += "UN000_APROCP = " & FormatarData(dtpDataAprovacaoCP.Value) & ", UN000_APROCC = " & FormatarData(dtpDataAprovacaoCC.Value) & ", "
                     cSql += "UN000_APROCM = " & FormatarData(dtpDataAprovacaoCM.Value) & ", UN000_APROCN = " & FormatarData(dtpDataAprovacaoCN.Value) & ", "
                     cSql += "UN000_APROCG = " & FormatarData(dtpDataAprovacaoCG.Value) & ", UN000_DATINS = " & FormatarData(dtpDataInstituicaoUnidade.Value) & ", "
-                    cSql += "UN000_DATENV = " & FormatarData(dtpDataEnvio.Value) & ""
+                    cSql += "UN000_DATENV = " & FormatarData(dtpDataEnvio.Value) & ","
+                    cSql += "UN000_TIPOCF = '" & Microsoft.VisualBasic.Left(cbTipoCF.Text, 1) & "'"
                     cSql += " where UN000_CODRED = " & Integer.Parse(txtCodigo.Text)
                 End If
 
@@ -889,9 +1022,9 @@ Public Class frmUnidades
 
         dtgMandato.DataSource = dtGrid
         dtgMandato.Columns(0).Width = 50
-        dtgMandato.Columns(1).Width = 300
+        dtgMandato.Columns(1).Width = 200
         dtgMandato.Columns(2).Width = 50
-        dtgMandato.Columns(3).Width = 300
+        dtgMandato.Columns(3).Width = 200
 
     End Sub
 
@@ -952,36 +1085,6 @@ Public Class frmUnidades
         Finally
         End Try
 
-    End Sub
-
-    Private Sub frmUnidades_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
-        Dim nWidth As Integer
-        Dim nHeight As Integer
-
-        If Me.Size.Width > 31 Then
-            nWidth = Me.Size.Width - 31
-        Else
-            nWidth = TabControl1.Size.Width
-        End If
-        If Me.Size.Height > 140 Then
-            nHeight = Me.Size.Height - 140
-        Else
-            nHeight = TabControl1.Size.Height
-        End If
-        TabControl1.Size = New Size(nWidth, nHeight)
-
-        If Me.Size.Width > 464 Then
-            nWidth = Me.Size.Width - 464
-        Else
-            nWidth = dtgMandato.Size.Width
-        End If
-        If Me.Size.Height > 187 Then
-            nHeight = Me.Size.Height - 187
-        Else
-            nHeight = dtgMandato.Size.Height
-        End If
-        dtgMandato.Size = New Size(nWidth, nHeight)
-        'btnAnterior.Location = New System.Drawing.Point(ListView_Browse.Size.Width - 218, ListView_Browse.Size.Height + 58)
     End Sub
 
     Private Sub ComandoPesquisar_Click(sender As Object, e As EventArgs) Handles ComandoPesquisar.Click
@@ -1193,7 +1296,7 @@ Public Class frmUnidades
         dtgMembroAtivo.DataSource = Nothing
 
         sQuery = "Select EUN003.UN003_CODCOL, EUN003.UN003_NOMCOL, EUN003.UN003_DTNASC " & _
-            "from EUN003 WHERE EUN003.UN003_CODUNI=" & txtCodigo.Text & _
+            "from EUN003 WHERE EUN003.UN003_SITCOL='A' AND EUN003.UN003_CODUNI=" & txtCodigo.Text & _
             " ORDER BY EUN003.UN003_NOMCOL"
 
         Using da As New OleDbDataAdapter()
@@ -1247,5 +1350,43 @@ Public Class frmUnidades
 
     End Sub
 
+    Private Sub txtNome_LostFocus(sender As Object, e As EventArgs) Handles txtNome.LostFocus
+        txtNome.Text = UCase(txtNome.Text)
+    End Sub
 
+    Private Sub dtpDataAprovacaoCP_ValueChanged(sender As Object, e As EventArgs) Handles dtpDataAprovacaoCP.ValueChanged
+        dtpDataAprovacaoCP.CustomFormat = "dd/MM/yyyy"
+    End Sub
+
+    Private Sub dtpDataAgregacaoUnidade_ValueChanged(sender As Object, e As EventArgs) Handles dtpDataAgregacaoUnidade.ValueChanged
+        dtpDataAgregacaoUnidade.CustomFormat = "dd/MM/yyyy"
+    End Sub
+
+    Private Sub dtpDataAprovacaoCC_ValueChanged(sender As Object, e As EventArgs) Handles dtpDataAprovacaoCC.ValueChanged
+        dtpDataAprovacaoCC.CustomFormat = "dd/MM/yyyy"
+    End Sub
+
+    Private Sub dtpDataAprovacaoCG_ValueChanged(sender As Object, e As EventArgs) Handles dtpDataAprovacaoCG.ValueChanged
+        dtpDataAprovacaoCG.CustomFormat = "dd/MM/yyyy"
+    End Sub
+
+    Private Sub dtpDataAprovacaoCM_ValueChanged(sender As Object, e As EventArgs) Handles dtpDataAprovacaoCM.ValueChanged
+        dtpDataAprovacaoCM.CustomFormat = "dd/MM/yyyy"
+    End Sub
+
+    Private Sub dtpDataAprovacaoCN_ValueChanged(sender As Object, e As EventArgs) Handles dtpDataAprovacaoCN.ValueChanged
+        dtpDataAprovacaoCN.CustomFormat = "dd/MM/yyyy"
+    End Sub
+
+    Private Sub dtpDataEnvio_ValueChanged(sender As Object, e As EventArgs) Handles dtpDataEnvio.ValueChanged
+        dtpDataEnvio.CustomFormat = "dd/MM/yyyy"
+    End Sub
+
+    Private Sub dtpDataFundacao_ValueChanged(sender As Object, e As EventArgs) Handles dtpDataFundacao.ValueChanged
+        dtpDataFundacao.CustomFormat = "dd/MM/yyyy"
+    End Sub
+
+    Private Sub dtpDataInstituicaoUnidade_ValueChanged(sender As Object, e As EventArgs) Handles dtpDataInstituicaoUnidade.ValueChanged
+        dtpDataInstituicaoUnidade.CustomFormat = "dd/MM/yyyy"
+    End Sub
 End Class

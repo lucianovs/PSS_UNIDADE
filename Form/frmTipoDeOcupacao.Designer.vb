@@ -191,6 +191,8 @@ Partial Class frmTipoDeOcupacao
         '
         'txtDescricao
         '
+        Me.txtDescricao.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtDescricao.Location = New System.Drawing.Point(103, 121)
         Me.txtDescricao.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDescricao.MaxLength = 120
@@ -246,6 +248,7 @@ Partial Class frmTipoDeOcupacao
         '
         'chkAprIns
         '
+        Me.chkAprIns.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkAprIns.AutoSize = True
         Me.chkAprIns.Location = New System.Drawing.Point(308, 170)
         Me.chkAprIns.Name = "chkAprIns"
@@ -269,6 +272,7 @@ Partial Class frmTipoDeOcupacao
         Me.Controls.Add(Me.lblDescricao)
         Me.Controls.Add(Me.lblCodigo)
         Me.Controls.Add(Me.ToolStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmTipoDeOcupacao"
         Me.Text = "frmTipoDeOcupacao"

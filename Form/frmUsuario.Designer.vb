@@ -289,6 +289,9 @@ Partial Class frmUsuario
         '
         'lstGrupoAssoc
         '
+        Me.lstGrupoAssoc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lstGrupoAssoc.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.lstGrupoAssoc.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lstGrupoAssoc.FormattingEnabled = True
@@ -373,6 +376,8 @@ Partial Class frmUsuario
         '
         'txtColaborador
         '
+        Me.txtColaborador.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtColaborador.Location = New System.Drawing.Point(111, 281)
         Me.txtColaborador.Margin = New System.Windows.Forms.Padding(4)
         Me.txtColaborador.MaxLength = 150
@@ -382,6 +387,7 @@ Partial Class frmUsuario
         '
         'btnLocColaborador
         '
+        Me.btnLocColaborador.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnLocColaborador.BackgroundImage = Global.UNIDADES.My.Resources.Resources.AllDay_ru_Search
         Me.btnLocColaborador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnLocColaborador.Location = New System.Drawing.Point(477, 280)

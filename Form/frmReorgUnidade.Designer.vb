@@ -132,6 +132,8 @@ Partial Class frmReorgUnidade
         '
         'pbarOrganizacao
         '
+        Me.pbarOrganizacao.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbarOrganizacao.Location = New System.Drawing.Point(12, 264)
         Me.pbarOrganizacao.Name = "pbarOrganizacao"
         Me.pbarOrganizacao.Size = New System.Drawing.Size(606, 23)

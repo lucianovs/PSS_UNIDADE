@@ -40,6 +40,9 @@ Partial Class frmUnidades
         Me.tssContReg = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tbpCadastro = New System.Windows.Forms.TabPage()
+        Me.cbTipoCF = New System.Windows.Forms.ComboBox()
+        Me.lblTipoCF = New System.Windows.Forms.Label()
+        Me.btnEstrutura = New System.Windows.Forms.Button()
         Me.txtCnpj = New System.Windows.Forms.TextBox()
         Me.lblCnpj = New System.Windows.Forms.Label()
         Me.dtpDataFundacao = New System.Windows.Forms.DateTimePicker()
@@ -127,7 +130,6 @@ Partial Class frmUnidades
         Me.lblPesqMembro = New System.Windows.Forms.Label()
         Me.btnPesqMembro = New System.Windows.Forms.Button()
         Me.txtPesqMembro = New System.Windows.Forms.TextBox()
-        Me.btnEstrutura = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -267,21 +269,27 @@ Partial Class frmUnidades
         '
         'TabControl1
         '
+        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.tbpCadastro)
         Me.TabControl1.Controls.Add(Me.tbpFinanceiro)
         Me.TabControl1.Controls.Add(Me.tbpAprovacao)
         Me.TabControl1.Controls.Add(Me.tbpAtividade)
         Me.TabControl1.Controls.Add(Me.tbpMandato)
         Me.TabControl1.Controls.Add(Me.tbpMembros)
-        Me.TabControl1.Location = New System.Drawing.Point(13, 70)
+        Me.TabControl1.Location = New System.Drawing.Point(13, 55)
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(968, 337)
+        Me.TabControl1.Size = New System.Drawing.Size(968, 352)
+        Me.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.TabControl1.TabIndex = 12
         '
         'tbpCadastro
         '
+        Me.tbpCadastro.Controls.Add(Me.cbTipoCF)
+        Me.tbpCadastro.Controls.Add(Me.lblTipoCF)
         Me.tbpCadastro.Controls.Add(Me.btnEstrutura)
         Me.tbpCadastro.Controls.Add(Me.txtCnpj)
         Me.tbpCadastro.Controls.Add(Me.lblCnpj)
@@ -313,10 +321,42 @@ Partial Class frmUnidades
         Me.tbpCadastro.Margin = New System.Windows.Forms.Padding(4)
         Me.tbpCadastro.Name = "tbpCadastro"
         Me.tbpCadastro.Padding = New System.Windows.Forms.Padding(4)
-        Me.tbpCadastro.Size = New System.Drawing.Size(960, 308)
+        Me.tbpCadastro.Size = New System.Drawing.Size(960, 323)
         Me.tbpCadastro.TabIndex = 0
         Me.tbpCadastro.Text = "Cadastro"
         Me.tbpCadastro.UseVisualStyleBackColor = True
+        '
+        'cbTipoCF
+        '
+        Me.cbTipoCF.FormattingEnabled = True
+        Me.cbTipoCF.Items.AddRange(New Object() {"Padrão", "CCA", "Rural"})
+        Me.cbTipoCF.Location = New System.Drawing.Point(658, 20)
+        Me.cbTipoCF.Margin = New System.Windows.Forms.Padding(4)
+        Me.cbTipoCF.Name = "cbTipoCF"
+        Me.cbTipoCF.Size = New System.Drawing.Size(117, 24)
+        Me.cbTipoCF.TabIndex = 41
+        '
+        'lblTipoCF
+        '
+        Me.lblTipoCF.AutoSize = True
+        Me.lblTipoCF.Location = New System.Drawing.Point(617, 24)
+        Me.lblTipoCF.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblTipoCF.Name = "lblTipoCF"
+        Me.lblTipoCF.Size = New System.Drawing.Size(40, 17)
+        Me.lblTipoCF.TabIndex = 42
+        Me.lblTipoCF.Text = "Tipo:"
+        '
+        'btnEstrutura
+        '
+        Me.btnEstrutura.BackgroundImage = CType(resources.GetObject("btnEstrutura.BackgroundImage"), System.Drawing.Image)
+        Me.btnEstrutura.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnEstrutura.Enabled = False
+        Me.btnEstrutura.Location = New System.Drawing.Point(583, 21)
+        Me.btnEstrutura.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnEstrutura.Name = "btnEstrutura"
+        Me.btnEstrutura.Size = New System.Drawing.Size(26, 24)
+        Me.btnEstrutura.TabIndex = 40
+        Me.btnEstrutura.UseVisualStyleBackColor = True
         '
         'txtCnpj
         '
@@ -517,7 +557,7 @@ Partial Class frmUnidades
         'txtEstruturaUnidade
         '
         Me.txtEstruturaUnidade.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.txtEstruturaUnidade.Location = New System.Drawing.Point(498, 21)
+        Me.txtEstruturaUnidade.Location = New System.Drawing.Point(438, 21)
         Me.txtEstruturaUnidade.Margin = New System.Windows.Forms.Padding(4)
         Me.txtEstruturaUnidade.MaxLength = 11
         Me.txtEstruturaUnidade.Name = "txtEstruturaUnidade"
@@ -527,7 +567,7 @@ Partial Class frmUnidades
         'lblEstruturaUnidade
         '
         Me.lblEstruturaUnidade.AutoSize = True
-        Me.lblEstruturaUnidade.Location = New System.Drawing.Point(426, 24)
+        Me.lblEstruturaUnidade.Location = New System.Drawing.Point(366, 24)
         Me.lblEstruturaUnidade.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblEstruturaUnidade.Name = "lblEstruturaUnidade"
         Me.lblEstruturaUnidade.Size = New System.Drawing.Size(70, 17)
@@ -536,7 +576,7 @@ Partial Class frmUnidades
         '
         'txtRegistro
         '
-        Me.txtRegistro.Location = New System.Drawing.Point(352, 21)
+        Me.txtRegistro.Location = New System.Drawing.Point(292, 21)
         Me.txtRegistro.Margin = New System.Windows.Forms.Padding(4)
         Me.txtRegistro.MaxLength = 8
         Me.txtRegistro.Name = "txtRegistro"
@@ -546,7 +586,7 @@ Partial Class frmUnidades
         'lblRegistro
         '
         Me.lblRegistro.AutoSize = True
-        Me.lblRegistro.Location = New System.Drawing.Point(239, 21)
+        Me.lblRegistro.Location = New System.Drawing.Point(179, 21)
         Me.lblRegistro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblRegistro.Name = "lblRegistro"
         Me.lblRegistro.Size = New System.Drawing.Size(105, 17)
@@ -589,17 +629,20 @@ Partial Class frmUnidades
         Me.tbpFinanceiro.Margin = New System.Windows.Forms.Padding(4)
         Me.tbpFinanceiro.Name = "tbpFinanceiro"
         Me.tbpFinanceiro.Padding = New System.Windows.Forms.Padding(4)
-        Me.tbpFinanceiro.Size = New System.Drawing.Size(960, 308)
+        Me.tbpFinanceiro.Size = New System.Drawing.Size(960, 323)
         Me.tbpFinanceiro.TabIndex = 1
         Me.tbpFinanceiro.Text = "Financeiro"
         Me.tbpFinanceiro.UseVisualStyleBackColor = True
         '
         'txtObs
         '
+        Me.txtObs.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtObs.Location = New System.Drawing.Point(29, 218)
         Me.txtObs.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObs.Name = "txtObs"
-        Me.txtObs.Size = New System.Drawing.Size(491, 57)
+        Me.txtObs.Size = New System.Drawing.Size(922, 97)
         Me.txtObs.TabIndex = 17
         Me.txtObs.Text = ""
         '
@@ -615,11 +658,13 @@ Partial Class frmUnidades
         '
         'txtTitular
         '
-        Me.txtTitular.Location = New System.Drawing.Point(81, 150)
+        Me.txtTitular.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtTitular.Location = New System.Drawing.Point(96, 150)
         Me.txtTitular.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTitular.MaxLength = 60
         Me.txtTitular.Name = "txtTitular"
-        Me.txtTitular.Size = New System.Drawing.Size(291, 22)
+        Me.txtTitular.Size = New System.Drawing.Size(402, 22)
         Me.txtTitular.TabIndex = 16
         '
         'lblTitular
@@ -634,11 +679,13 @@ Partial Class frmUnidades
         '
         'txtConta
         '
-        Me.txtConta.Location = New System.Drawing.Point(84, 108)
+        Me.txtConta.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtConta.Location = New System.Drawing.Point(96, 108)
         Me.txtConta.Margin = New System.Windows.Forms.Padding(4)
         Me.txtConta.MaxLength = 12
         Me.txtConta.Name = "txtConta"
-        Me.txtConta.Size = New System.Drawing.Size(76, 22)
+        Me.txtConta.Size = New System.Drawing.Size(402, 22)
         Me.txtConta.TabIndex = 15
         '
         'lblConta
@@ -653,11 +700,13 @@ Partial Class frmUnidades
         '
         'txtAgencia
         '
+        Me.txtAgencia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtAgencia.Location = New System.Drawing.Point(96, 64)
         Me.txtAgencia.Margin = New System.Windows.Forms.Padding(4)
         Me.txtAgencia.MaxLength = 60
         Me.txtAgencia.Name = "txtAgencia"
-        Me.txtAgencia.Size = New System.Drawing.Size(195, 22)
+        Me.txtAgencia.Size = New System.Drawing.Size(402, 22)
         Me.txtAgencia.TabIndex = 14
         '
         'lblAgencia
@@ -672,11 +721,13 @@ Partial Class frmUnidades
         '
         'txtBanco
         '
-        Me.txtBanco.Location = New System.Drawing.Point(84, 22)
+        Me.txtBanco.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtBanco.Location = New System.Drawing.Point(96, 22)
         Me.txtBanco.Margin = New System.Windows.Forms.Padding(4)
         Me.txtBanco.MaxLength = 60
         Me.txtBanco.Name = "txtBanco"
-        Me.txtBanco.Size = New System.Drawing.Size(291, 22)
+        Me.txtBanco.Size = New System.Drawing.Size(402, 22)
         Me.txtBanco.TabIndex = 13
         '
         'lblBanco
@@ -710,7 +761,7 @@ Partial Class frmUnidades
         Me.tbpAprovacao.Location = New System.Drawing.Point(4, 25)
         Me.tbpAprovacao.Margin = New System.Windows.Forms.Padding(4)
         Me.tbpAprovacao.Name = "tbpAprovacao"
-        Me.tbpAprovacao.Size = New System.Drawing.Size(960, 308)
+        Me.tbpAprovacao.Size = New System.Drawing.Size(960, 323)
         Me.tbpAprovacao.TabIndex = 2
         Me.tbpAprovacao.Text = "Aprovação"
         Me.tbpAprovacao.UseVisualStyleBackColor = True
@@ -794,7 +845,7 @@ Partial Class frmUnidades
         'dtpDataAprovacaoCN
         '
         Me.dtpDataAprovacaoCN.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpDataAprovacaoCN.Location = New System.Drawing.Point(181, 151)
+        Me.dtpDataAprovacaoCN.Location = New System.Drawing.Point(177, 151)
         Me.dtpDataAprovacaoCN.Margin = New System.Windows.Forms.Padding(4)
         Me.dtpDataAprovacaoCN.Name = "dtpDataAprovacaoCN"
         Me.dtpDataAprovacaoCN.Size = New System.Drawing.Size(136, 22)
@@ -881,63 +932,75 @@ Partial Class frmUnidades
         Me.tbpAtividade.Location = New System.Drawing.Point(4, 25)
         Me.tbpAtividade.Margin = New System.Windows.Forms.Padding(4)
         Me.tbpAtividade.Name = "tbpAtividade"
-        Me.tbpAtividade.Size = New System.Drawing.Size(960, 308)
+        Me.tbpAtividade.Size = New System.Drawing.Size(960, 323)
         Me.tbpAtividade.TabIndex = 3
         Me.tbpAtividade.Text = "Atividades"
         Me.tbpAtividade.UseVisualStyleBackColor = True
         '
         'txtCFAtv6
         '
+        Me.txtCFAtv6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCFAtv6.Location = New System.Drawing.Point(28, 256)
         Me.txtCFAtv6.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCFAtv6.MaxLength = 80
         Me.txtCFAtv6.Name = "txtCFAtv6"
-        Me.txtCFAtv6.Size = New System.Drawing.Size(578, 22)
+        Me.txtCFAtv6.Size = New System.Drawing.Size(923, 22)
         Me.txtCFAtv6.TabIndex = 32
         '
         'txtCFAtv5
         '
+        Me.txtCFAtv5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCFAtv5.Location = New System.Drawing.Point(27, 226)
         Me.txtCFAtv5.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCFAtv5.MaxLength = 80
         Me.txtCFAtv5.Name = "txtCFAtv5"
-        Me.txtCFAtv5.Size = New System.Drawing.Size(578, 22)
+        Me.txtCFAtv5.Size = New System.Drawing.Size(924, 22)
         Me.txtCFAtv5.TabIndex = 31
         '
         'txtCFAtv4
         '
+        Me.txtCFAtv4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCFAtv4.Location = New System.Drawing.Point(28, 196)
         Me.txtCFAtv4.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCFAtv4.MaxLength = 80
         Me.txtCFAtv4.Name = "txtCFAtv4"
-        Me.txtCFAtv4.Size = New System.Drawing.Size(578, 22)
+        Me.txtCFAtv4.Size = New System.Drawing.Size(923, 22)
         Me.txtCFAtv4.TabIndex = 30
         '
         'txtCFAtv3
         '
+        Me.txtCFAtv3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCFAtv3.Location = New System.Drawing.Point(28, 166)
         Me.txtCFAtv3.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCFAtv3.MaxLength = 80
         Me.txtCFAtv3.Name = "txtCFAtv3"
-        Me.txtCFAtv3.Size = New System.Drawing.Size(578, 22)
+        Me.txtCFAtv3.Size = New System.Drawing.Size(923, 22)
         Me.txtCFAtv3.TabIndex = 29
         '
         'txtCFAtv2
         '
+        Me.txtCFAtv2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCFAtv2.Location = New System.Drawing.Point(28, 136)
         Me.txtCFAtv2.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCFAtv2.MaxLength = 80
         Me.txtCFAtv2.Name = "txtCFAtv2"
-        Me.txtCFAtv2.Size = New System.Drawing.Size(578, 22)
+        Me.txtCFAtv2.Size = New System.Drawing.Size(923, 22)
         Me.txtCFAtv2.TabIndex = 28
         '
         'txtCFAtv1
         '
+        Me.txtCFAtv1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCFAtv1.Location = New System.Drawing.Point(28, 106)
         Me.txtCFAtv1.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCFAtv1.MaxLength = 80
         Me.txtCFAtv1.Name = "txtCFAtv1"
-        Me.txtCFAtv1.Size = New System.Drawing.Size(578, 22)
+        Me.txtCFAtv1.Size = New System.Drawing.Size(923, 22)
         Me.txtCFAtv1.TabIndex = 27
         '
         'lblAtividades
@@ -952,12 +1015,14 @@ Partial Class frmUnidades
         '
         'txtFrequenciaReuniao
         '
+        Me.txtFrequenciaReuniao.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtFrequenciaReuniao.Location = New System.Drawing.Point(28, 36)
         Me.txtFrequenciaReuniao.Margin = New System.Windows.Forms.Padding(4)
         Me.txtFrequenciaReuniao.MaxLength = 100
         Me.txtFrequenciaReuniao.Multiline = True
         Me.txtFrequenciaReuniao.Name = "txtFrequenciaReuniao"
-        Me.txtFrequenciaReuniao.Size = New System.Drawing.Size(577, 44)
+        Me.txtFrequenciaReuniao.Size = New System.Drawing.Size(923, 44)
         Me.txtFrequenciaReuniao.TabIndex = 26
         '
         'lblFrequenciaReuniao
@@ -990,7 +1055,7 @@ Partial Class frmUnidades
         Me.tbpMandato.Location = New System.Drawing.Point(4, 25)
         Me.tbpMandato.Name = "tbpMandato"
         Me.tbpMandato.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbpMandato.Size = New System.Drawing.Size(960, 308)
+        Me.tbpMandato.Size = New System.Drawing.Size(960, 323)
         Me.tbpMandato.TabIndex = 4
         Me.tbpMandato.Text = "Mandatos"
         Me.tbpMandato.UseVisualStyleBackColor = True
@@ -1006,6 +1071,9 @@ Partial Class frmUnidades
         '
         'ListaPesquisa
         '
+        Me.ListaPesquisa.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ListaPesquisa.FormattingEnabled = True
         Me.ListaPesquisa.HorizontalScrollbar = True
         Me.ListaPesquisa.ItemHeight = 16
@@ -1016,6 +1084,7 @@ Partial Class frmUnidades
         '
         'ComandoPesquisar
         '
+        Me.ComandoPesquisar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ComandoPesquisar.BackgroundImage = CType(resources.GetObject("ComandoPesquisar.BackgroundImage"), System.Drawing.Image)
         Me.ComandoPesquisar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ComandoPesquisar.Enabled = False
@@ -1028,6 +1097,8 @@ Partial Class frmUnidades
         '
         'NomePesquisar
         '
+        Me.NomePesquisar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.NomePesquisar.Enabled = False
         Me.NomePesquisar.Location = New System.Drawing.Point(16, 130)
         Me.NomePesquisar.Margin = New System.Windows.Forms.Padding(4)
@@ -1038,6 +1109,7 @@ Partial Class frmUnidades
         '
         'btnGravar_Mandato
         '
+        Me.btnGravar_Mandato.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnGravar_Mandato.BackgroundImage = CType(resources.GetObject("btnGravar_Mandato.BackgroundImage"), System.Drawing.Image)
         Me.btnGravar_Mandato.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnGravar_Mandato.Enabled = False
@@ -1052,6 +1124,8 @@ Partial Class frmUnidades
         '
         Me.dtgMandato.AllowUserToAddRows = False
         Me.dtgMandato.AllowUserToDeleteRows = False
+        Me.dtgMandato.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtgMandato.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgMandato.Location = New System.Drawing.Point(417, 6)
         Me.dtgMandato.Name = "dtgMandato"
@@ -1062,6 +1136,7 @@ Partial Class frmUnidades
         '
         'btnProx_Mandato
         '
+        Me.btnProx_Mandato.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnProx_Mandato.Image = CType(resources.GetObject("btnProx_Mandato.Image"), System.Drawing.Image)
         Me.btnProx_Mandato.Location = New System.Drawing.Point(277, 7)
         Me.btnProx_Mandato.Margin = New System.Windows.Forms.Padding(4)
@@ -1072,6 +1147,7 @@ Partial Class frmUnidades
         '
         'btnAnt_Mandato
         '
+        Me.btnAnt_Mandato.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAnt_Mandato.Enabled = False
         Me.btnAnt_Mandato.Image = CType(resources.GetObject("btnAnt_Mandato.Image"), System.Drawing.Image)
         Me.btnAnt_Mandato.Location = New System.Drawing.Point(222, 7)
@@ -1083,6 +1159,7 @@ Partial Class frmUnidades
         '
         'lblUN016_DatFin
         '
+        Me.lblUN016_DatFin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblUN016_DatFin.AutoSize = True
         Me.lblUN016_DatFin.Location = New System.Drawing.Point(250, 74)
         Me.lblUN016_DatFin.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
@@ -1093,6 +1170,7 @@ Partial Class frmUnidades
         '
         'dtpUN016_DatFin
         '
+        Me.dtpUN016_DatFin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpUN016_DatFin.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpUN016_DatFin.Location = New System.Drawing.Point(285, 71)
         Me.dtpUN016_DatFin.Margin = New System.Windows.Forms.Padding(4)
@@ -1102,6 +1180,8 @@ Partial Class frmUnidades
         '
         'lblUN016_DatIni
         '
+        Me.lblUN016_DatIni.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblUN016_DatIni.AutoSize = True
         Me.lblUN016_DatIni.Location = New System.Drawing.Point(24, 75)
         Me.lblUN016_DatIni.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
@@ -1121,6 +1201,8 @@ Partial Class frmUnidades
         '
         'txtUN016_DesMdt
         '
+        Me.txtUN016_DesMdt.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtUN016_DesMdt.Location = New System.Drawing.Point(169, 46)
         Me.txtUN016_DesMdt.Margin = New System.Windows.Forms.Padding(4)
         Me.txtUN016_DesMdt.MaxLength = 80
@@ -1140,6 +1222,8 @@ Partial Class frmUnidades
         '
         'lblCodMdt
         '
+        Me.lblCodMdt.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCodMdt.AutoSize = True
         Me.lblCodMdt.Location = New System.Drawing.Point(24, 49)
         Me.lblCodMdt.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
@@ -1159,17 +1243,19 @@ Partial Class frmUnidades
         Me.tbpMembros.Location = New System.Drawing.Point(4, 25)
         Me.tbpMembros.Name = "tbpMembros"
         Me.tbpMembros.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbpMembros.Size = New System.Drawing.Size(960, 308)
+        Me.tbpMembros.Size = New System.Drawing.Size(960, 323)
         Me.tbpMembros.TabIndex = 5
         Me.tbpMembros.Text = "Membros Ativos"
         Me.tbpMembros.UseVisualStyleBackColor = True
         '
         'lblContadorMembro
         '
+        Me.lblContadorMembro.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblContadorMembro.AutoSize = True
+        Me.lblContadorMembro.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblContadorMembro.Location = New System.Drawing.Point(390, 7)
         Me.lblContadorMembro.Name = "lblContadorMembro"
-        Me.lblContadorMembro.Size = New System.Drawing.Size(186, 17)
+        Me.lblContadorMembro.Size = New System.Drawing.Size(211, 17)
         Me.lblContadorMembro.TabIndex = 0
         Me.lblContadorMembro.Text = "Número de Membros Ativos:"
         '
@@ -1177,6 +1263,8 @@ Partial Class frmUnidades
         '
         Me.dtgMembroAtivo.AllowUserToAddRows = False
         Me.dtgMembroAtivo.AllowUserToDeleteRows = False
+        Me.dtgMembroAtivo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtgMembroAtivo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgMembroAtivo.Location = New System.Drawing.Point(390, 30)
         Me.dtgMembroAtivo.Name = "dtgMembroAtivo"
@@ -1187,6 +1275,9 @@ Partial Class frmUnidades
         '
         'lstPesqMembro
         '
+        Me.lstPesqMembro.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lstPesqMembro.FormattingEnabled = True
         Me.lstPesqMembro.ItemHeight = 16
         Me.lstPesqMembro.Location = New System.Drawing.Point(7, 58)
@@ -1199,12 +1290,13 @@ Partial Class frmUnidades
         Me.lblPesqMembro.AutoSize = True
         Me.lblPesqMembro.Location = New System.Drawing.Point(6, 9)
         Me.lblPesqMembro.Name = "lblPesqMembro"
-        Me.lblPesqMembro.Size = New System.Drawing.Size(222, 17)
+        Me.lblPesqMembro.Size = New System.Drawing.Size(236, 17)
         Me.lblPesqMembro.TabIndex = 0
-        Me.lblPesqMembro.Text = "Pesquisa do Membro no Cadastro"
+        Me.lblPesqMembro.Text = "Pesquisa do Associado no Cadastro"
         '
         'btnPesqMembro
         '
+        Me.btnPesqMembro.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnPesqMembro.BackgroundImage = CType(resources.GetObject("btnPesqMembro.BackgroundImage"), System.Drawing.Image)
         Me.btnPesqMembro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnPesqMembro.Enabled = False
@@ -1217,6 +1309,8 @@ Partial Class frmUnidades
         '
         'txtPesqMembro
         '
+        Me.txtPesqMembro.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPesqMembro.Enabled = False
         Me.txtPesqMembro.Location = New System.Drawing.Point(7, 30)
         Me.txtPesqMembro.Margin = New System.Windows.Forms.Padding(4)
@@ -1224,18 +1318,6 @@ Partial Class frmUnidades
         Me.txtPesqMembro.Name = "txtPesqMembro"
         Me.txtPesqMembro.Size = New System.Drawing.Size(351, 22)
         Me.txtPesqMembro.TabIndex = 0
-        '
-        'btnEstrutura
-        '
-        Me.btnEstrutura.BackgroundImage = CType(resources.GetObject("btnEstrutura.BackgroundImage"), System.Drawing.Image)
-        Me.btnEstrutura.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnEstrutura.Enabled = False
-        Me.btnEstrutura.Location = New System.Drawing.Point(643, 21)
-        Me.btnEstrutura.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnEstrutura.Name = "btnEstrutura"
-        Me.btnEstrutura.Size = New System.Drawing.Size(26, 24)
-        Me.btnEstrutura.TabIndex = 40
-        Me.btnEstrutura.UseVisualStyleBackColor = True
         '
         'frmUnidades
         '
@@ -1249,6 +1331,7 @@ Partial Class frmUnidades
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmUnidades"
         Me.Text = "frmUnidade"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
@@ -1377,4 +1460,6 @@ Partial Class frmUnidades
     Friend WithEvents btnPesqMembro As System.Windows.Forms.Button
     Friend WithEvents txtPesqMembro As System.Windows.Forms.TextBox
     Friend WithEvents btnEstrutura As System.Windows.Forms.Button
+    Friend WithEvents cbTipoCF As System.Windows.Forms.ComboBox
+    Friend WithEvents lblTipoCF As System.Windows.Forms.Label
 End Class

@@ -25,6 +25,12 @@ Partial Class frmAgregacao
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAgregacao))
         Me.TabAgregacao = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.btnLocCParticular = New System.Windows.Forms.Button()
+        Me.txtClaUni = New System.Windows.Forms.TextBox()
+        Me.lblClaUni = New System.Windows.Forms.Label()
+        Me.txtCP = New System.Windows.Forms.TextBox()
+        Me.txtCC = New System.Windows.Forms.TextBox()
+        Me.txtCM = New System.Windows.Forms.TextBox()
         Me.dtpDatEle = New System.Windows.Forms.DateTimePicker()
         Me.lblDatEle = New System.Windows.Forms.Label()
         Me.lblCM = New System.Windows.Forms.Label()
@@ -203,12 +209,6 @@ Partial Class frmAgregacao
         Me.lblID_CF = New System.Windows.Forms.Label()
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.txtStatus = New System.Windows.Forms.TextBox()
-        Me.txtCM = New System.Windows.Forms.TextBox()
-        Me.txtCC = New System.Windows.Forms.TextBox()
-        Me.txtCP = New System.Windows.Forms.TextBox()
-        Me.btnLocCParticular = New System.Windows.Forms.Button()
-        Me.txtClaUni = New System.Windows.Forms.TextBox()
-        Me.lblClaUni = New System.Windows.Forms.Label()
         Me.TabAgregacao.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -226,6 +226,9 @@ Partial Class frmAgregacao
         '
         'TabAgregacao
         '
+        Me.TabAgregacao.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabAgregacao.Controls.Add(Me.TabPage1)
         Me.TabAgregacao.Controls.Add(Me.TabPage2)
         Me.TabAgregacao.Controls.Add(Me.TabPage3)
@@ -275,8 +278,72 @@ Partial Class frmAgregacao
         Me.TabPage1.Text = "Dados"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'btnLocCParticular
+        '
+        Me.btnLocCParticular.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnLocCParticular.BackgroundImage = Global.UNIDADES.My.Resources.Resources.AllDay_ru_Search
+        Me.btnLocCParticular.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnLocCParticular.Location = New System.Drawing.Point(910, 16)
+        Me.btnLocCParticular.Name = "btnLocCParticular"
+        Me.btnLocCParticular.Size = New System.Drawing.Size(27, 23)
+        Me.btnLocCParticular.TabIndex = 67
+        Me.btnLocCParticular.UseVisualStyleBackColor = True
+        '
+        'txtClaUni
+        '
+        Me.txtClaUni.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtClaUni.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.txtClaUni.Location = New System.Drawing.Point(768, 16)
+        Me.txtClaUni.Name = "txtClaUni"
+        Me.txtClaUni.Size = New System.Drawing.Size(141, 22)
+        Me.txtClaUni.TabIndex = 65
+        '
+        'lblClaUni
+        '
+        Me.lblClaUni.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblClaUni.AutoSize = True
+        Me.lblClaUni.Location = New System.Drawing.Point(699, 19)
+        Me.lblClaUni.Name = "lblClaUni"
+        Me.lblClaUni.Size = New System.Drawing.Size(70, 17)
+        Me.lblClaUni.TabIndex = 66
+        Me.lblClaUni.Text = "Estrutura:"
+        '
+        'txtCP
+        '
+        Me.txtCP.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtCP.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.txtCP.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCP.Location = New System.Drawing.Point(551, 135)
+        Me.txtCP.Name = "txtCP"
+        Me.txtCP.Size = New System.Drawing.Size(391, 27)
+        Me.txtCP.TabIndex = 64
+        Me.txtCP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'txtCC
+        '
+        Me.txtCC.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtCC.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.txtCC.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCC.Location = New System.Drawing.Point(551, 98)
+        Me.txtCC.Name = "txtCC"
+        Me.txtCC.Size = New System.Drawing.Size(391, 27)
+        Me.txtCC.TabIndex = 63
+        Me.txtCC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'txtCM
+        '
+        Me.txtCM.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtCM.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.txtCM.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCM.Location = New System.Drawing.Point(551, 58)
+        Me.txtCM.Name = "txtCM"
+        Me.txtCM.Size = New System.Drawing.Size(391, 27)
+        Me.txtCM.TabIndex = 62
+        Me.txtCM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'dtpDatEle
         '
+        Me.dtpDatEle.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpDatEle.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpDatEle.Location = New System.Drawing.Point(577, 176)
         Me.dtpDatEle.Margin = New System.Windows.Forms.Padding(4)
@@ -286,6 +353,7 @@ Partial Class frmAgregacao
         '
         'lblDatEle
         '
+        Me.lblDatEle.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDatEle.AutoSize = True
         Me.lblDatEle.ForeColor = System.Drawing.Color.Red
         Me.lblDatEle.Location = New System.Drawing.Point(386, 178)
@@ -296,6 +364,7 @@ Partial Class frmAgregacao
         '
         'lblCM
         '
+        Me.lblCM.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCM.AutoSize = True
         Me.lblCM.Location = New System.Drawing.Point(386, 63)
         Me.lblCM.Name = "lblCM"
@@ -305,6 +374,7 @@ Partial Class frmAgregacao
         '
         'lblCC
         '
+        Me.lblCC.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCC.AutoSize = True
         Me.lblCC.Location = New System.Drawing.Point(386, 105)
         Me.lblCC.Name = "lblCC"
@@ -314,6 +384,7 @@ Partial Class frmAgregacao
         '
         'lblCP
         '
+        Me.lblCP.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCP.AutoSize = True
         Me.lblCP.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.lblCP.Location = New System.Drawing.Point(386, 141)
@@ -324,6 +395,7 @@ Partial Class frmAgregacao
         '
         'dtpDatFun
         '
+        Me.dtpDatFun.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpDatFun.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpDatFun.Location = New System.Drawing.Point(516, 16)
         Me.dtpDatFun.Margin = New System.Windows.Forms.Padding(4)
@@ -333,6 +405,7 @@ Partial Class frmAgregacao
         '
         'lblDatFun
         '
+        Me.lblDatFun.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDatFun.AutoSize = True
         Me.lblDatFun.ForeColor = System.Drawing.Color.Red
         Me.lblDatFun.Location = New System.Drawing.Point(386, 21)
@@ -476,11 +549,13 @@ Partial Class frmAgregacao
         '
         'txtCFAtv6
         '
+        Me.txtCFAtv6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCFAtv6.BackColor = System.Drawing.Color.White
         Me.txtCFAtv6.Location = New System.Drawing.Point(61, 250)
         Me.txtCFAtv6.MaxLength = 80
         Me.txtCFAtv6.Name = "txtCFAtv6"
-        Me.txtCFAtv6.Size = New System.Drawing.Size(702, 22)
+        Me.txtCFAtv6.Size = New System.Drawing.Size(893, 22)
         Me.txtCFAtv6.TabIndex = 29
         '
         'lblCFAtv6
@@ -494,11 +569,13 @@ Partial Class frmAgregacao
         '
         'txtCFAtv5
         '
+        Me.txtCFAtv5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCFAtv5.BackColor = System.Drawing.Color.White
         Me.txtCFAtv5.Location = New System.Drawing.Point(61, 212)
         Me.txtCFAtv5.MaxLength = 80
         Me.txtCFAtv5.Name = "txtCFAtv5"
-        Me.txtCFAtv5.Size = New System.Drawing.Size(702, 22)
+        Me.txtCFAtv5.Size = New System.Drawing.Size(893, 22)
         Me.txtCFAtv5.TabIndex = 27
         '
         'lblCFAtv5
@@ -512,11 +589,13 @@ Partial Class frmAgregacao
         '
         'txtCFAtv4
         '
+        Me.txtCFAtv4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCFAtv4.BackColor = System.Drawing.Color.White
         Me.txtCFAtv4.Location = New System.Drawing.Point(61, 175)
         Me.txtCFAtv4.MaxLength = 80
         Me.txtCFAtv4.Name = "txtCFAtv4"
-        Me.txtCFAtv4.Size = New System.Drawing.Size(702, 22)
+        Me.txtCFAtv4.Size = New System.Drawing.Size(893, 22)
         Me.txtCFAtv4.TabIndex = 25
         '
         'lblCFAtv4
@@ -530,11 +609,13 @@ Partial Class frmAgregacao
         '
         'txtCFAtv3
         '
+        Me.txtCFAtv3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCFAtv3.BackColor = System.Drawing.Color.White
         Me.txtCFAtv3.Location = New System.Drawing.Point(61, 138)
         Me.txtCFAtv3.MaxLength = 80
         Me.txtCFAtv3.Name = "txtCFAtv3"
-        Me.txtCFAtv3.Size = New System.Drawing.Size(702, 22)
+        Me.txtCFAtv3.Size = New System.Drawing.Size(893, 22)
         Me.txtCFAtv3.TabIndex = 23
         '
         'lblCFAtv3
@@ -548,11 +629,13 @@ Partial Class frmAgregacao
         '
         'txtCFAtv2
         '
+        Me.txtCFAtv2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCFAtv2.BackColor = System.Drawing.Color.White
         Me.txtCFAtv2.Location = New System.Drawing.Point(61, 98)
         Me.txtCFAtv2.MaxLength = 80
         Me.txtCFAtv2.Name = "txtCFAtv2"
-        Me.txtCFAtv2.Size = New System.Drawing.Size(702, 22)
+        Me.txtCFAtv2.Size = New System.Drawing.Size(893, 22)
         Me.txtCFAtv2.TabIndex = 21
         '
         'lblCFAtv2
@@ -566,11 +649,13 @@ Partial Class frmAgregacao
         '
         'txtCFAtv1
         '
+        Me.txtCFAtv1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCFAtv1.BackColor = System.Drawing.Color.White
         Me.txtCFAtv1.Location = New System.Drawing.Point(61, 57)
         Me.txtCFAtv1.MaxLength = 80
         Me.txtCFAtv1.Name = "txtCFAtv1"
-        Me.txtCFAtv1.Size = New System.Drawing.Size(702, 22)
+        Me.txtCFAtv1.Size = New System.Drawing.Size(893, 22)
         Me.txtCFAtv1.TabIndex = 1
         '
         'lblCfAtv1
@@ -609,11 +694,13 @@ Partial Class frmAgregacao
         '
         'txtReuEnd
         '
+        Me.txtReuEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtReuEnd.BackColor = System.Drawing.Color.White
         Me.txtReuEnd.Location = New System.Drawing.Point(191, 125)
         Me.txtReuEnd.MaxLength = 20
         Me.txtReuEnd.Name = "txtReuEnd"
-        Me.txtReuEnd.Size = New System.Drawing.Size(512, 22)
+        Me.txtReuEnd.Size = New System.Drawing.Size(763, 22)
         Me.txtReuEnd.TabIndex = 42
         '
         'lblReuEnd
@@ -629,7 +716,7 @@ Partial Class frmAgregacao
         '
         Me.dtpReuHor.CustomFormat = "hh:mm"
         Me.dtpReuHor.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpReuHor.Location = New System.Drawing.Point(151, 82)
+        Me.dtpReuHor.Location = New System.Drawing.Point(191, 82)
         Me.dtpReuHor.Margin = New System.Windows.Forms.Padding(4)
         Me.dtpReuHor.Name = "dtpReuHor"
         Me.dtpReuHor.Size = New System.Drawing.Size(75, 22)
@@ -646,11 +733,13 @@ Partial Class frmAgregacao
         '
         'txtReuDia
         '
+        Me.txtReuDia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtReuDia.BackColor = System.Drawing.Color.White
-        Me.txtReuDia.Location = New System.Drawing.Point(151, 41)
+        Me.txtReuDia.Location = New System.Drawing.Point(191, 41)
         Me.txtReuDia.MaxLength = 20
         Me.txtReuDia.Name = "txtReuDia"
-        Me.txtReuDia.Size = New System.Drawing.Size(266, 22)
+        Me.txtReuDia.Size = New System.Drawing.Size(763, 22)
         Me.txtReuDia.TabIndex = 3
         '
         'lblReuDia
@@ -698,6 +787,7 @@ Partial Class frmAgregacao
         '
         'ComandoPesquisar
         '
+        Me.ComandoPesquisar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ComandoPesquisar.BackgroundImage = CType(resources.GetObject("ComandoPesquisar.BackgroundImage"), System.Drawing.Image)
         Me.ComandoPesquisar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ComandoPesquisar.Enabled = False
@@ -710,6 +800,9 @@ Partial Class frmAgregacao
         '
         'ListaPesquisa
         '
+        Me.ListaPesquisa.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ListaPesquisa.FormattingEnabled = True
         Me.ListaPesquisa.HorizontalScrollbar = True
         Me.ListaPesquisa.ItemHeight = 16
@@ -720,6 +813,8 @@ Partial Class frmAgregacao
         '
         'NomePesquisar
         '
+        Me.NomePesquisar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.NomePesquisar.Enabled = False
         Me.NomePesquisar.Location = New System.Drawing.Point(7, 142)
         Me.NomePesquisar.Margin = New System.Windows.Forms.Padding(4)
@@ -730,6 +825,7 @@ Partial Class frmAgregacao
         '
         'btnGravar_Mandato
         '
+        Me.btnGravar_Mandato.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnGravar_Mandato.BackgroundImage = CType(resources.GetObject("btnGravar_Mandato.BackgroundImage"), System.Drawing.Image)
         Me.btnGravar_Mandato.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnGravar_Mandato.Enabled = False
@@ -744,6 +840,9 @@ Partial Class frmAgregacao
         '
         Me.dtgMandato.AllowUserToAddRows = False
         Me.dtgMandato.AllowUserToDeleteRows = False
+        Me.dtgMandato.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtgMandato.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgMandato.Location = New System.Drawing.Point(390, 18)
         Me.dtgMandato.Name = "dtgMandato"
@@ -754,6 +853,7 @@ Partial Class frmAgregacao
         '
         'btnProx_Mandato
         '
+        Me.btnProx_Mandato.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnProx_Mandato.Image = CType(resources.GetObject("btnProx_Mandato.Image"), System.Drawing.Image)
         Me.btnProx_Mandato.Location = New System.Drawing.Point(250, 19)
         Me.btnProx_Mandato.Margin = New System.Windows.Forms.Padding(4)
@@ -764,6 +864,7 @@ Partial Class frmAgregacao
         '
         'btnAnt_Mandato
         '
+        Me.btnAnt_Mandato.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAnt_Mandato.Enabled = False
         Me.btnAnt_Mandato.Image = CType(resources.GetObject("btnAnt_Mandato.Image"), System.Drawing.Image)
         Me.btnAnt_Mandato.Location = New System.Drawing.Point(195, 19)
@@ -775,6 +876,7 @@ Partial Class frmAgregacao
         '
         'lblUN016_DatFin
         '
+        Me.lblUN016_DatFin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblUN016_DatFin.AutoSize = True
         Me.lblUN016_DatFin.Location = New System.Drawing.Point(223, 86)
         Me.lblUN016_DatFin.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
@@ -785,6 +887,7 @@ Partial Class frmAgregacao
         '
         'dtpUN016_DatFin
         '
+        Me.dtpUN016_DatFin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpUN016_DatFin.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpUN016_DatFin.Location = New System.Drawing.Point(258, 83)
         Me.dtpUN016_DatFin.Margin = New System.Windows.Forms.Padding(4)
@@ -869,6 +972,9 @@ Partial Class frmAgregacao
         '
         Me.dtgMembroAtivo.AllowUserToAddRows = False
         Me.dtgMembroAtivo.AllowUserToDeleteRows = False
+        Me.dtgMembroAtivo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtgMembroAtivo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgMembroAtivo.Location = New System.Drawing.Point(390, 44)
         Me.dtgMembroAtivo.Name = "dtgMembroAtivo"
@@ -879,6 +985,9 @@ Partial Class frmAgregacao
         '
         'lstPesqMembro
         '
+        Me.lstPesqMembro.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lstPesqMembro.FormattingEnabled = True
         Me.lstPesqMembro.HorizontalScrollbar = True
         Me.lstPesqMembro.ItemHeight = 16
@@ -898,6 +1007,7 @@ Partial Class frmAgregacao
         '
         'btnPesqMembro
         '
+        Me.btnPesqMembro.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnPesqMembro.BackgroundImage = CType(resources.GetObject("btnPesqMembro.BackgroundImage"), System.Drawing.Image)
         Me.btnPesqMembro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnPesqMembro.Enabled = False
@@ -910,6 +1020,8 @@ Partial Class frmAgregacao
         '
         'txtPesqMembro
         '
+        Me.txtPesqMembro.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPesqMembro.Enabled = False
         Me.txtPesqMembro.Location = New System.Drawing.Point(7, 44)
         Me.txtPesqMembro.Margin = New System.Windows.Forms.Padding(4)
@@ -957,11 +1069,13 @@ Partial Class frmAgregacao
         '
         'txtMis5In
         '
+        Me.txtMis5In.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtMis5In.BackColor = System.Drawing.Color.White
         Me.txtMis5In.Location = New System.Drawing.Point(610, 93)
         Me.txtMis5In.MaxLength = 20
         Me.txtMis5In.Name = "txtMis5In"
-        Me.txtMis5In.Size = New System.Drawing.Size(289, 22)
+        Me.txtMis5In.Size = New System.Drawing.Size(344, 22)
         Me.txtMis5In.TabIndex = 28
         '
         'lblMis5In
@@ -975,11 +1089,13 @@ Partial Class frmAgregacao
         '
         'txtDifApl
         '
+        Me.txtDifApl.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtDifApl.BackColor = System.Drawing.Color.White
         Me.txtDifApl.Location = New System.Drawing.Point(453, 298)
         Me.txtDifApl.MaxLength = 50
         Me.txtDifApl.Name = "txtDifApl"
-        Me.txtDifApl.Size = New System.Drawing.Size(446, 22)
+        Me.txtDifApl.Size = New System.Drawing.Size(501, 22)
         Me.txtDifApl.TabIndex = 42
         '
         'lblDifApl
@@ -1012,11 +1128,13 @@ Partial Class frmAgregacao
         '
         'txtRelSoc
         '
+        Me.txtRelSoc.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRelSoc.BackColor = System.Drawing.Color.White
         Me.txtRelSoc.Location = New System.Drawing.Point(512, 240)
         Me.txtRelSoc.MaxLength = 30
         Me.txtRelSoc.Name = "txtRelSoc"
-        Me.txtRelSoc.Size = New System.Drawing.Size(224, 22)
+        Me.txtRelSoc.Size = New System.Drawing.Size(442, 22)
         Me.txtRelSoc.TabIndex = 38
         '
         'lblRelSoc
@@ -1149,11 +1267,13 @@ Partial Class frmAgregacao
         '
         'txtParJur
         '
+        Me.txtParJur.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtParJur.BackColor = System.Drawing.Color.White
         Me.txtParJur.Location = New System.Drawing.Point(383, 37)
         Me.txtParJur.MaxLength = 40
         Me.txtParJur.Name = "txtParJur"
-        Me.txtParJur.Size = New System.Drawing.Size(516, 22)
+        Me.txtParJur.Size = New System.Drawing.Size(571, 22)
         Me.txtParJur.TabIndex = 24
         '
         'lblParJur
@@ -1249,6 +1369,7 @@ Partial Class frmAgregacao
         '
         'lblTotalGastos
         '
+        Me.lblTotalGastos.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblTotalGastos.AutoSize = True
         Me.lblTotalGastos.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalGastos.Location = New System.Drawing.Point(533, 294)
@@ -1259,6 +1380,7 @@ Partial Class frmAgregacao
         '
         'txtTotalGst
         '
+        Me.txtTotalGst.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtTotalGst.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtTotalGst.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalGst.Location = New System.Drawing.Point(741, 289)
@@ -1270,6 +1392,7 @@ Partial Class frmAgregacao
         '
         'txtGstAdm
         '
+        Me.txtGstAdm.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtGstAdm.BackColor = System.Drawing.Color.White
         Me.txtGstAdm.Location = New System.Drawing.Point(741, 251)
         Me.txtGstAdm.MaxLength = 20
@@ -1280,6 +1403,7 @@ Partial Class frmAgregacao
         '
         'lblGstAdm
         '
+        Me.lblGstAdm.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblGstAdm.AutoSize = True
         Me.lblGstAdm.Location = New System.Drawing.Point(531, 256)
         Me.lblGstAdm.Name = "lblGstAdm"
@@ -1289,6 +1413,7 @@ Partial Class frmAgregacao
         '
         'txtGstEme
         '
+        Me.txtGstEme.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtGstEme.BackColor = System.Drawing.Color.White
         Me.txtGstEme.Location = New System.Drawing.Point(741, 211)
         Me.txtGstEme.MaxLength = 20
@@ -1299,6 +1424,7 @@ Partial Class frmAgregacao
         '
         'lblGstEme
         '
+        Me.lblGstEme.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblGstEme.AutoSize = True
         Me.lblGstEme.Location = New System.Drawing.Point(531, 216)
         Me.lblGstEme.Name = "lblGstEme"
@@ -1308,6 +1434,7 @@ Partial Class frmAgregacao
         '
         'txtGstDoa
         '
+        Me.txtGstDoa.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtGstDoa.BackColor = System.Drawing.Color.White
         Me.txtGstDoa.Location = New System.Drawing.Point(741, 174)
         Me.txtGstDoa.MaxLength = 20
@@ -1318,6 +1445,7 @@ Partial Class frmAgregacao
         '
         'lblGstDoa
         '
+        Me.lblGstDoa.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblGstDoa.AutoSize = True
         Me.lblGstDoa.Location = New System.Drawing.Point(531, 179)
         Me.lblGstDoa.Name = "lblGstDoa"
@@ -1327,6 +1455,7 @@ Partial Class frmAgregacao
         '
         'txtGstCon
         '
+        Me.txtGstCon.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtGstCon.BackColor = System.Drawing.Color.White
         Me.txtGstCon.Location = New System.Drawing.Point(741, 138)
         Me.txtGstCon.MaxLength = 20
@@ -1337,6 +1466,7 @@ Partial Class frmAgregacao
         '
         'lblGstCon
         '
+        Me.lblGstCon.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblGstCon.AutoSize = True
         Me.lblGstCon.Location = New System.Drawing.Point(531, 141)
         Me.lblGstCon.Name = "lblGstCon"
@@ -1346,6 +1476,7 @@ Partial Class frmAgregacao
         '
         'txtGstPes
         '
+        Me.txtGstPes.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtGstPes.BackColor = System.Drawing.Color.White
         Me.txtGstPes.Location = New System.Drawing.Point(741, 99)
         Me.txtGstPes.MaxLength = 20
@@ -1356,6 +1487,7 @@ Partial Class frmAgregacao
         '
         'lblGstPes
         '
+        Me.lblGstPes.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblGstPes.AutoSize = True
         Me.lblGstPes.Location = New System.Drawing.Point(531, 104)
         Me.lblGstPes.Name = "lblGstPes"
@@ -1365,6 +1497,7 @@ Partial Class frmAgregacao
         '
         'lblGastos
         '
+        Me.lblGastos.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblGastos.AutoSize = True
         Me.lblGastos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblGastos.Location = New System.Drawing.Point(541, 66)
@@ -1609,6 +1742,7 @@ Partial Class frmAgregacao
         '
         'lblAcomp
         '
+        Me.lblAcomp.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblAcomp.AutoSize = True
         Me.lblAcomp.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAcomp.Location = New System.Drawing.Point(499, 73)
@@ -1637,6 +1771,7 @@ Partial Class frmAgregacao
         '
         'dtpDtEnvC
         '
+        Me.dtpDtEnvC.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpDtEnvC.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpDtEnvC.Location = New System.Drawing.Point(725, 234)
         Me.dtpDtEnvC.Margin = New System.Windows.Forms.Padding(4)
@@ -1646,6 +1781,7 @@ Partial Class frmAgregacao
         '
         'lblDtEnvC
         '
+        Me.lblDtEnvC.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDtEnvC.AutoSize = True
         Me.lblDtEnvC.Location = New System.Drawing.Point(501, 239)
         Me.lblDtEnvC.Name = "lblDtEnvC"
@@ -1655,6 +1791,7 @@ Partial Class frmAgregacao
         '
         'dtpDtReci
         '
+        Me.dtpDtReci.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpDtReci.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpDtReci.Location = New System.Drawing.Point(725, 191)
         Me.dtpDtReci.Margin = New System.Windows.Forms.Padding(4)
@@ -1664,6 +1801,7 @@ Partial Class frmAgregacao
         '
         'lblDtReci
         '
+        Me.lblDtReci.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDtReci.AutoSize = True
         Me.lblDtReci.Location = New System.Drawing.Point(501, 196)
         Me.lblDtReci.Name = "lblDtReci"
@@ -1673,6 +1811,7 @@ Partial Class frmAgregacao
         '
         'dtpDtEnvi
         '
+        Me.dtpDtEnvi.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpDtEnvi.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpDtEnvi.Location = New System.Drawing.Point(725, 145)
         Me.dtpDtEnvi.Margin = New System.Windows.Forms.Padding(4)
@@ -1682,6 +1821,7 @@ Partial Class frmAgregacao
         '
         'lblDtEnvi
         '
+        Me.lblDtEnvi.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDtEnvi.AutoSize = True
         Me.lblDtEnvi.Location = New System.Drawing.Point(501, 150)
         Me.lblDtEnvi.Name = "lblDtEnvi"
@@ -1691,6 +1831,7 @@ Partial Class frmAgregacao
         '
         'dtpDtChCN
         '
+        Me.dtpDtChCN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpDtChCN.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpDtChCN.Location = New System.Drawing.Point(725, 108)
         Me.dtpDtChCN.Margin = New System.Windows.Forms.Padding(4)
@@ -1700,6 +1841,7 @@ Partial Class frmAgregacao
         '
         'lblDtChCN
         '
+        Me.lblDtChCN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDtChCN.AutoSize = True
         Me.lblDtChCN.Location = New System.Drawing.Point(501, 113)
         Me.lblDtChCN.Name = "lblDtChCN"
@@ -2005,6 +2147,7 @@ Partial Class frmAgregacao
         '
         'txtRegistro
         '
+        Me.txtRegistro.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRegistro.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtRegistro.Location = New System.Drawing.Point(910, 56)
         Me.txtRegistro.Name = "txtRegistro"
@@ -2014,6 +2157,7 @@ Partial Class frmAgregacao
         '
         'lblRegistro
         '
+        Me.lblRegistro.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblRegistro.AutoSize = True
         Me.lblRegistro.Location = New System.Drawing.Point(842, 58)
         Me.lblRegistro.Name = "lblRegistro"
@@ -2023,6 +2167,7 @@ Partial Class frmAgregacao
         '
         'txtID_CF
         '
+        Me.txtID_CF.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtID_CF.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtID_CF.Location = New System.Drawing.Point(775, 58)
         Me.txtID_CF.Name = "txtID_CF"
@@ -2031,6 +2176,7 @@ Partial Class frmAgregacao
         '
         'lblID_CF
         '
+        Me.lblID_CF.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblID_CF.AutoSize = True
         Me.lblID_CF.Location = New System.Drawing.Point(751, 61)
         Me.lblID_CF.Name = "lblID_CF"
@@ -2040,6 +2186,7 @@ Partial Class frmAgregacao
         '
         'lblStatus
         '
+        Me.lblStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblStatus.AutoSize = True
         Me.lblStatus.Location = New System.Drawing.Point(791, 90)
         Me.lblStatus.Name = "lblStatus"
@@ -2049,6 +2196,7 @@ Partial Class frmAgregacao
         '
         'txtStatus
         '
+        Me.txtStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtStatus.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtStatus.Location = New System.Drawing.Point(845, 84)
@@ -2056,63 +2204,6 @@ Partial Class frmAgregacao
         Me.txtStatus.Size = New System.Drawing.Size(135, 27)
         Me.txtStatus.TabIndex = 18
         Me.txtStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'txtCM
-        '
-        Me.txtCM.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.txtCM.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCM.Location = New System.Drawing.Point(551, 58)
-        Me.txtCM.Name = "txtCM"
-        Me.txtCM.Size = New System.Drawing.Size(391, 27)
-        Me.txtCM.TabIndex = 62
-        Me.txtCM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'txtCC
-        '
-        Me.txtCC.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.txtCC.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCC.Location = New System.Drawing.Point(551, 98)
-        Me.txtCC.Name = "txtCC"
-        Me.txtCC.Size = New System.Drawing.Size(391, 27)
-        Me.txtCC.TabIndex = 63
-        Me.txtCC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'txtCP
-        '
-        Me.txtCP.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.txtCP.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCP.Location = New System.Drawing.Point(551, 135)
-        Me.txtCP.Name = "txtCP"
-        Me.txtCP.Size = New System.Drawing.Size(391, 27)
-        Me.txtCP.TabIndex = 64
-        Me.txtCP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'btnLocCParticular
-        '
-        Me.btnLocCParticular.BackgroundImage = Global.UNIDADES.My.Resources.Resources.AllDay_ru_Search
-        Me.btnLocCParticular.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnLocCParticular.Location = New System.Drawing.Point(910, 16)
-        Me.btnLocCParticular.Name = "btnLocCParticular"
-        Me.btnLocCParticular.Size = New System.Drawing.Size(27, 23)
-        Me.btnLocCParticular.TabIndex = 67
-        Me.btnLocCParticular.UseVisualStyleBackColor = True
-        '
-        'txtClaUni
-        '
-        Me.txtClaUni.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.txtClaUni.Location = New System.Drawing.Point(768, 16)
-        Me.txtClaUni.Name = "txtClaUni"
-        Me.txtClaUni.Size = New System.Drawing.Size(141, 22)
-        Me.txtClaUni.TabIndex = 65
-        '
-        'lblClaUni
-        '
-        Me.lblClaUni.AutoSize = True
-        Me.lblClaUni.Location = New System.Drawing.Point(699, 19)
-        Me.lblClaUni.Name = "lblClaUni"
-        Me.lblClaUni.Size = New System.Drawing.Size(70, 17)
-        Me.lblClaUni.TabIndex = 66
-        Me.lblClaUni.Text = "Estrutura:"
         '
         'frmAgregacao
         '

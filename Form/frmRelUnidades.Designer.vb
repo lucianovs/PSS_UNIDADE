@@ -41,6 +41,8 @@ Partial Class frmRelUnidades
         '
         'txtConselho
         '
+        Me.txtConselho.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtConselho.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtConselho.Enabled = False
         Me.txtConselho.Location = New System.Drawing.Point(15, 46)
@@ -51,6 +53,7 @@ Partial Class frmRelUnidades
         '
         'btnCancelar
         '
+        Me.btnCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancelar.Image = CType(resources.GetObject("btnCancelar.Image"), System.Drawing.Image)
         Me.btnCancelar.Location = New System.Drawing.Point(242, 111)
         Me.btnCancelar.Name = "btnCancelar"
@@ -61,6 +64,7 @@ Partial Class frmRelUnidades
         '
         'btnImprimir
         '
+        Me.btnImprimir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
         Me.btnImprimir.Location = New System.Drawing.Point(139, 111)
         Me.btnImprimir.Name = "btnImprimir"
@@ -70,6 +74,7 @@ Partial Class frmRelUnidades
         '
         'btnLocUnidade
         '
+        Me.btnLocUnidade.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnLocUnidade.BackgroundImage = Global.UNIDADES.My.Resources.Resources.AllDay_ru_Search
         Me.btnLocUnidade.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnLocUnidade.Location = New System.Drawing.Point(509, 45)

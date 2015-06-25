@@ -224,6 +224,7 @@ Partial Class frmAprovAgr
         '
         'lblAcomp
         '
+        Me.lblAcomp.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblAcomp.AutoSize = True
         Me.lblAcomp.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAcomp.Location = New System.Drawing.Point(714, 142)
@@ -252,6 +253,7 @@ Partial Class frmAprovAgr
         '
         'dtpDtEnvC
         '
+        Me.dtpDtEnvC.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpDtEnvC.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpDtEnvC.Location = New System.Drawing.Point(19, 215)
         Me.dtpDtEnvC.Margin = New System.Windows.Forms.Padding(4)
@@ -261,6 +263,7 @@ Partial Class frmAprovAgr
         '
         'lblDtEnvC
         '
+        Me.lblDtEnvC.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDtEnvC.AutoSize = True
         Me.lblDtEnvC.Location = New System.Drawing.Point(16, 194)
         Me.lblDtEnvC.Name = "lblDtEnvC"
@@ -270,6 +273,7 @@ Partial Class frmAprovAgr
         '
         'dtpDtReci
         '
+        Me.dtpDtReci.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpDtReci.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpDtReci.Location = New System.Drawing.Point(17, 153)
         Me.dtpDtReci.Margin = New System.Windows.Forms.Padding(4)
@@ -279,6 +283,7 @@ Partial Class frmAprovAgr
         '
         'lblDtReci
         '
+        Me.lblDtReci.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDtReci.AutoSize = True
         Me.lblDtReci.Location = New System.Drawing.Point(14, 132)
         Me.lblDtReci.Name = "lblDtReci"
@@ -288,6 +293,7 @@ Partial Class frmAprovAgr
         '
         'dtpDtEnvi
         '
+        Me.dtpDtEnvi.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpDtEnvi.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpDtEnvi.Location = New System.Drawing.Point(18, 91)
         Me.dtpDtEnvi.Margin = New System.Windows.Forms.Padding(4)
@@ -297,6 +303,7 @@ Partial Class frmAprovAgr
         '
         'lblDtEnvi
         '
+        Me.lblDtEnvi.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDtEnvi.AutoSize = True
         Me.lblDtEnvi.Location = New System.Drawing.Point(15, 70)
         Me.lblDtEnvi.Name = "lblDtEnvi"
@@ -306,6 +313,7 @@ Partial Class frmAprovAgr
         '
         'dtpDtChCN
         '
+        Me.dtpDtChCN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpDtChCN.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpDtChCN.Location = New System.Drawing.Point(18, 34)
         Me.dtpDtChCN.Margin = New System.Windows.Forms.Padding(4)
@@ -315,6 +323,7 @@ Partial Class frmAprovAgr
         '
         'lblDtChCN
         '
+        Me.lblDtChCN.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDtChCN.AutoSize = True
         Me.lblDtChCN.Location = New System.Drawing.Point(14, 13)
         Me.lblDtChCN.Name = "lblDtChCN"
@@ -461,6 +470,7 @@ Partial Class frmAprovAgr
         '
         'btnApCPCo
         '
+        Me.btnApCPCo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnApCPCo.Location = New System.Drawing.Point(640, 175)
         Me.btnApCPCo.Name = "btnApCPCo"
         Me.btnApCPCo.Size = New System.Drawing.Size(31, 22)
@@ -470,6 +480,8 @@ Partial Class frmAprovAgr
         '
         'txtApCPCo
         '
+        Me.txtApCPCo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtApCPCo.Location = New System.Drawing.Point(273, 175)
         Me.txtApCPCo.Margin = New System.Windows.Forms.Padding(4)
         Me.txtApCPCo.MaxLength = 150
@@ -489,6 +501,8 @@ Partial Class frmAprovAgr
         '
         'txtApCPEn
         '
+        Me.txtApCPEn.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtApCPEn.Location = New System.Drawing.Point(273, 205)
         Me.txtApCPEn.Margin = New System.Windows.Forms.Padding(4)
         Me.txtApCPEn.MaxLength = 150
@@ -508,6 +522,8 @@ Partial Class frmAprovAgr
         '
         'Panel1
         '
+        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel1.Location = New System.Drawing.Point(11, 168)
         Me.Panel1.Name = "Panel1"
@@ -516,6 +532,8 @@ Partial Class frmAprovAgr
         '
         'Panel2
         '
+        Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel2.Controls.Add(Me.lblApCCEn)
         Me.Panel2.Controls.Add(Me.txtApCCEn)
@@ -539,6 +557,8 @@ Partial Class frmAprovAgr
         '
         'txtApCCEn
         '
+        Me.txtApCCEn.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtApCCEn.Location = New System.Drawing.Point(264, 38)
         Me.txtApCCEn.Margin = New System.Windows.Forms.Padding(4)
         Me.txtApCCEn.MaxLength = 150
@@ -548,6 +568,7 @@ Partial Class frmAprovAgr
         '
         'btnApCCCo
         '
+        Me.btnApCCCo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnApCCCo.Location = New System.Drawing.Point(631, 8)
         Me.btnApCCCo.Name = "btnApCCCo"
         Me.btnApCCCo.Size = New System.Drawing.Size(31, 22)
@@ -557,6 +578,8 @@ Partial Class frmAprovAgr
         '
         'txtApCCCo
         '
+        Me.txtApCCCo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtApCCCo.Location = New System.Drawing.Point(264, 8)
         Me.txtApCCCo.Margin = New System.Windows.Forms.Padding(4)
         Me.txtApCCCo.MaxLength = 150
@@ -576,6 +599,8 @@ Partial Class frmAprovAgr
         '
         'Panel3
         '
+        Me.Panel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel3.Controls.Add(Me.lblApCMEn)
         Me.Panel3.Controls.Add(Me.txtApCMEn)
@@ -601,6 +626,8 @@ Partial Class frmAprovAgr
         '
         'txtApCMEn
         '
+        Me.txtApCMEn.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtApCMEn.Location = New System.Drawing.Point(264, 38)
         Me.txtApCMEn.Margin = New System.Windows.Forms.Padding(4)
         Me.txtApCMEn.MaxLength = 150
@@ -610,6 +637,7 @@ Partial Class frmAprovAgr
         '
         'btnApCMCo
         '
+        Me.btnApCMCo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnApCMCo.Location = New System.Drawing.Point(631, 8)
         Me.btnApCMCo.Name = "btnApCMCo"
         Me.btnApCMCo.Size = New System.Drawing.Size(31, 22)
@@ -619,6 +647,8 @@ Partial Class frmAprovAgr
         '
         'txtApCMCo
         '
+        Me.txtApCMCo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtApCMCo.Location = New System.Drawing.Point(264, 8)
         Me.txtApCMCo.Margin = New System.Windows.Forms.Padding(4)
         Me.txtApCMCo.MaxLength = 150
@@ -638,6 +668,8 @@ Partial Class frmAprovAgr
         '
         'Panel4
         '
+        Me.Panel4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel4.Controls.Add(Me.lblApCNEn)
         Me.Panel4.Controls.Add(Me.txtApCNEn)
@@ -663,6 +695,8 @@ Partial Class frmAprovAgr
         '
         'txtApCNEn
         '
+        Me.txtApCNEn.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtApCNEn.Location = New System.Drawing.Point(264, 38)
         Me.txtApCNEn.Margin = New System.Windows.Forms.Padding(4)
         Me.txtApCNEn.MaxLength = 150
@@ -672,6 +706,7 @@ Partial Class frmAprovAgr
         '
         'btnApCNCo
         '
+        Me.btnApCNCo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnApCNCo.Location = New System.Drawing.Point(631, 8)
         Me.btnApCNCo.Name = "btnApCNCo"
         Me.btnApCNCo.Size = New System.Drawing.Size(31, 22)
@@ -681,6 +716,8 @@ Partial Class frmAprovAgr
         '
         'txtApCNCo
         '
+        Me.txtApCNCo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtApCNCo.Location = New System.Drawing.Point(264, 8)
         Me.txtApCNCo.Margin = New System.Windows.Forms.Padding(4)
         Me.txtApCNCo.MaxLength = 150
@@ -700,6 +737,8 @@ Partial Class frmAprovAgr
         '
         'Panel5
         '
+        Me.Panel5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel5.Controls.Add(Me.lblApCGEn)
         Me.Panel5.Controls.Add(Me.txtApCGEn)
@@ -725,6 +764,8 @@ Partial Class frmAprovAgr
         '
         'txtApCGEn
         '
+        Me.txtApCGEn.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtApCGEn.Location = New System.Drawing.Point(264, 38)
         Me.txtApCGEn.Margin = New System.Windows.Forms.Padding(4)
         Me.txtApCGEn.MaxLength = 150
@@ -734,6 +775,7 @@ Partial Class frmAprovAgr
         '
         'btnApCGCo
         '
+        Me.btnApCGCo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnApCGCo.Location = New System.Drawing.Point(631, 8)
         Me.btnApCGCo.Name = "btnApCGCo"
         Me.btnApCGCo.Size = New System.Drawing.Size(31, 22)
@@ -743,6 +785,8 @@ Partial Class frmAprovAgr
         '
         'txtApCGCo
         '
+        Me.txtApCGCo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtApCGCo.Location = New System.Drawing.Point(264, 8)
         Me.txtApCGCo.Margin = New System.Windows.Forms.Padding(4)
         Me.txtApCGCo.MaxLength = 150
@@ -762,6 +806,8 @@ Partial Class frmAprovAgr
         '
         'Panel6
         '
+        Me.Panel6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel6.Controls.Add(Me.dtpDtEnvC)
         Me.Panel6.Controls.Add(Me.lblDtEnvC)

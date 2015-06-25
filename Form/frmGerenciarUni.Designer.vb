@@ -62,6 +62,9 @@ Partial Class frmGerenciarUni
         '
         'Treeview_GerUnidades
         '
+        Me.Treeview_GerUnidades.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Treeview_GerUnidades.ImageIndex = 0
         Me.Treeview_GerUnidades.ImageList = Me.ImageList
         Me.Treeview_GerUnidades.Location = New System.Drawing.Point(19, 7)
@@ -82,6 +85,8 @@ Partial Class frmGerenciarUni
         '
         'txtEstruturaUnidade
         '
+        Me.txtEstruturaUnidade.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtEstruturaUnidade.Enabled = False
         Me.txtEstruturaUnidade.Location = New System.Drawing.Point(900, 63)
         Me.txtEstruturaUnidade.Margin = New System.Windows.Forms.Padding(4)
@@ -217,6 +222,8 @@ Partial Class frmGerenciarUni
         '
         'txtBaiUni
         '
+        Me.txtBaiUni.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtBaiUni.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtBaiUni.Enabled = False
         Me.txtBaiUni.Location = New System.Drawing.Point(93, 90)
@@ -239,6 +246,8 @@ Partial Class frmGerenciarUni
         '
         'txtEndUni
         '
+        Me.txtEndUni.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtEndUni.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtEndUni.Enabled = False
         Me.txtEndUni.Location = New System.Drawing.Point(93, 60)
@@ -284,6 +293,9 @@ Partial Class frmGerenciarUni
         '
         'grpBox_MudarEstru
         '
+        Me.grpBox_MudarEstru.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpBox_MudarEstru.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.grpBox_MudarEstru.Controls.Add(Me.txtCodUnidadeMudar)
         Me.grpBox_MudarEstru.Controls.Add(Me.txtEstruDestino)
@@ -315,6 +327,8 @@ Partial Class frmGerenciarUni
         '
         'txtEstruDestino
         '
+        Me.txtEstruDestino.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtEstruDestino.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtEstruDestino.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEstruDestino.Location = New System.Drawing.Point(223, 63)
@@ -348,6 +362,8 @@ Partial Class frmGerenciarUni
         '
         'txtUnidadeMudar
         '
+        Me.txtUnidadeMudar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtUnidadeMudar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.txtUnidadeMudar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtUnidadeMudar.Location = New System.Drawing.Point(223, 20)
@@ -359,6 +375,7 @@ Partial Class frmGerenciarUni
         '
         'btnCancelar
         '
+        Me.btnCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancelar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnCancelar.Location = New System.Drawing.Point(227, 116)
         Me.btnCancelar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
@@ -370,6 +387,7 @@ Partial Class frmGerenciarUni
         '
         'btnConfirmar
         '
+        Me.btnConfirmar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnConfirmar.Enabled = False
         Me.btnConfirmar.Location = New System.Drawing.Point(85, 116)
@@ -382,6 +400,7 @@ Partial Class frmGerenciarUni
         '
         'btnAlterar
         '
+        Me.btnAlterar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAlterar.Enabled = False
         Me.btnAlterar.Image = CType(resources.GetObject("btnAlterar.Image"), System.Drawing.Image)
         Me.btnAlterar.Location = New System.Drawing.Point(619, 6)
@@ -393,6 +412,7 @@ Partial Class frmGerenciarUni
         '
         'btnExcluir
         '
+        Me.btnExcluir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnExcluir.Enabled = False
         Me.btnExcluir.Image = CType(resources.GetObject("btnExcluir.Image"), System.Drawing.Image)
         Me.btnExcluir.Location = New System.Drawing.Point(777, 6)
@@ -404,6 +424,7 @@ Partial Class frmGerenciarUni
         '
         'btnMudarEstru
         '
+        Me.btnMudarEstru.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnMudarEstru.Enabled = False
         Me.btnMudarEstru.Image = CType(resources.GetObject("btnMudarEstru.Image"), System.Drawing.Image)
         Me.btnMudarEstru.Location = New System.Drawing.Point(680, 6)

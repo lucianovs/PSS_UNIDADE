@@ -1354,7 +1354,7 @@ FimFuncao:
                         If nNivel = 3 Then 'CF
                             If Not Int(Microsoft.VisualBasic.Right(dtReorgUni.Rows(x).Item("un000_clauni"), 2)) = nSeqTemp Then
                                 'Trocar a Sequência
-                                sSQL = "UPDATE EUN000 SET UN000_CLAUNI = Left(un000_clauni,9) & '" & Microsoft.VisualBasic.Format(nSeqTemp, "00") & _
+                                sSQL = "UPDATE EUN000 SET UN000_CLAUNI = Left(un000_clauni,9) + '" & Microsoft.VisualBasic.Format(nSeqTemp, "00") & _
                                     "' where UN000_CLAUNI = '" & dtReorgUni.Rows(x).Item("un000_clauni") & "'" & _
                                     " and un000_stauni<>'I'"
                                 cmd = New OleDbCommand(sSQL, g_ConnectBanco)
@@ -1376,7 +1376,7 @@ FimFuncao:
                             If Not Int(Microsoft.VisualBasic.Mid(dtReorgUni.Rows(x).Item("un000_clauni"), 7, 2)) = nSeqTemp Then
                                 bGravarCP = True
                                 'Trocar a Sequência
-                                sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(un000_clauni,6) & '" & Microsoft.VisualBasic.Format(nSeqTemp, "00") & "' & Right(un000_clauni, 3) " & _
+                                sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(un000_clauni,6) + '" & Microsoft.VisualBasic.Format(nSeqTemp, "00") & "' + Right(un000_clauni, 3) " & _
                                     " where left(UN000_CLAUNI,8) = '" & Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("un000_clauni"), 8) & "'" & _
                                     " and un000_stauni<>'I'"
                                 cmd = New OleDbCommand(sSQL, g_ConnectBanco)
@@ -1427,9 +1427,9 @@ FimFuncao:
                             If Not Int(Microsoft.VisualBasic.Mid(dtReorgUni.Rows(x).Item("un000_clauni"), 4, 2)) = nSeqTemp Then
                                 bGravarCC = True
                                 'Trocar a Sequência
-                                sSQL = "UPDATE EUN000 SET UN000_CLAUNI = Left(un000_clauni, 3) & '" & _
+                                sSQL = "UPDATE EUN000 SET UN000_CLAUNI = Left(un000_clauni, 3) + '" & _
                                     Microsoft.VisualBasic.Format(nSeqTemp, "00") & _
-                                    "' & Right(un000_clauni, 6) " & _
+                                    "' + Right(un000_clauni, 6) " & _
                                     " where left(UN000_CLAUNI,5) = '" & Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("un000_clauni"), 5) & "'" & _
                                     " and un000_stauni<>'I'"
                                 cmd = New OleDbCommand(sSQL, g_ConnectBanco)
@@ -1457,7 +1457,7 @@ FimFuncao:
                                 'Trocar a Sequência
                                 sSQL = "UPDATE EUN000 SET UN000_CLAUNI = '" & _
                                         Microsoft.VisualBasic.Format(nSeqTemp, "00") & _
-                                        "' & Right(un000_clauni, 9)" & _
+                                        "' + Right(un000_clauni, 9)" & _
                                     " where left(UN000_CLAUNI,2) = '" & Microsoft.VisualBasic.Left(dtReorgUni.Rows(x).Item("un000_clauni"), 2) & "'" & _
                                     " and un000_stauni<>'I'"
                                 cmd = New OleDbCommand(sSQL, g_ConnectBanco)
@@ -1490,7 +1490,7 @@ FimFuncao:
         'Atualizar as Estruturas na Base (51-> 01)
         'CM
         If bGravarCM Then
-            sSQL = "UPDATE EUN000 SET UN000_CLAUNI ='0' & Left(UN000_CLAUNI,2)-50 &" & _
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI ='0' + Left(UN000_CLAUNI,2)-50 +" & _
                         " right(UN000_CLAUNI,9)" & _
                         " where left(UN000_CLAUNI,2) > 50 and left(UN000_CLAUNI,2) < 60 and un000_stauni<>'I'"
             cmd = New OleDbCommand(sSQL, g_ConnectBanco)
@@ -1511,7 +1511,7 @@ FimFuncao:
                 '************************
             End Try
 
-            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,2)-50 &" & _
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,2)-50 +" & _
                         " right(UN000_CLAUNI,9)" & _
                         " where left(UN000_CLAUNI,2) > 59 and un000_stauni<>'I'"
             cmd = New OleDbCommand(sSQL, g_ConnectBanco)
@@ -1537,7 +1537,7 @@ FimFuncao:
         'Atualizar as Estruturas na Base (51-> 01)
         'CC
         If bGravarCC Then
-            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,3) & '0' & right(Left(UN000_CLAUNI,5),2)-50 &" & _
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,3) + '0' & right(Left(UN000_CLAUNI,5),2)-50 +" & _
                         " right(UN000_CLAUNI,6)" & _
                         " where right(left(UN000_CLAUNI,5),2) > 50 and right(left(UN000_CLAUNI,5),2) < 60 and un000_stauni<>'I'"
             cmd = New OleDbCommand(sSQL, g_ConnectBanco)
@@ -1558,7 +1558,7 @@ FimFuncao:
                 '************************
             End Try
 
-            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,3) & right(Left(UN000_CLAUNI,5),2)-50 &" & _
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,3) + right(Left(UN000_CLAUNI,5),2)-50 +" & _
                         " right(UN000_CLAUNI,6)" & _
                         " where right(left(UN000_CLAUNI,5),2) > 50 and right(left(UN000_CLAUNI,5),2) < 60 and un000_stauni<>'I'"
             cmd = New OleDbCommand(sSQL, g_ConnectBanco)
@@ -1583,7 +1583,7 @@ FimFuncao:
         'Atualizar as Estruturas na Base (51-> 01)
         'CP
         If bGravarCP Then
-            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,6) & '0' & right(Left(UN000_CLAUNI,8),2)-50 &" & _
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,6) + '0' & right(Left(UN000_CLAUNI,8),2)-50 +" & _
                         " right(UN000_CLAUNI,3)" & _
                         " where right(left(UN000_CLAUNI,8),2) > 50 and right(left(UN000_CLAUNI,8),2) < 60 and un000_stauni<>'I'"
             cmd = New OleDbCommand(sSQL, g_ConnectBanco)
@@ -1604,7 +1604,7 @@ FimFuncao:
                 '************************
             End Try
 
-            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,6) & right(Left(UN000_CLAUNI,8),2)-50 &" & _
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,6) + right(Left(UN000_CLAUNI,8),2)-50 +" & _
                         " right(UN000_CLAUNI,3)" & _
                         " where right(left(UN000_CLAUNI,8),2) > 50 and right(left(UN000_CLAUNI,8),2) < 60 and un000_stauni<>'I'"
             cmd = New OleDbCommand(sSQL, g_ConnectBanco)
@@ -1630,7 +1630,7 @@ FimFuncao:
         'Atualizar as Estruturas na Base (51-> 01)
         'CF
         If bGravarCF Then
-            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,9) & '0' & right(UN000_CLAUNI,2)-50 " & _
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,9) + '0' + right(UN000_CLAUNI,2)-50 " & _
                         " where right(UN000_CLAUNI,2) > 50 and right(UN000_CLAUNI,2) < 60 and un000_stauni<>'I'"
             cmd = New OleDbCommand(sSQL, g_ConnectBanco)
             Try
@@ -1650,7 +1650,7 @@ FimFuncao:
                 '************************
             End Try
 
-            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,9) & right(UN000_CLAUNI,2)-50 " & _
+            sSQL = "UPDATE EUN000 SET UN000_CLAUNI =Left(UN000_CLAUNI,9) + right(UN000_CLAUNI,2)-50 " & _
                         " where right(UN000_CLAUNI,2) > 50 and right(UN000_CLAUNI,2) < 60 and un000_stauni<>'I'"
             cmd = New OleDbCommand(sSQL, g_ConnectBanco)
             Try

@@ -29,6 +29,7 @@ Public Class frmRelUnidades
 
         RptPath = Application.StartupPath & LerDadosINI(nomeArquivoINI(), "PATH", "Reports", "\Reports\")
         'RptPath = "C:\Fontes\SSVP_Projeto\Report\"
+        'MsgBox(RptPath & "Unidades_Relacao.rpt")
         frmReportViewer.ShowReport("Unidades_Relacao.rpt", RptPath, rptSelection)
         Me.Cursor = Cursors.Default
 
@@ -36,7 +37,7 @@ Public Class frmRelUnidades
 
     Private Sub btnLocUnidade_Click(sender As Object, e As EventArgs) Handles btnLocUnidade.Click
         'txtColaborador.Text = dlgColaborador.ShowDialog()
-        Dim options = New dlgConselho
+        Dim options = New dlgUnidade
         Dim sClasseUnidade, sNomeUnidade As String
 
         If options.ShowDialog() = Windows.Forms.DialogResult.OK Then

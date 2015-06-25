@@ -172,6 +172,8 @@ Partial Class frmTipoDeComplemento
         '
         'txtDescricao
         '
+        Me.txtDescricao.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtDescricao.Location = New System.Drawing.Point(103, 104)
         Me.txtDescricao.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDescricao.MaxLength = 60

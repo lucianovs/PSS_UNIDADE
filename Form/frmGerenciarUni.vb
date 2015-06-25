@@ -276,14 +276,4 @@ erro_comandos:
         If Len(txtEstruDestino.Text) = 11 Then btnConfirmar.Enabled = True
     End Sub
 
-    Private Sub frmGerenciarUni_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
-        Treeview_GerUnidades.Size = New Size(589, Me.Size.Height - 60) '112
-
-        'pnlDadosUni.Size = New Size(Me.Size.Width - 60, Me.Size.Height - 60) '112
-
-        'btnAnterior.Location = New System.Drawing.Point(ListView_Browse.Size.Width - 218, ListView_Browse.Size.Height + 58)
-        'lblRegistros.Location = New System.Drawing.Point(btnAnterior.Location.X + 64, btnAnterior.Location.Y + 3)
-        'btnProximo.Location = New System.Drawing.Point(btnAnterior.Location.X + 161, btnAnterior.Location.Y)
-    End Sub
-
 End Class

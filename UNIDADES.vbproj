@@ -46,7 +46,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Unidades.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Unidades.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -87,6 +87,12 @@
       <DependentUpon>dlgConselho.vb</DependentUpon>
     </Compile>
     <Compile Include="Dialog\dlgConselho.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\dlgUnidade.Designer.vb">
+      <DependentUpon>dlgUnidade.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\dlgUnidade.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\frmInstituirUni.Designer.vb">
@@ -197,6 +203,12 @@
     <Compile Include="Form\frmReorgUnidade.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\frmRelMandato.Designer.vb">
+      <DependentUpon>frmRelMandato.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmRelMandato.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="mdiPrincipal.Designer.vb">
       <DependentUpon>mdiPrincipal.vb</DependentUpon>
     </Compile>
@@ -229,6 +241,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Dialog\dlgConselho.resx">
       <DependentUpon>dlgConselho.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\dlgUnidade.resx">
+      <DependentUpon>dlgUnidade.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmInstituirUni.resx">
       <DependentUpon>frmInstituirUni.vb</DependentUpon>
@@ -284,6 +299,9 @@
     <EmbeddedResource Include="Form\frmReorgUnidade.resx">
       <DependentUpon>frmReorgUnidade.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmRelMandato.resx">
+      <DependentUpon>frmRelMandato.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mdiPrincipal.resx">
       <DependentUpon>mdiPrincipal.vb</DependentUpon>
     </EmbeddedResource>
@@ -311,7 +329,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AllDay.ru_Search.png" />
-    <Content Include="Unidades.ico" />
+    <Content Include="Resources\Unidades.ico" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
