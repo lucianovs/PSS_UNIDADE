@@ -287,6 +287,25 @@ Module ModPrincipal
 
     End Function
 
+    Public Function UsuarioAdministrador(fCodUsuario As Integer) As Boolean
+        Dim cQuery As String
+        Dim dtGrupo As DataTable = New DataTable("ESI006")
+
+        cQuery = "SELECT SI006_CODUSU FROM ESI006 where SI006_CODGRU=1 and SI006_CODUSU =" & fCodUsuario.ToString
+
+        Using da As New OleDbDataAdapter()
+            da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
+
+            ' Preencher o DataTable 
+            da.Fill(dtGrupo)
+
+            Return (dtGrupo.Rows.Count() > 0)
+
+        End Using
+        dtGrupo.Clear()
+
+    End Function
+
     Public Function getCodModulo(ByVal fNomeModulo As String) As Integer
         Dim sQuery As String
         Dim dtModulo As DataTable = New DataTable("ESI004")

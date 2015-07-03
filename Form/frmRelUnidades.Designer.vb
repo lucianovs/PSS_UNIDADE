@@ -25,9 +25,9 @@ Partial Class frmRelUnidades
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmRelUnidades))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtConselho = New System.Windows.Forms.TextBox()
+        Me.btnLocUnidade = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.btnImprimir = New System.Windows.Forms.Button()
-        Me.btnLocUnidade = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -51,27 +51,6 @@ Partial Class frmRelUnidades
         Me.txtConselho.TabIndex = 4
         Me.txtConselho.Text = "Clique ao lado para selecionar uma unidade -->"
         '
-        'btnCancelar
-        '
-        Me.btnCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCancelar.Image = CType(resources.GetObject("btnCancelar.Image"), System.Drawing.Image)
-        Me.btnCancelar.Location = New System.Drawing.Point(242, 111)
-        Me.btnCancelar.Name = "btnCancelar"
-        Me.btnCancelar.Size = New System.Drawing.Size(82, 69)
-        Me.btnCancelar.TabIndex = 3
-        Me.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.btnCancelar.UseVisualStyleBackColor = True
-        '
-        'btnImprimir
-        '
-        Me.btnImprimir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
-        Me.btnImprimir.Location = New System.Drawing.Point(139, 111)
-        Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(82, 69)
-        Me.btnImprimir.TabIndex = 2
-        Me.btnImprimir.UseVisualStyleBackColor = True
-        '
         'btnLocUnidade
         '
         Me.btnLocUnidade.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -82,6 +61,32 @@ Partial Class frmRelUnidades
         Me.btnLocUnidade.Size = New System.Drawing.Size(23, 24)
         Me.btnLocUnidade.TabIndex = 21
         Me.btnLocUnidade.UseVisualStyleBackColor = True
+        '
+        'btnCancelar
+        '
+        Me.btnCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancelar.Image = Global.UNIDADES.My.Resources.Resources.cancelar2
+        Me.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnCancelar.Location = New System.Drawing.Point(249, 111)
+        Me.btnCancelar.Name = "btnCancelar"
+        Me.btnCancelar.Size = New System.Drawing.Size(85, 69)
+        Me.btnCancelar.TabIndex = 3
+        Me.btnCancelar.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.btnCancelar.UseVisualStyleBackColor = True
+        '
+        'btnImprimir
+        '
+        Me.btnImprimir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnImprimir.Image = CType(resources.GetObject("btnImprimir.Image"), System.Drawing.Image)
+        Me.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnImprimir.Location = New System.Drawing.Point(139, 111)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(82, 69)
+        Me.btnImprimir.TabIndex = 2
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnImprimir.UseVisualStyleBackColor = True
         '
         'frmRelUnidades
         '

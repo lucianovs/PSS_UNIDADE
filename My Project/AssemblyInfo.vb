@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Template")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Template")> 
-<Assembly: AssemblyCopyright("Copyright ©  2014")> 
+<Assembly: AssemblyTitle("UNIDADES")> 
+<Assembly: AssemblyDescription("Controle do Cadastro de Unidades e suas  ligações dentro da Sociedade.")> 
+<Assembly: AssemblyCompany("SSVP - Sociedade de São Vicente de Paulo")> 
+<Assembly: AssemblyProduct("UNIDADES")> 
+<Assembly: AssemblyCopyright("Copyright ©  2015")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>

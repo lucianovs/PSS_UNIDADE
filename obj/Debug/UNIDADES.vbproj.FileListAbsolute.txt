@@ -10,7 +10,6 @@ C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.dlgColaborador.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmAgregacao.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmAprovAgr.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmBrowse.resources
-C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmColaboradores.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmGerenciarUni.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmReportViewer.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmTipoDeComplemento.resources
@@ -30,3 +29,6 @@ C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.pdb
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmRelUnidades.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmRelMandato.resources
 C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.dlgUnidade.resources
+C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.vbprojResolveAssemblyReference.cache
+C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmAssociados.resources
+C:\Fontes\SSVP_Projeto\Unidade\obj\Debug\UNIDADES.frmSobre.resources

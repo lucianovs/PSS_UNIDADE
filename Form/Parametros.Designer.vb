@@ -59,9 +59,6 @@ Partial Class Parametros
         '
         'txtConnectString
         '
-        Me.txtConnectString.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtConnectString.Location = New System.Drawing.Point(16, 87)
         Me.txtConnectString.Multiline = True
         Me.txtConnectString.Name = "txtConnectString"
@@ -194,7 +191,6 @@ Partial Class Parametros
         '
         'lblPathReport
         '
-        Me.lblPathReport.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblPathReport.AutoSize = True
         Me.lblPathReport.Location = New System.Drawing.Point(12, 178)
         Me.lblPathReport.Name = "lblPathReport"
@@ -204,8 +200,6 @@ Partial Class Parametros
         '
         'txtPathReport
         '
-        Me.txtPathReport.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPathReport.Location = New System.Drawing.Point(16, 198)
         Me.txtPathReport.Name = "txtPathReport"
         Me.txtPathReport.Size = New System.Drawing.Size(470, 22)
@@ -213,7 +207,6 @@ Partial Class Parametros
         '
         'txtBlocoReg
         '
-        Me.txtBlocoReg.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtBlocoReg.Location = New System.Drawing.Point(217, 236)
         Me.txtBlocoReg.Name = "txtBlocoReg"
         Me.txtBlocoReg.Size = New System.Drawing.Size(44, 22)
@@ -221,7 +214,6 @@ Partial Class Parametros
         '
         'lblBlocoReg
         '
-        Me.lblBlocoReg.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblBlocoReg.AutoSize = True
         Me.lblBlocoReg.Location = New System.Drawing.Point(12, 239)
         Me.lblBlocoReg.Name = "lblBlocoReg"
@@ -242,8 +234,9 @@ Partial Class Parametros
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.txtConnectString)
         Me.Controls.Add(Me.lblStrConexao)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Parametros"
-        Me.Text = "Parametros"
+        Me.Text = "Configurações"
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)

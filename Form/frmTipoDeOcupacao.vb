@@ -13,51 +13,34 @@ Public Class frmTipoDeOcupacao
     Private Sub frmTipoDeOcupacao_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         g_Param(1) = txtCodigo.Text 'Voltar com a Chave do registro do formulário
         g_AtuBrowse = True
-        g_Comando = "REFRESH" 'Forçar a atualização do browser pelo timer
     End Sub
 
     Private Sub frmTipoDeOcupacao_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim i_point As Integer
-
         'Criar um adaptador que vai fazer o download de dados da base de dados
         '?? Alterar o Código para a Entidade Principal ??
-        If Me.Tag = 4 Then
-            cQuery = "SELECT * FROM EUN011"
+        cQuery = "SELECT * FROM EUN011 where UN011_CODOCP = "
+        If g_Comando = "incluir" Then
+            cQuery += "0"
         Else
-            cQuery = "SELECT * FROM EUN011 where UN011_CODOCP = " & g_Param(1)
+            cQuery += g_Param(1)
         End If
-
         Using da As New OleDbDataAdapter()
             da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
-
             ' Preencher o DataTable 
             da.Fill(dt)
         End Using
-        If g_Param(1) <> "INSERT" Then
-            'Posicionar no registro selecionado
-            '?? Alterar para localizar a chave da tabela ??
-            For i_point = 0 To dt.Rows.Count() - 1
+        i = 0
 
-                If dt.Rows(i_point).Item("UN011_CODOCP").ToString = g_Param(1) Then
-                    Exit For
-                End If
-            Next
-            i = i_point
-
-            'Iniciar com o comando passado
-            If g_Comando = "incluir" Then
-                bIncluir = True
-                bAlterar = True
-            ElseIf g_Comando = "alterar" Then
-                bIncluir = False
-                bAlterar = True
-            Else
-                bIncluir = False
-                bAlterar = False
-            End If
-        Else
+        'Iniciar com o comando passado
+        If g_Comando = "incluir" Then
             bIncluir = True
             bAlterar = True
+        ElseIf g_Comando = "alterar" Then
+            bIncluir = False
+            bAlterar = True
+        Else
+            bIncluir = False
+            bAlterar = False
         End If
 
         TratarObjetos()
@@ -95,13 +78,26 @@ Public Class frmTipoDeOcupacao
             txtCodigo.Text = dt.Rows(i).Item("UN011_CODOCP")
             txtDescricao.Text = dt.Rows(i).Item("UN011_DESOCP")
             cbNivOcp.Text = IIf(IsDBNull(dt.Rows(i).Item("UN011_NIVOCP")), "CNB", dt.Rows(i).Item("UN011_NIVOCP"))
-            chkAprAgr.Checked = IIf(IsDBNull(dt.Rows(i).Item("UN011_APRAGR")), False, dt.Rows(i).Item("UN011_APRAGR") = 1)
-            chkAprIns.Checked = IIf(IsDBNull(dt.Rows(i).Item("UN011_APRINS")), False, dt.Rows(i).Item("UN011_APRINS") = 1)
-        End If
+            'chkAprAgr.Checked = IIf(IsDBNull(dt.Rows(i).Item("UN011_APRAGR")), False, dt.Rows(i).Item("UN011_APRAGR") = 1)
+            If IsDBNull(dt.Rows(i).Item("UN011_APRAGR")) Then
+                chkAprAgr.Checked = False
+            Else
+                chkAprAgr.Checked = dt.Rows(i).Item("UN011_APRAGR") = 1
+            End If
 
-        'Verificar se é para excluir o registro comandado pelo browse
-        If g_Comando = "excluir" Then
-            Call Excluir_Registro()
+            'chkAprIns.Checked = IIf(IsDBNull(dt.Rows(i).Item("UN011_APRINS")), False, dt.Rows(i).Item("UN011_APRINS") = 1)
+            If IsDBNull(dt.Rows(i).Item("UN011_APRINS")) Then
+                chkAprIns.Checked = False
+            Else
+                chkAprIns.Checked = dt.Rows(i).Item("UN011_APRINS") = 1
+            End If
+
+            'Verificar se é para excluir o registro comandado pelo browse
+            If g_Comando = "excluir" Then
+                Call Excluir_Registro()
+            End If
+        ElseIf bIncluir Then
+            Call btnIncluir_Click(Nothing, New System.EventArgs())
         End If
 
     End Sub
@@ -138,15 +134,9 @@ Public Class frmTipoDeOcupacao
 
     Private Sub btnCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelar.Click
 
-        If g_Comando = "inserir" Or g_Comando = "alterar" Then
-            dt.Clear()
-            Me.Close()
-        Else
-            bAlterar = False
-            bIncluir = False
-            TratarObjetos()
-        End If
-
+        dt.Clear()
+        Me.Close()
+        
     End Sub
 
     Private Sub btnIncluir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIncluir.Click
@@ -154,10 +144,10 @@ Public Class frmTipoDeOcupacao
         bIncluir = True
 
         'Inicializar os seus Componentes de Entrada de Dados
-        txtCodigo.Text = ""
+        txtCodigo.Text = "auto"
         txtDescricao.Text = ""
 
-        Call TratarObjetos()
+        If Not g_Comando = "incluir" Then Call TratarObjetos()
 
     End Sub
 
@@ -193,7 +183,7 @@ Public Class frmTipoDeOcupacao
                 bIncluir = False
                 bAlterar = False
 
-                If g_Param(1) = "incluir" Then
+                If bIncluir Then
                     dt.Clear()
                     'fechar o form de cadastro
                     Me.Close()
@@ -205,13 +195,7 @@ Public Class frmTipoDeOcupacao
                         ' Preencher o DataTable 
                         da.Fill(dt)
                     End Using
-                    'Verificar se o comando veio do browse
-                    If g_Comando = "incluir" Or g_Comando = "alterar" Then
-                        dt.Clear()
-                        Me.Close()
-                    Else
-                        TratarObjetos()
-                    End If
+                    TratarObjetos()
                 End If
             End Try
         Else
@@ -241,30 +225,10 @@ Public Class frmTipoDeOcupacao
             Catch ex As Exception
                 MsgBox(ex.ToString())
             Finally
-
-                dt.Reset()
-                Using da As New OleDbDataAdapter()
-                    da.SelectCommand = New OleDbCommand(cQuery, g_ConnectBanco)
-
-                    'Preencher o DataTable 
-                    da.Fill(dt)
-                End Using
-
-                If i > dt.Rows.Count() - 1 Then
-                    i = dt.Rows.Count() - 1
-                End If
-
-                'Verificar se o comando veio do browse
-                If g_Comando = "excluir" Then
-                    dt.Clear() 'Limpar o DataTable
-                    Me.Close()
-                Else
-                    TratarObjetos()
-                End If
             End Try
-        Else
-            MsgBox(cMensagem)
         End If
+        dt.Clear() 'Limpar o DataTable
+        Me.Close()
 
     End Sub
 

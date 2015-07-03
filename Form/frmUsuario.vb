@@ -14,27 +14,22 @@ Public Class frmUsuario
     Private Sub frmUsuario_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         g_Param(1) = getCodUsuario(txtLogin.Text) 'Voltar com a Chave do registro do formulário
         g_AtuBrowse = True
-        g_Comando = "REFRESH" 'Forçar a atualização do browser pelo timer
     End Sub
-
-    'Public Sub New(ByVal ValorForm As String)
-    '    Call InitializeComponent()
-    '    MsgBox(ValorForm)
-    'End Sub
 
     Private Sub frmUsuario_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim cQuery_Grupo As String
-        Dim i_point As Integer
 
         ToolStrip1.ShowItemToolTips = True
 
         'Criar um adaptador que vai fazer o download de dados da base de dados
         '?? Alterar o Código para a Entidade Principal ??
-        If Me.Tag = 4 Or g_Param(1) = "INSERT" Then
-            cQueryCadastro = "SELECT * FROM ESI000 WHERE SI000_STAUSU<>'E'"
+        cQueryCadastro = "SELECT * FROM ESI000 where SI000_CODUSU = "
+        If g_Comando = "incluir" Then
+            cQueryCadastro += "0"
         Else
-            cQueryCadastro = "SELECT * FROM ESI000 where SI000_CODUSU = " & g_Param(1)
+            cQueryCadastro += g_Param(1)
         End If
+        i = 0
 
         Using da As New OleDbDataAdapter()
             da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
@@ -43,30 +38,16 @@ Public Class frmUsuario
             da.Fill(dt)
         End Using
 
-        If g_Param(1) <> "INSERT" Then
-            'Posicionar no registro selecionado
-            '?? Alterar para localizar a chave da tabela ??
-            For i_point = 0 To dt.Rows.Count() - 1
-                If dt.Rows(i_point).Item("SI000_CODUSU").ToString = g_Param(1) Then
-                    Exit For
-                End If
-            Next
-            i = i_point
-
-            'Iniciar com o comando passado
-            If g_Comando = "incluir" Then
-                bIncluir = True
-                bAlterar = True
-            ElseIf g_Comando = "alterar" Then
-                bIncluir = False
-                bAlterar = True
-            Else
-                bIncluir = False
-                bAlterar = False
-            End If
-        Else
+        'Iniciar com o comando passado
+        If g_Comando = "incluir" Then
             bIncluir = True
             bAlterar = True
+        ElseIf g_Comando = "alterar" Then
+            bIncluir = False
+            bAlterar = True
+        Else
+            bIncluir = False
+            bAlterar = False
         End If
 
         'Carregar o Combo de Grupos
@@ -101,34 +82,35 @@ Public Class frmUsuario
             lstGrupoAssoc.Items.Add(cbGrupoPrincipal.Text)
         End If
 
-        If Not bIncluir Then
-            'Carregar o Combo de Grupos Associados ao usuário
-            cquery_grupo = "SELECT ESI001.SI001_DESGRU, ESI006.SI006_CODGRU FROM (ESI001 " & _
-                    "INNER JOIN ESI006 ON ESI006.SI006_CODGRU=ESI001.SI001_CODGRU) " & _
-                    "where ESI006.SI006_CODUSU= " & _
-                    getCodUsuario(dt.Rows(i).Item("SI000_LGIUSU")) 
-            Using da As New OleDbDataAdapter()
-                da.SelectCommand = New OleDbCommand(cquery_grupo, g_ConnectBanco)
+        If dt.Rows.Count > 0 Then
+            If Not bIncluir Then
+                'Carregar o Combo de Grupos Associados ao usuário
+                cquery_grupo = "SELECT ESI001.SI001_DESGRU, ESI006.SI006_CODGRU FROM (ESI001 " & _
+                        "INNER JOIN ESI006 ON ESI006.SI006_CODGRU=ESI001.SI001_CODGRU) " & _
+                        "where ESI006.SI006_CODUSU= " & _
+                        getCodUsuario(dt.Rows(i).Item("SI000_LGIUSU"))
+                Using da As New OleDbDataAdapter()
+                    da.SelectCommand = New OleDbCommand(cquery_grupo, g_ConnectBanco)
 
-                ' Preencher o DataTable 
-                da.Fill(dtGrupo)
-                If dtGrupo.Rows.Count() > 0 Then
-                    For x = 0 To dtGrupo.Rows.Count() - 1
-                        If cbGrupoPrincipal.Text <> dtGrupo.Rows(x).Item("SI001_DESGRU") Then
-                            lstGrupoAssoc.Items.Add(dtGrupo.Rows(x).Item("SI001_DESGRU"))
-                        End If
-                    Next
-                End If
-            End Using
-            dtGrupo.Clear()
+                    ' Preencher o DataTable 
+                    da.Fill(dtGrupo)
+                    If dtGrupo.Rows.Count() > 0 Then
+                        For x = 0 To dtGrupo.Rows.Count() - 1
+                            If cbGrupoPrincipal.Text <> dtGrupo.Rows(x).Item("SI001_DESGRU") Then
+                                lstGrupoAssoc.Items.Add(dtGrupo.Rows(x).Item("SI001_DESGRU"))
+                            End If
+                        Next
+                    End If
+                End Using
+                dtGrupo.Clear()
+            End If
         End If
-
         lstGrupoAssoc.Items.Add("")
         lstGrupoAssoc.Items.Add("GRUPOS A ASSOCIAR")
 
         'Carregar o Combo de Grupos Não Associados 
-        If bIncluir Then
-            cquery_grupo = "SELECT ESI001.SI001_DESGRU, ESI001.SI001_CODGRU FROM ESI001 " 
+        If bIncluir Or dt.Rows.Count = 0 Then
+            cquery_grupo = "SELECT ESI001.SI001_DESGRU, ESI001.SI001_CODGRU FROM ESI001 "
         Else
             cquery_grupo = "SELECT ESI001.SI001_DESGRU FROM ESI001 " & _
                     "where not exists(select * from ESI006 where ESI006.SI006_CODGRU=ESI001.SI001_CODGRU " & _
@@ -154,13 +136,15 @@ Public Class frmUsuario
     End Sub
 
     Private Sub TratarObjetos()
+        Dim nCodigoUsu As Integer = getCodUsuario(ClassCrypt.Decrypt(g_Login))
+        Dim bAdministrador as Boolean = UsuarioAdministrador(nCodigoUsu) 
 
         tssContReg.Text = "Registro " & (i + 1).ToString & "/" & dt.Rows.Count().ToString
 
         'Botoes da Barra de comandos
-        btnIncluir.Enabled = Not bAlterar And Me.Tag = 4 'And Me.Tag > 1
+        btnIncluir.Enabled = Not bAlterar And bAdministrador 'And Me.Tag > 1
         btnAlterar.Enabled = Not bAlterar 'And Me.Tag > 1
-        btnExcluir.Enabled = Not bAlterar And Me.Tag = 4
+        btnExcluir.Enabled = Not bAlterar And bAdministrador
         btnGravar.Enabled = bAlterar
         btnCancelar.Enabled = bAlterar
         btnAnterior.Enabled = Not bAlterar
@@ -172,28 +156,28 @@ Public Class frmUsuario
         '?? Alterar para os seus objetos da Tela ??
         lblLogin.Enabled = bIncluir
         txtLogin.Enabled = bIncluir
-        lblNmUsuario.Enabled = bAlterar And Me.Tag = 4 'And Me.Tag > 1
-        txtNmUsuario.Enabled = bAlterar And Me.Tag = 4 'And Me.Tag > 1
+        lblNmUsuario.Enabled = bAlterar And Me.Tag > 1
+        txtNmUsuario.Enabled = bAlterar And Me.Tag > 1
         lblSenha.Enabled = bAlterar
         lblSenha2.Enabled = bAlterar
         txtSenha.Enabled = bAlterar
         txtSenha2.Enabled = bAlterar
-        lblGrupo.Enabled = bAlterar
+        lblGrupo.Enabled = bAlterar And bAdministrador
         btnLocalizar.Enabled = bAlterar
         txtColaborador.Enabled = bAlterar
         lblColaborador.Enabled = bAlterar
 
         'Outros Controles
-        cbGrupoPrincipal.Enabled = bAlterar And Me.Tag = 4 'And Me.Tag > 1
-        lstGrupoAssoc.Enabled = bAlterar And Me.Tag = 4
-        lblGrupoAssoc.Enabled = bAlterar And Me.Tag = 4
-        dtpExpira.Enabled = bAlterar And Me.Tag = 4
-        lblDtpExpira.Enabled = bAlterar And Me.Tag = 4
-        chkAlterarSenha.Enabled = bAlterar And Me.Tag = 4
-        chkGerAgr.Enabled = bAlterar And Me.Tag = 4
-        chkValidade.Enabled = bAlterar And Me.Tag = 4
-        lblStaUsu.Enabled = bAlterar And Me.Tag = 4
-        cbStaUsu.Enabled = bAlterar And Me.Tag = 4
+        cbGrupoPrincipal.Enabled = bAlterar And bAdministrador
+        lstGrupoAssoc.Enabled = bAlterar And bAdministrador
+        lblGrupoAssoc.Enabled = bAlterar And bAdministrador
+        dtpExpira.Enabled = bAlterar And bAdministrador
+        lblDtpExpira.Enabled = bAlterar And bAdministrador
+        chkAlterarSenha.Enabled = bAlterar And bAdministrador
+        chkGerAgr.Enabled = bAlterar And bAdministrador
+        chkValidade.Enabled = bAlterar And bAdministrador
+        lblStaUsu.Enabled = bAlterar And bAdministrador
+        cbStaUsu.Enabled = bAlterar And bAdministrador
         '*****************
 
         'Preencher Campos
@@ -205,8 +189,8 @@ Public Class frmUsuario
             dtpExpira.Value = CDate(dt.Rows(i).Item("SI000_DATEXP"))
             chkValidade.Checked = Format(dtpExpira.Value, "dd/MM/yyyy") = "01/01/1900"
             'If chkValidade.Checked Then dtpExpira.Text = ""
-            dtpExpira.Enabled = Not chkValidade.Checked And bAlterar
-            lblDtpExpira.Enabled = Not chkValidade.Checked And bAlterar
+            dtpExpira.Enabled = Not chkValidade.Checked And bAlterar And bAdministrador
+            lblDtpExpira.Enabled = Not chkValidade.Checked And bAlterar And bAdministrador
 
             chkAlterarSenha.Checked = dt.Rows(i).Item("SI000_ALTPAS") = 1
             chkGerAgr.Checked = IIf(IsDBNull(dt.Rows(i).Item("SI000_GERAGR")), False, dt.Rows(i).Item("SI000_GERAGR") = 1)
@@ -226,6 +210,25 @@ Public Class frmUsuario
 
             'Outros Controles
             cbGrupoPrincipal.Text = getDescrGrupo(dt.Rows(i).Item("SI000_CODGRU"))
+
+            'Verificar se é para excluir o registro comandado pelo browse
+            If g_Comando = "excluir" Then
+                If bAdministrador Then
+                    Call Excluir_Registro()
+                Else
+                    MsgBox("Usuário sem permissão para excluir Usuários !!")
+                    dt.Clear()
+                    Me.Close()
+                End If
+            End If
+        ElseIf bIncluir Then
+            If bAdministrador Then
+                Call btnIncluir_Click(Nothing, New System.EventArgs())
+            Else
+                MsgBox("Usuário sem permissão para incluir Usuários !!")
+                dt.Clear()
+                Me.Close()
+            End If
         End If
 
         'Outras Chamadas
@@ -264,14 +267,9 @@ Public Class frmUsuario
 
     Private Sub btnCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelar.Click
 
-        If g_Comando = "incluir" Or g_Comando = "alterar" Then
-            dt.Clear()
-            Me.Close()
-        Else
-            bAlterar = False
-            bIncluir = False
-            TratarObjetos()
-        End If
+        dt.Clear()
+        Me.Close()
+
     End Sub
 
     Private Sub btnIncluir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIncluir.Click
@@ -285,7 +283,7 @@ Public Class frmUsuario
         txtSenha2.Text = ""
         cbStaUsu.Text = "ATIVO"
 
-        Call TratarObjetos()
+        If Not g_Comando = "incluir" Then Call TratarObjetos()
 
     End Sub
 
@@ -331,9 +329,8 @@ Public Class frmUsuario
                     bIncluir = False
                     bAlterar = False
 
-                    If g_Param(1) = "INSERT" Then
+                    If bIncluir Then
                         dt.Clear()
-                        'fechar o form de cadastro
                         Me.Close()
                     Else
                         dt.Reset()
@@ -345,13 +342,7 @@ Public Class frmUsuario
                         End Using
 
                         'Verificar se o comando veio do browse
-                        If g_Comando = "incluir" Or g_Comando = "alterar" Then
-                            dt.Clear()
-                            Me.Close()
-                        Else
-                            TratarObjetos()
-                        End If
-
+                        TratarObjetos()
                     End If
                 End Try
             Else
@@ -410,32 +401,10 @@ Public Class frmUsuario
                 cSql = "DELETE FROM ESI006 where SI006_CODUSU = " & getCodUsuario(txtLogin.Text)
                 cmd = New OleDbCommand(cSql, g_ConnectBanco)
                 cmd.ExecuteNonQuery()
-
-                dt.Reset()
-                Using da As New OleDbDataAdapter()
-                    da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
-
-                    'Preencher o DataTable 
-                    da.Fill(dt)
-                End Using
-
-                If i > dt.Rows.Count() - 1 Then
-                    i = dt.Rows.Count() - 1
-                End If
-
-                'Verificar se o comando veio do browse
-                If g_Comando = "excluir" Then
-                    dt.Clear() 'Limpar o DataTable
-                    Me.Close()
-                Else
-                    TratarObjetos()
-                End If
-
             End Try
-
-        Else
-            If Not Trim(cMensagem) = "" Then MsgBox(cMensagem)
         End If
+        dt.Clear() 'Limpar o DataTable
+        Me.Close()
     End Sub
 
     Private Sub lstGrupoAssoc_DoubleClick(sender As Object, e As EventArgs) Handles lstGrupoAssoc.DoubleClick
@@ -591,21 +560,6 @@ Public Class frmUsuario
         End If
         dtpExpira.Enabled = Not chkValidade.Checked And bAlterar
         lblDtpExpira.Enabled = Not chkValidade.Checked And bAlterar
-
-    End Sub
-
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-
-        'Usado o Timer para poder carregar o formulário antes de excluir
-        'Verificar se é para excluir o registro comandado pelo browse
-        Timer1.Enabled = False
-        If g_Comando = "excluir" Then
-            Call Excluir_Registro()
-        End If
-
-    End Sub
-
-    Private Sub cbGrupoPrincipal_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbGrupoPrincipal.SelectedIndexChanged
 
     End Sub
 

@@ -112,7 +112,7 @@ Partial Class frmBrowse
         Me.txtValorCondicao.Location = New System.Drawing.Point(380, 15)
         Me.txtValorCondicao.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtValorCondicao.Name = "txtValorCondicao"
-        Me.txtValorCondicao.Size = New System.Drawing.Size(238, 22)
+        Me.txtValorCondicao.Size = New System.Drawing.Size(229, 22)
         Me.txtValorCondicao.TabIndex = 5
         '
         'btnImprimir
@@ -130,13 +130,15 @@ Partial Class frmBrowse
         '
         'grbFiltro
         '
+        Me.grbFiltro.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grbFiltro.Controls.Add(Me.txtValorCondicao)
         Me.grbFiltro.Controls.Add(Me.cbCondicao)
         Me.grbFiltro.Controls.Add(Me.cbCampo)
         Me.grbFiltro.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.grbFiltro.Location = New System.Drawing.Point(57, 5)
         Me.grbFiltro.Name = "grbFiltro"
-        Me.grbFiltro.Size = New System.Drawing.Size(701, 44)
+        Me.grbFiltro.Size = New System.Drawing.Size(615, 44)
         Me.grbFiltro.TabIndex = 7
         Me.grbFiltro.TabStop = False
         '

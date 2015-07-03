@@ -57,12 +57,12 @@ Partial Class mdiPrincipal
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.menuSisUsuarios = New System.Windows.Forms.ToolStripMenuItem()
         Me.Ajuda = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ContentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Manual = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.Sobre = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -89,18 +89,18 @@ Partial Class mdiPrincipal
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(159, 6)
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(149, 6)
         '
         'menuCadTipoDeOcupacao
         '
         Me.menuCadTipoDeOcupacao.Name = "menuCadTipoDeOcupacao"
-        Me.menuCadTipoDeOcupacao.Size = New System.Drawing.Size(162, 24)
+        Me.menuCadTipoDeOcupacao.Size = New System.Drawing.Size(152, 24)
         Me.menuCadTipoDeOcupacao.Text = "Encargos"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(159, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(149, 6)
         '
         'menuCadColaboradores
         '
@@ -111,13 +111,13 @@ Partial Class mdiPrincipal
         'menuCadUnidades
         '
         Me.menuCadUnidades.Name = "menuCadUnidades"
-        Me.menuCadUnidades.Size = New System.Drawing.Size(162, 24)
+        Me.menuCadUnidades.Size = New System.Drawing.Size(152, 24)
         Me.menuCadUnidades.Text = "Unidades"
         '
         'mnuSair
         '
         Me.mnuSair.Name = "mnuSair"
-        Me.mnuSair.Size = New System.Drawing.Size(162, 24)
+        Me.mnuSair.Size = New System.Drawing.Size(152, 24)
         Me.mnuSair.Text = "Sair"
         '
         'menuProcessos
@@ -260,29 +260,22 @@ Partial Class mdiPrincipal
         '
         'Ajuda
         '
-        Me.Ajuda.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ContentsToolStripMenuItem, Me.ToolStripSeparator8, Me.AboutToolStripMenuItem})
+        Me.Ajuda.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Manual, Me.ToolStripSeparator8, Me.Sobre})
         Me.Ajuda.Name = "Ajuda"
         Me.Ajuda.Size = New System.Drawing.Size(60, 24)
         Me.Ajuda.Text = "&Ajuda"
         '
-        'ContentsToolStripMenuItem
+        'Manual
         '
-        Me.ContentsToolStripMenuItem.Name = "ContentsToolStripMenuItem"
-        Me.ContentsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
-        Me.ContentsToolStripMenuItem.Size = New System.Drawing.Size(184, 24)
-        Me.ContentsToolStripMenuItem.Text = "Manual"
+        Me.Manual.Name = "Manual"
+        Me.Manual.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
+        Me.Manual.Size = New System.Drawing.Size(184, 24)
+        Me.Manual.Text = "Manual"
         '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
         Me.ToolStripSeparator8.Size = New System.Drawing.Size(181, 6)
-        '
-        'AboutToolStripMenuItem
-        '
-        Me.AboutToolStripMenuItem.Image = CType(resources.GetObject("AboutToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(184, 24)
-        Me.AboutToolStripMenuItem.Text = "Sobre ..."
         '
         'StatusStrip
         '
@@ -299,6 +292,13 @@ Partial Class mdiPrincipal
         Me.ToolStripStatusLabel.Name = "ToolStripStatusLabel"
         Me.ToolStripStatusLabel.Size = New System.Drawing.Size(49, 20)
         Me.ToolStripStatusLabel.Text = "Status"
+        '
+        'Sobre
+        '
+        Me.Sobre.Image = CType(resources.GetObject("Sobre.Image"), System.Drawing.Image)
+        Me.Sobre.Name = "Sobre"
+        Me.Sobre.Size = New System.Drawing.Size(184, 24)
+        Me.Sobre.Text = "Sobre ..."
         '
         'mdiPrincipal
         '
@@ -325,10 +325,10 @@ Partial Class mdiPrincipal
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents ContentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Manual As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Ajuda As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator8 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Sobre As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuRelatorios As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolTip As System.Windows.Forms.ToolTip
     Friend WithEvents ToolStripStatusLabel As System.Windows.Forms.ToolStripStatusLabel

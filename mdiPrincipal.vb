@@ -19,9 +19,9 @@ Public Class mdiPrincipal
         g_Login = ""
 
         If Not bUsarVPN Then
-            'bArguments = False
+            bArguments = False
             '***** Indicar qual usuário deverá se logado automaticamente
-            'g_Login = ClassCrypt.Encrypt("admin")
+            g_Login = ClassCrypt.Encrypt("admin")
             'g_Login = ClassCrypt.Encrypt("jose.alves")
             'g_Login = ClassCrypt.Encrypt("teste.3")
             '*****
@@ -121,8 +121,14 @@ Public Class mdiPrincipal
     End Sub
 
     Private Sub menuUsuarios_Click(sender As Object, e As EventArgs) Handles menuSisUsuarios.Click
-        '?? Alterar os parâmetros para passar ao Browse (Entudade e Form. do Cadastro) ??
-        Dim frmBrowse_Usuario As frmBrowse = New frmBrowse("ESI000", "frmUsuario", , "SI000_STAUSU<>'E'")
+        Dim sWhere As String = "SI000_STAUSU<>'E'"
+        Dim nCodigoUsu As Integer = getCodUsuario(ClassCrypt.Decrypt(g_Login))
+
+        If Not UsuarioAdministrador(nCodigoUsu) Then
+            sWhere = " and SI000_CODUSU=" & nCodigoUsu.ToString
+        End If
+
+        Dim frmBrowse_Usuario As frmBrowse = New frmBrowse("ESI000", "frmUsuario", , sWhere)
 
         frmBrowse_Usuario.MdiParent = Me
         frmBrowse_Usuario.Tag = menuSisUsuarios.Tag 'é gravado no tag do menu o nível de acesso
@@ -250,7 +256,7 @@ Public Class mdiPrincipal
     Private Sub menuCadColaboradores_Click(sender As Object, e As EventArgs) Handles menuCadColaboradores.Click
         'Dim frmBrowse_Colaboradores As frmBrowse = New frmBrowse("EUN003", "frmColaboradores", "left join EUN013 on EUN013.UN013_CODUNI=EUN003.UN003_CODUNI", _
         '                                            "((EUN013.UN013_CODUSU=" & getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString & " AND UN013_PERACE > 0) or (EUN003.UN003_CODUNI=0))")
-        Dim frmBrowse_Colaboradores As frmBrowse = New frmBrowse("EUN003", "frmColaboradores", , "EUN003.UN003_SITCOL<>'E'")
+        Dim frmBrowse_Colaboradores As frmBrowse = New frmBrowse("EUN003", "frmAssociados", , "EUN003.UN003_SITCOL<>'E'")
 
         frmBrowse_Colaboradores.MdiParent = Me
         frmBrowse_Colaboradores.Tag = menuCadColaboradores.Tag 'é gravado no tag do menu o nível de acesso
@@ -301,4 +307,20 @@ Public Class mdiPrincipal
         End With
     End Sub
 
+    Private Sub Sobre_Click(sender As Object, e As EventArgs) Handles Sobre.Click
+        Dim frmSobre As frmSobre = New frmSobre
+
+        frmSobre.MdiParent = Me
+        frmSobre.Text = Sobre.Text
+        frmSobre.Show()
+
+    End Sub
+
+    Private Sub Manual_Click(sender As Object, e As EventArgs) Handles Manual.Click
+        Process.Start(Application.ProductName & ".pdf")
+    End Sub
+
+    Private Sub mnuSair_Click(sender As Object, e As EventArgs) Handles mnuSair.Click
+        Me.Close()
+    End Sub
 End Class

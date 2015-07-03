@@ -24,6 +24,7 @@ Public Class frmRelColabUnidades
 
         RptPath = Application.StartupPath & LerDadosINI(nomeArquivoINI(), "PATH", "Reports", "\Reports\")
         'RptPath = "C:\Fontes\SSVP_Projeto\Report\"
+        frmReportViewer.Text = Me.Text
         frmReportViewer.ShowReport("Unidades_RelColaborador.rpt", RptPath, rptSelection)
         Me.Cursor = Cursors.Default
 

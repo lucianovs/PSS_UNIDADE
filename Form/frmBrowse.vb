@@ -195,23 +195,23 @@ Public Class frmBrowse
     End Sub
 
     Private Sub CarregarFormCadastro()
-        'Carregar o Formulário do Cadastro
-        Dim frmType As Type = Type.GetType(sModulo & "." & Formulario)
-        Dim frm As Object = Activator.CreateInstance(frmType)
 
-        CType(frm, Form).Tag = Me.Tag 'nível de acesso
-        CType(frm, Form).Text = "FORMULÁRIO - " & Me.Text
-        frmType.InvokeMember("Show", Reflection.BindingFlags.InvokeMethod, Nothing, frm, Nothing)
+        Try
+            'Carregar o Formulário do Cadastro
+            'Dim frmType As Type = Type.GetType(sModulo & "." & Formulario)
+            Dim frmType As Type = Type.GetType(Application.ProductName & "." & Formulario)
+            Dim frm As Object = Activator.CreateInstance(frmType)
+            CType(frm, Form).Tag = Me.Tag 'nível de acesso
+            CType(frm, Form).Text = "FORMULÁRIO - " & Me.Text
+            frmType.InvokeMember("Show", Reflection.BindingFlags.InvokeMethod, Nothing, frm, Nothing)
+            
+            timerRefresh.Enabled = True
 
-        g_AtuBrowse = False
-        timerRefresh.Enabled = True
+        Catch ex As Exception
+            MsgBox(ex.ToString())
+        Finally
 
-        'CType(frm, Form).MdiParent = mdiDesktop
-        'CType(frm, Form).Modal = True
-
-        'Cadastro_Form.MdiParent = mdiPrincipal
-        'Cadastro_Form.Tag = Me.Tag 'nível de acesso
-        'Cadastro_Form.Show()
+        End Try
     End Sub
 
     Private Sub btnSalvar_Click(sender As Object, e As EventArgs) Handles btnSalvar.Click, btnClear.Click
@@ -689,7 +689,11 @@ erro_comandos:
     End Sub
 
     Private Sub timerRefresh_Tick(sender As Object, e As EventArgs) Handles timerRefresh.Tick
-        If g_AtuBrowse Then Call RefreshBrowse()
+        If g_AtuBrowse Then
+            g_AtuBrowse = False
+            Call RefreshBrowse()
+        End If
+
     End Sub
 
     Private Sub txtValorCondicao_KeyDown(sender As Object, e As KeyEventArgs) Handles txtValorCondicao.KeyDown

@@ -19,17 +19,29 @@ Public Class frmRelUnidades
         If Not txtConselho.Text = "" Then 'Todas as Unidades 
             rptSelection = "{EUN000.UN000_CLAUNI} startswith '"
             If Microsoft.VisualBasic.Mid(txtConselho.Text, 4, 2) = "00" Then 'Todas as Unidades do CM
-                rptSelection += Microsoft.VisualBasic.Left(txtConselho.Text, 2) & "'"
+                rptSelection += Microsoft.VisualBasic.Left(txtConselho.Text, 2) & "' and "
             ElseIf Microsoft.VisualBasic.Mid(txtConselho.Text, 7, 2) = "00" Then 'Todas as Unidades do CC
-                rptSelection += Microsoft.VisualBasic.Left(txtConselho.Text, 5) & "'"
+                rptSelection += Microsoft.VisualBasic.Left(txtConselho.Text, 5) & "' and "
             ElseIf Microsoft.VisualBasic.Mid(txtConselho.Text, 10, 2) = "00" Then 'Todas as Unidades do CP
-                rptSelection += Microsoft.VisualBasic.Left(txtConselho.Text, 8) & "'"
+                rptSelection += Microsoft.VisualBasic.Left(txtConselho.Text, 8) & "' and "
+            Else
+                If IsNumeric(Microsoft.VisualBasic.Left(txtConselho.Text, 2)) Then
+                    rptSelection = "(({EUN000.UN000_CLAUNI} = '" & Microsoft.VisualBasic.Left(txtConselho.Text, 11) & "')"
+                    rptSelection += " or ({EUN000.UN000_CLAUNI} ='" & Microsoft.VisualBasic.Left(txtConselho.Text, 8) & ".00')"
+                    rptSelection += " or ({EUN000.UN000_CLAUNI} ='" & Microsoft.VisualBasic.Left(txtConselho.Text, 5) & ".00.00')"
+                    rptSelection += " or ({EUN000.UN000_CLAUNI} ='" & Microsoft.VisualBasic.Left(txtConselho.Text, 2) & ".00.00.00'))"
+                    rptSelection += " and "
+                Else
+                    rptSelection = ""
+                End If
             End If
+            rptSelection += "{EUN000.UN000_STAUNI} ='A'"
         End If
 
         RptPath = Application.StartupPath & LerDadosINI(nomeArquivoINI(), "PATH", "Reports", "\Reports\")
         'RptPath = "C:\Fontes\SSVP_Projeto\Report\"
         'MsgBox(RptPath & "Unidades_Relacao.rpt")
+        frmReportViewer.Text = Me.Text
         frmReportViewer.ShowReport("Unidades_Relacao.rpt", RptPath, rptSelection)
         Me.Cursor = Cursors.Default
 

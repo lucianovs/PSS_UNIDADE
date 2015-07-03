@@ -137,12 +137,6 @@
     <Compile Include="Form\frmBrowse.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmColaboradores.Designer.vb">
-      <DependentUpon>frmColaboradores.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form\frmColaboradores.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Form\frmGerenciarUni.Designer.vb">
       <DependentUpon>frmGerenciarUni.vb</DependentUpon>
     </Compile>
@@ -159,6 +153,12 @@
       <DependentUpon>frmReportViewer.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\frmReportViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmSobre.designer.vb">
+      <DependentUpon>frmSobre.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmSobre.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\frmTipoDeComplemento.Designer.vb">
@@ -207,6 +207,12 @@
       <DependentUpon>frmRelMandato.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\frmRelMandato.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmAssociados.designer.vb">
+      <DependentUpon>frmAssociados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmAssociados.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="mdiPrincipal.Designer.vb">
@@ -266,9 +272,6 @@
     <EmbeddedResource Include="Form\frmBrowse.resx">
       <DependentUpon>frmBrowse.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmColaboradores.resx">
-      <DependentUpon>frmColaboradores.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmGerenciarUni.resx">
       <DependentUpon>frmGerenciarUni.vb</DependentUpon>
     </EmbeddedResource>
@@ -277,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmReportViewer.resx">
       <DependentUpon>frmReportViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmSobre.resx">
+      <DependentUpon>frmSobre.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmTipoDeComplemento.resx">
       <DependentUpon>frmTipoDeComplemento.vb</DependentUpon>
@@ -301,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmRelMandato.resx">
       <DependentUpon>frmRelMandato.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmAssociados.resx">
+      <DependentUpon>frmAssociados.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mdiPrincipal.resx">
       <DependentUpon>mdiPrincipal.vb</DependentUpon>
@@ -328,6 +337,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\cancelar2.png" />
+    <Content Include="Resources\Unidades.png" />
     <None Include="Resources\AllDay.ru_Search.png" />
     <Content Include="Resources\Unidades.ico" />
   </ItemGroup>

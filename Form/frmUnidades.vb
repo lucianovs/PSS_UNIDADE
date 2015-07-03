@@ -20,11 +20,9 @@ Public Class frmUnidades
     Private Sub frmUnidades_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         g_Param(1) = txtCodigo.Text 'Voltar com a Chave do registro do formulário
         g_AtuBrowse = True
-        g_Comando = "REFRESH" 'Forçar a atualização do browser pelo timer
     End Sub
 
     Private Sub frmUnidades_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim i_point As Integer
 
         If g_Comando = "incluir" Then 'Or g_Comando = "excluir" Then
             MsgBox("Comando não permitido !!")
@@ -37,6 +35,7 @@ Public Class frmUnidades
         'Carregar a permissão do usuário
         cQueryCadastro = "Select UN013_PERACE FROM EUN013 where EUN013.UN013_CODUSU=" & _
             getCodUsuario(ClassCrypt.Decrypt(g_Login)).ToString & " AND UN013_CODUNI = " & g_Param(1)
+
         Using da As New OleDbDataAdapter()
             da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
 
@@ -51,18 +50,16 @@ Public Class frmUnidades
             Else
                 nPermissao = 0
             End If
-
         End If
         dtCadastro.Clear()
 
         'Criar um adaptador que vai fazer o download de dados da base de dados
-        '?? Alterar o Código para a Entidade Principal ??
-
-        'If Me.Tag = 4 Then
-        'cQuerycadastro = "SELECT * FROM EUN000 where UN000_STAUNI <> 'I'"
-        'Else
-        cQueryCadastro = "SELECT * FROM EUN000 where UN000_STAUNI <> 'I' and UN000_CODRED = " & g_Param(1)
-        'End If
+        cQueryCadastro = "SELECT * FROM EUN000 where UN000_STAUNI <> 'I'"
+        If g_Comando = "incluir" Then
+            cQueryCadastro += " and UN000_CODRED = 0"
+        Else
+            cQueryCadastro += " and UN000_CODRED = " & g_Param(1)
+        End If
 
         Using da As New OleDbDataAdapter()
             da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
@@ -70,34 +67,20 @@ Public Class frmUnidades
             ' Preencher o DataTable 
             da.Fill(dtCadastro)
         End Using
+        i = 0
 
-        If g_Param(1) <> "INSERT" Then
-            'Posicionar no registro selecionado
-            '?? Alterar para localizar a chave da tabela ??
-            For i_point = 0 To dtCadastro.Rows.Count() - 1
-
-                If dtCadastro.Rows(i_point).Item("UN000_CODRED").ToString = g_Param(1) Then
-                    Exit For
-                End If
-            Next
-            i = i_point
-
-            'Iniciar com o comando passado
-            If g_Comando = "incluir" Then
-                bIncluir = True
-                bAlterar = True
-            ElseIf g_Comando = "alterar" Then
-                bIncluir = False
-                bAlterar = True
-            Else
-                bIncluir = False
-                bAlterar = False
-            End If
-        Else
+        'Iniciar com o comando passado
+        If g_Comando = "incluir" Then
             bIncluir = True
             bAlterar = True
+        ElseIf g_Comando = "alterar" Then
+            bIncluir = False
+            bAlterar = True
+        Else
+            bIncluir = False
+            bAlterar = False
         End If
-
+        
         cCampos = "UN000_CODRED,UN000_NUMREG,UN000_CLAUNI,UN000_NOMUNI,UN000_DATFUN,UN000_CNPUNI," & _
             "UN000_ENDUNI,UN000_BAIUNI,UN000_CEPUNI,UN000_CIDUNI,UN000_ESTUNI,UN000_NACUNI,UN000_DIOUNI," & _
             "UN000_BCOUNI,UN000_AGEUNI,UN000_CCOUNI,UN000_TITUNI,UN000_OBSCCO,UN000_FREREU,UN000_APROCP," & _
@@ -282,7 +265,6 @@ Public Class frmUnidades
                     da.Fill(dtFichaInst)
                 End Using
                 If dtFichaInst.Rows.Count > 0 Then
-                    MsgBox("Ficha Inst")
                     With dtpDataAprovacaoCP
                         .Value = IIf(IsDBNull(dtFichaInst.Rows(0).Item("UN015_DAUTCP")), "01/01/1900", dtFichaInst.Rows(0).Item("UN015_DAUTCP"))
                         If .Value = "01/01/1900" Then
@@ -465,12 +447,14 @@ Public Class frmUnidades
             If Microsoft.VisualBasic.Right(Trim(txtEstruturaUnidade.Text), 2) <> "00" Then
                 CarregarGridMembro()
             End If
-        End If
 
             'Verificar se é para excluir o registro - comandado pelo browse
             If g_Comando = "excluir" Then
                 Call Excluir_Registro()
             End If
+        ElseIf g_Comando = "incluir" Then
+            Call btnIncluir_Click(Nothing, New System.EventArgs())
+        End If
 
     End Sub
 
@@ -518,14 +502,8 @@ Public Class frmUnidades
     End Sub
 
     Private Sub btnCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelar.Click
-        If g_Comando = "inserir" Or g_Comando = "alterar" Then
-            dtCadastro.Clear()
-            Me.Close()
-        Else
-            bAlterar = False
-            bIncluir = False
-            TratarObjetos()
-        End If
+        dtCadastro.Clear()
+        Me.Close()
     End Sub
 
     Private Sub btnIncluir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIncluir.Click
@@ -580,17 +558,17 @@ Public Class frmUnidades
                     cSql += "UN000_CIDUNI, UN000_ESTUNI, UN000_NACUNI, UN000_DIOUNI, UN000_BCOUNI, UN000_AGEUNI, UN000_CCOUNI, UN000_TITUNI, UN000_OBSCCO, UN000_FREREU, "
                     cSql += "UN000_APROCP, UN000_APROCC, UN000_APROCM, UN000_APROCN, UN000_APROCG, UN000_DATINS, UN000_DATENV, UN000_TIPOCF)"
                     cSql += " values (" & Integer.Parse(ProxCodChave("EUN000", "UN000_CODRED")) & ", " & Integer.Parse(txtRegistro.Text) & ", '" & txtEstruturaUnidade.Text & "'"
-                    cSql += ", '" & txtNome.Text & "', " & FormatarData(dtpDataFundacao.Text) & ", '" & txtCnpj.Text & "'"
+                    cSql += ", '" & txtNome.Text & "', " & FormatarData(dtpDataFundacao.Value) & ", '" & txtCnpj.Text & "'"
                     cSql += ", '" & txtEndereco.Text & "', '" & txtBairro.Text & "', '" & txtCEP.Text & "', '" & txtCidade.Text & "', '" & cbEstado.Text & "'"
                     cSql += ", '" & txtPais.Text & "', '" & txtDiocese.Text & "', '" & txtBanco.Text & "', '" & txtAgencia.Text & "', '" & txtConta.Text & "'"
                     cSql += ", '" & txtTitular.Text & "', '" & txtObs.Text & "', '" & txtFrequenciaReuniao.Text & "'"
-                    cSql += ", " & FormatarData(dtpDataAprovacaoCP.Text) & ", " & FormatarData(dtpDataAprovacaoCC.Text) & ""
-                    cSql += ", " & FormatarData(dtpDataAprovacaoCM.Text) & ", " & FormatarData(dtpDataAprovacaoCN.Text) & ""
-                    cSql += ", " & FormatarData(dtpDataAprovacaoCG.Text) & ", " & FormatarData(dtpDataInstituicaoUnidade.Text) & _
-                        ", " & FormatarData(dtpDataEnvio.Text) & ",'" & Microsoft.VisualBasic.Left(cbTipoCF.Text, 1) & "' )"
+                    cSql += ", " & FormatarData(dtpDataAprovacaoCP.Value) & ", " & FormatarData(dtpDataAprovacaoCC.Value) & ""
+                    cSql += ", " & FormatarData(dtpDataAprovacaoCM.Value) & ", " & FormatarData(dtpDataAprovacaoCN.Value) & ""
+                    cSql += ", " & FormatarData(dtpDataAprovacaoCG.Value) & ", " & FormatarData(dtpDataInstituicaoUnidade.Value) & _
+                        ", " & FormatarData(dtpDataEnvio.Value) & ",'" & Microsoft.VisualBasic.Left(cbTipoCF.Text, 1) & "' )"
                 ElseIf bAlterar Then
                     cSql = "UPDATE EUN000 set UN000_NUMREG = " & Integer.Parse(txtRegistro.Text) & ", UN000_CLAUNI = '" & txtEstruturaUnidade.Text & "', "
-                    cSql += "UN000_NOMUNI = '" & txtNome.Text & "', UN000_DATFUN = " & FormatarData(dtpDataFundacao.Text) & ", "
+                    cSql += "UN000_NOMUNI = '" & txtNome.Text & "', UN000_DATFUN = " & FormatarData(dtpDataFundacao.Value) & ", "
                     cSql += "UN000_CNPUNI = '" & txtCnpj.Text & "', UN000_ENDUNI = '" & txtEndereco.Text & "', UN000_BAIUNI = '" & txtBairro.Text & "', "
                     cSql += "UN000_CEPUNI = '" & txtCEP.Text & "', UN000_CIDUNI = '" & txtCidade.Text & "', UN000_ESTUNI = '" & cbEstado.Text & "', "
                     cSql += "UN000_NACUNI = '" & txtPais.Text & "', UN000_DIOUNI = '" & txtDiocese.Text & "', UN000_BCOUNI = '" & txtBanco.Text & "', "
@@ -618,26 +596,9 @@ Public Class frmUnidades
                     bIncluir = False
                     bAlterar = False
 
-                    If g_Param(1) = "INSERT" Then
-                        dtCadastro.Clear()
+                    dtCadastro.Clear()
                         'fechar o form de cadastro
-                        Me.Close()
-                    Else
-                        dtCadastro.Reset()
-                        Using da As New OleDbDataAdapter()
-                            da.SelectCommand = New OleDbCommand(cQueryCadastro, g_ConnectBanco)
-
-                            ' Preencher o DataTable 
-                            da.Fill(dtCadastro)
-                        End Using
-                        'Verificar se o comando veio do browse
-                        If g_Comando = "inserir" Or g_Comando = "alterar" Then
-                            dtCadastro.Clear()
-                            Me.Close()
-                        Else
-                            TratarObjetos()
-                        End If
-                    End If
+                    Me.Close()
                 End Try
             Else
                 MsgBox("Erro ao conectar com o banco de Dados!!")
@@ -719,16 +680,13 @@ Public Class frmUnidades
                         i = dtCadastro.Rows.Count() - 1
                     End If
                     'Verificar se o comando veio do browse
-                    If g_Comando = "excluir" Then
-                        dtCadastro.Clear() 'Limpar o DataTable
-                        Me.Close()
-                    Else
-                        TratarObjetos()
-                    End If
+                    dtCadastro.Clear() 'Limpar o DataTable
+                    Me.Close()
                 End Try
             End If
         Else
-            MsgBox(sMensagem)
+            dtCadastro.Clear() 'Limpar o DataTable
+            Me.Close()
         End If
 
     End Sub

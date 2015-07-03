@@ -22,7 +22,6 @@ Partial Class frmUsuario
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmUsuario))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.btnIncluir = New System.Windows.Forms.ToolStripButton()
@@ -55,7 +54,6 @@ Partial Class frmUsuario
         Me.dtpExpira = New System.Windows.Forms.DateTimePicker()
         Me.chkValidade = New System.Windows.Forms.CheckBox()
         Me.chkAlterarSenha = New System.Windows.Forms.CheckBox()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.chkGerAgr = New System.Windows.Forms.CheckBox()
         Me.lblColaborador = New System.Windows.Forms.Label()
         Me.txtColaborador = New System.Windows.Forms.TextBox()
@@ -289,9 +287,6 @@ Partial Class frmUsuario
         '
         'lstGrupoAssoc
         '
-        Me.lstGrupoAssoc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lstGrupoAssoc.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.lstGrupoAssoc.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lstGrupoAssoc.FormattingEnabled = True
@@ -349,11 +344,6 @@ Partial Class frmUsuario
         Me.chkAlterarSenha.Text = "Alterar a Senha no próximo login"
         Me.chkAlterarSenha.UseVisualStyleBackColor = True
         '
-        'Timer1
-        '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 200
-        '
         'chkGerAgr
         '
         Me.chkGerAgr.AutoSize = True
@@ -376,8 +366,6 @@ Partial Class frmUsuario
         '
         'txtColaborador
         '
-        Me.txtColaborador.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtColaborador.Location = New System.Drawing.Point(111, 281)
         Me.txtColaborador.Margin = New System.Windows.Forms.Padding(4)
         Me.txtColaborador.MaxLength = 150
@@ -387,7 +375,6 @@ Partial Class frmUsuario
         '
         'btnLocColaborador
         '
-        Me.btnLocColaborador.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnLocColaborador.BackgroundImage = Global.UNIDADES.My.Resources.Resources.AllDay_ru_Search
         Me.btnLocColaborador.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnLocColaborador.Location = New System.Drawing.Point(477, 280)
@@ -487,7 +474,6 @@ Partial Class frmUsuario
     Friend WithEvents chkValidade As System.Windows.Forms.CheckBox
     Friend WithEvents chkAlterarSenha As System.Windows.Forms.CheckBox
     Private WithEvents dtpExpira As System.Windows.Forms.DateTimePicker
-    Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents chkGerAgr As System.Windows.Forms.CheckBox
     Friend WithEvents lblColaborador As System.Windows.Forms.Label
     Friend WithEvents txtColaborador As System.Windows.Forms.TextBox

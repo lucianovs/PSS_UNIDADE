@@ -49,6 +49,10 @@ Partial Class frmColaboradores
         Me.txtCPF = New System.Windows.Forms.TextBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tabCadastro = New System.Windows.Forms.TabPage()
+        Me.dtpDatPro = New System.Windows.Forms.DateTimePicker()
+        Me.lblDatPro = New System.Windows.Forms.Label()
+        Me.dtpDatInc = New System.Windows.Forms.DateTimePicker()
+        Me.lblDatInc = New System.Windows.Forms.Label()
         Me.txtUsuarioAlt = New System.Windows.Forms.TextBox()
         Me.dtpDatAlt = New System.Windows.Forms.DateTimePicker()
         Me.lblDatAlt = New System.Windows.Forms.Label()
@@ -85,12 +89,12 @@ Partial Class frmColaboradores
         Me.txtObser1 = New System.Windows.Forms.TextBox()
         Me.tabEncargos = New System.Windows.Forms.TabPage()
         Me.dtgMandato = New System.Windows.Forms.DataGridView()
-        Me.btnLocUnidade = New System.Windows.Forms.Button()
         Me.txtUnidade = New System.Windows.Forms.TextBox()
         Me.lblSitCol = New System.Windows.Forms.Label()
         Me.cbSitCol = New System.Windows.Forms.ComboBox()
         Me.lblDesSit = New System.Windows.Forms.Label()
         Me.txtDesSit = New System.Windows.Forms.TextBox()
+        Me.btnLocUnidade = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -231,9 +235,9 @@ Partial Class frmColaboradores
         Me.lblNmColaborador.Location = New System.Drawing.Point(13, 93)
         Me.lblNmColaborador.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblNmColaborador.Name = "lblNmColaborador"
-        Me.lblNmColaborador.Size = New System.Drawing.Size(138, 17)
+        Me.lblNmColaborador.Size = New System.Drawing.Size(151, 17)
         Me.lblNmColaborador.TabIndex = 13
-        Me.lblNmColaborador.Text = "Nome do Associado:"
+        Me.lblNmColaborador.Text = "Nome do Colaborador:"
         '
         'txtNmColaborador
         '
@@ -314,6 +318,10 @@ Partial Class frmColaboradores
         'tabCadastro
         '
         Me.tabCadastro.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.tabCadastro.Controls.Add(Me.dtpDatPro)
+        Me.tabCadastro.Controls.Add(Me.lblDatPro)
+        Me.tabCadastro.Controls.Add(Me.dtpDatInc)
+        Me.tabCadastro.Controls.Add(Me.lblDatInc)
         Me.tabCadastro.Controls.Add(Me.txtUsuarioAlt)
         Me.tabCadastro.Controls.Add(Me.dtpDatAlt)
         Me.tabCadastro.Controls.Add(Me.lblDatAlt)
@@ -346,9 +354,49 @@ Partial Class frmColaboradores
         Me.tabCadastro.TabIndex = 0
         Me.tabCadastro.Text = "Dados Cadastrais"
         '
+        'dtpDatPro
+        '
+        Me.dtpDatPro.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpDatPro.Location = New System.Drawing.Point(478, 211)
+        Me.dtpDatPro.Margin = New System.Windows.Forms.Padding(4)
+        Me.dtpDatPro.MinDate = New Date(1800, 1, 1, 0, 0, 0, 0)
+        Me.dtpDatPro.Name = "dtpDatPro"
+        Me.dtpDatPro.Size = New System.Drawing.Size(108, 22)
+        Me.dtpDatPro.TabIndex = 34
+        '
+        'lblDatPro
+        '
+        Me.lblDatPro.AutoSize = True
+        Me.lblDatPro.Location = New System.Drawing.Point(475, 193)
+        Me.lblDatPro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblDatPro.Name = "lblDatPro"
+        Me.lblDatPro.Size = New System.Drawing.Size(144, 17)
+        Me.lblDatPro.TabIndex = 34
+        Me.lblDatPro.Text = "Data da Proclamação"
+        '
+        'dtpDatInc
+        '
+        Me.dtpDatInc.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpDatInc.Location = New System.Drawing.Point(295, 211)
+        Me.dtpDatInc.Margin = New System.Windows.Forms.Padding(4)
+        Me.dtpDatInc.MinDate = New Date(1800, 1, 1, 0, 0, 0, 0)
+        Me.dtpDatInc.Name = "dtpDatInc"
+        Me.dtpDatInc.Size = New System.Drawing.Size(108, 22)
+        Me.dtpDatInc.TabIndex = 33
+        '
+        'lblDatInc
+        '
+        Me.lblDatInc.AutoSize = True
+        Me.lblDatInc.Location = New System.Drawing.Point(292, 193)
+        Me.lblDatInc.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblDatInc.Name = "lblDatInc"
+        Me.lblDatInc.Size = New System.Drawing.Size(165, 17)
+        Me.lblDatInc.TabIndex = 33
+        Me.lblDatInc.Text = "Inclusão na Organização"
+        '
         'txtUsuarioAlt
         '
-        Me.txtUsuarioAlt.Location = New System.Drawing.Point(634, 209)
+        Me.txtUsuarioAlt.Location = New System.Drawing.Point(724, 265)
         Me.txtUsuarioAlt.Margin = New System.Windows.Forms.Padding(4)
         Me.txtUsuarioAlt.MaxLength = 100
         Me.txtUsuarioAlt.Name = "txtUsuarioAlt"
@@ -358,7 +406,7 @@ Partial Class frmColaboradores
         'dtpDatAlt
         '
         Me.dtpDatAlt.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpDatAlt.Location = New System.Drawing.Point(518, 211)
+        Me.dtpDatAlt.Location = New System.Drawing.Point(608, 267)
         Me.dtpDatAlt.Margin = New System.Windows.Forms.Padding(4)
         Me.dtpDatAlt.MinDate = New Date(1800, 1, 1, 0, 0, 0, 0)
         Me.dtpDatAlt.Name = "dtpDatAlt"
@@ -368,7 +416,7 @@ Partial Class frmColaboradores
         'lblDatAlt
         '
         Me.lblDatAlt.AutoSize = True
-        Me.lblDatAlt.Location = New System.Drawing.Point(515, 193)
+        Me.lblDatAlt.Location = New System.Drawing.Point(605, 249)
         Me.lblDatAlt.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblDatAlt.Name = "lblDatAlt"
         Me.lblDatAlt.Size = New System.Drawing.Size(111, 17)
@@ -627,7 +675,7 @@ Partial Class frmColaboradores
         Me.txtObser4.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObser4.MaxLength = 255
         Me.txtObser4.Name = "txtObser4"
-        Me.txtObser4.Size = New System.Drawing.Size(922, 22)
+        Me.txtObser4.Size = New System.Drawing.Size(823, 22)
         Me.txtObser4.TabIndex = 41
         '
         'dtpDatCad
@@ -647,7 +695,7 @@ Partial Class frmColaboradores
         Me.txtObser3.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObser3.MaxLength = 255
         Me.txtObser3.Name = "txtObser3"
-        Me.txtObser3.Size = New System.Drawing.Size(922, 22)
+        Me.txtObser3.Size = New System.Drawing.Size(823, 22)
         Me.txtObser3.TabIndex = 40
         '
         'lblDatCad
@@ -667,7 +715,7 @@ Partial Class frmColaboradores
         Me.txtObser2.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObser2.MaxLength = 255
         Me.txtObser2.Name = "txtObser2"
-        Me.txtObser2.Size = New System.Drawing.Size(922, 22)
+        Me.txtObser2.Size = New System.Drawing.Size(823, 22)
         Me.txtObser2.TabIndex = 39
         '
         'lblObser
@@ -688,7 +736,7 @@ Partial Class frmColaboradores
         Me.txtObser1.Margin = New System.Windows.Forms.Padding(4)
         Me.txtObser1.MaxLength = 255
         Me.txtObser1.Name = "txtObser1"
-        Me.txtObser1.Size = New System.Drawing.Size(922, 22)
+        Me.txtObser1.Size = New System.Drawing.Size(823, 22)
         Me.txtObser1.TabIndex = 38
         '
         'tabEncargos
@@ -718,16 +766,6 @@ Partial Class frmColaboradores
         Me.dtgMandato.Size = New System.Drawing.Size(926, 277)
         Me.dtgMandato.TabIndex = 13
         '
-        'btnLocUnidade
-        '
-        Me.btnLocUnidade.BackgroundImage = Global.UNIDADES.My.Resources.Resources.AllDay_ru_Search
-        Me.btnLocUnidade.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnLocUnidade.Location = New System.Drawing.Point(754, 60)
-        Me.btnLocUnidade.Name = "btnLocUnidade"
-        Me.btnLocUnidade.Size = New System.Drawing.Size(28, 22)
-        Me.btnLocUnidade.TabIndex = 20
-        Me.btnLocUnidade.UseVisualStyleBackColor = True
-        '
         'txtUnidade
         '
         Me.txtUnidade.Location = New System.Drawing.Point(298, 60)
@@ -740,7 +778,7 @@ Partial Class frmColaboradores
         'lblSitCol
         '
         Me.lblSitCol.AutoSize = True
-        Me.lblSitCol.Location = New System.Drawing.Point(801, 39)
+        Me.lblSitCol.Location = New System.Drawing.Point(792, 39)
         Me.lblSitCol.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblSitCol.Name = "lblSitCol"
         Me.lblSitCol.Size = New System.Drawing.Size(148, 17)
@@ -750,17 +788,17 @@ Partial Class frmColaboradores
         'cbSitCol
         '
         Me.cbSitCol.FormattingEnabled = True
-        Me.cbSitCol.Items.AddRange(New Object() {"ATIVO", "INATIVO", "EXCLUIDO"})
-        Me.cbSitCol.Location = New System.Drawing.Point(804, 57)
+        Me.cbSitCol.Items.AddRange(New Object() {"NOVO (ASPIRANTE)", "VINCENTINO", "ASSOCIADO", "INATIVO", "EXCLUIDO"})
+        Me.cbSitCol.Location = New System.Drawing.Point(788, 57)
         Me.cbSitCol.Name = "cbSitCol"
-        Me.cbSitCol.Size = New System.Drawing.Size(145, 24)
+        Me.cbSitCol.Size = New System.Drawing.Size(174, 24)
         Me.cbSitCol.TabIndex = 23
         '
         'lblDesSit
         '
         Me.lblDesSit.AutoSize = True
         Me.lblDesSit.ForeColor = System.Drawing.Color.Black
-        Me.lblDesSit.Location = New System.Drawing.Point(787, 94)
+        Me.lblDesSit.Location = New System.Drawing.Point(741, 94)
         Me.lblDesSit.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblDesSit.Name = "lblDesSit"
         Me.lblDesSit.Size = New System.Drawing.Size(49, 17)
@@ -769,12 +807,22 @@ Partial Class frmColaboradores
         '
         'txtDesSit
         '
-        Me.txtDesSit.Location = New System.Drawing.Point(732, 112)
+        Me.txtDesSit.Location = New System.Drawing.Point(744, 112)
         Me.txtDesSit.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDesSit.MaxLength = 30
         Me.txtDesSit.Name = "txtDesSit"
         Me.txtDesSit.Size = New System.Drawing.Size(217, 22)
         Me.txtDesSit.TabIndex = 35
+        '
+        'btnLocUnidade
+        '
+        Me.btnLocUnidade.BackgroundImage = Global.UNIDADES.My.Resources.Resources.AllDay_ru_Search
+        Me.btnLocUnidade.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnLocUnidade.Location = New System.Drawing.Point(754, 60)
+        Me.btnLocUnidade.Name = "btnLocUnidade"
+        Me.btnLocUnidade.Size = New System.Drawing.Size(28, 22)
+        Me.btnLocUnidade.TabIndex = 20
+        Me.btnLocUnidade.UseVisualStyleBackColor = True
         '
         'frmColaboradores
         '
@@ -797,7 +845,6 @@ Partial Class frmColaboradores
         Me.Controls.Add(Me.txtCodigo)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmColaboradores"
         Me.Text = "frmColaboradores"
         Me.ToolStrip1.ResumeLayout(False)
@@ -882,4 +929,8 @@ Partial Class frmColaboradores
     Friend WithEvents cbSitCol As System.Windows.Forms.ComboBox
     Friend WithEvents lblDesSit As System.Windows.Forms.Label
     Friend WithEvents txtDesSit As System.Windows.Forms.TextBox
+    Friend WithEvents dtpDatPro As System.Windows.Forms.DateTimePicker
+    Friend WithEvents lblDatPro As System.Windows.Forms.Label
+    Friend WithEvents dtpDatInc As System.Windows.Forms.DateTimePicker
+    Friend WithEvents lblDatInc As System.Windows.Forms.Label
 End Class
